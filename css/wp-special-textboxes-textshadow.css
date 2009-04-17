@@ -1,0 +1,17 @@
+@charset "utf-8";
+/* CSS Document */
+
+.alert_box,
+.download_box,
+.grey_box,
+.info_box,
+.warning_box,
+.black_box,
+.black-body_box,
+.alert-body_box,
+.download-body_box,
+.info-body_box,
+.warning-body_box,
+.grey-body_box {
+	text-shadow: 1px 1px 2px #888;
+}
