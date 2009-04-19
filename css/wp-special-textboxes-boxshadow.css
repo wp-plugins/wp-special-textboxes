@@ -1,0 +1,25 @@
+@charset "utf-8";
+/* CSS Document */
+
+.alert_box,
+.download_box,
+.grey_box,
+.info_box ,
+.warning_box,
+.black_box,
+.black-body_box,
+.alert-body_box,
+.download-body_box,
+.info-body_box,
+.warning-body_box,
+.grey-body_box,
+.black-caption_box,
+.alert-caption_box,
+.download-caption_box,
+.info-caption_box,
+.warning-caption_box,
+.grey-caption_box {
+	-webkit-box-shadow: 3px 3px 3px #888;
+	-moz-box-shadow: 3px 3px 3px #888;
+	box-shadow: 3px 3px 3px #888;
+}
