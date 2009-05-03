@@ -10,7 +10,6 @@
 	padding-right: 5px;
 	padding-bottom: 5px;
 	padding-left: 25px;
-	margin: 10px;
 	}
 .download_box {
 	background-color: #DFF0FF;
@@ -20,7 +19,6 @@
 	padding-right: 5px;
 	padding-bottom: 5px;
 	padding-left: 25px;
-	margin: 10px;
 	}
 .grey_box {
 	background: #EEEEEE;
@@ -36,7 +34,6 @@
 	padding-right: 5px;
 	padding-bottom: 5px;
 	padding-left: 25px;
-	margin: 10px;
 	}
 .warning_box {
 	background-color: #FEFFD5;
@@ -46,7 +43,6 @@
 	padding-right: 5px;
 	padding-bottom: 5px;
 	padding-left: 25px;
-	margin: 10px;
 }
 .black_box {
 	background-color: #000000;
@@ -56,7 +52,6 @@
 	padding-right: 5px;
 	padding-bottom: 5px;
 	padding-left: 25px;
-	margin: 10px;
 	color: #FFFFFF;
 }
 .black-caption_box {
@@ -64,10 +59,6 @@
 	background-image: url(../images/earth.png);
 	background-repeat: no-repeat;
 	background-color: #333333;
-	margin-top: 10px;
-	margin-right: 10px;
-	margin-bottom: 0px;
-	margin-left: 10px;
 	color: #FFFFFF;
 	padding-top: 3px;
 	padding-right: 5px;
@@ -77,10 +68,6 @@
 .black-body_box {
 	background-color: #000000;
 	padding: 5px;
-	margin-top: 0px;
-	margin-right: 10px;
-	margin-bottom: 10px;
-	margin-left: 10px;
 	color: #FFFFFF;
 }
 .alert-caption_box {
@@ -92,10 +79,6 @@
 	-moz-background-origin: border;
 	-moz-background-clip: border;
 	background-color: #FF4F4A;
-	margin-top: 10px;
-	margin-right: 10px;
-	margin-bottom: 0px;
-	margin-left: 10px;
 	color: #FFFFFF;
 	padding-top: 3px;
 	padding-right: 5px;
@@ -114,10 +97,6 @@
 .alert-body_box {
 	background-color: #FFE7E6;
 	padding: 5px;
-	margin-top: 0px;
-	margin-right: 10px;
-	margin-bottom: 10px;
-	margin-left: 10px;
 	color: #333333;
 	border-top-width: 0px;
 	border-right-width: 1px;
@@ -137,10 +116,6 @@
 	-moz-background-origin: border;
 	-moz-background-clip: border;
 	background-color: #65ADFE;
-	margin-top: 10px;
-	margin-right: 10px;
-	margin-bottom: 0px;
-	margin-left: 10px;
 	color: #FFFFFF;
 	padding-top: 3px;
 	padding-right: 5px;
@@ -158,10 +133,6 @@
 .download-body_box {
 	background-color: #DFF0FF;
 	padding: 5px;
-	margin-top: 0px;
-	margin-right: 10px;
-	margin-bottom: 10px;
-	margin-left: 10px;
 	color: #333333;
 	border-top-width: 0px;
 	border-right-width: 1px;
@@ -181,10 +152,6 @@
 	-moz-background-origin: border;
 	-moz-background-clip: border;
 	background-color: #7AD975;
-	margin-top: 10px;
-	margin-right: 10px;
-	margin-bottom: 0px;
-	margin-left: 10px;
 	color: #FFFFFF;
 	padding-top: 3px;
 	padding-right: 5px;
@@ -202,10 +169,6 @@
 .info-body_box {
 	background-color: #E2F8DE;
 	padding: 5px;
-	margin-top: 0px;
-	margin-right: 10px;
-	margin-bottom: 10px;
-	margin-left: 10px;
 	color: #333333;
 	border-top-width: 0px;
 	border-right-width: 1px;
@@ -225,10 +188,6 @@
 	-moz-background-origin: border;
 	-moz-background-clip: border;
 	background-color: #FE9A05;
-	margin-top: 10px;
-	margin-right: 10px;
-	margin-bottom: 0px;
-	margin-left: 10px;
 	color: #FFFFFF;
 	padding-top: 3px;
 	padding-right: 5px;
@@ -246,10 +205,6 @@
 .warning-body_box {
 	background-color: #FEFFD5;
 	padding: 5px;
-	margin-top: 0px;
-	margin-right: 10px;
-	margin-bottom: 10px;
-	margin-left: 10px;
 	color: #333333;
 	border-top-width: 0px;
 	border-right-width: 1px;
@@ -268,10 +223,6 @@
 	-moz-background-origin: border;
 	-moz-background-clip: border;
 	background-color: #BBBBBB;
-	margin-top: 10px;
-	margin-right: 10px;
-	margin-bottom: 0px;
-	margin-left: 10px;
 	color: #FFFFFF;
 	padding-top: 3px;
 	padding-right: 5px;
@@ -289,10 +240,6 @@
 .grey-body_box {
 	background-color: #EEEEEE;
 	padding: 5px;
-	margin-top: 0px;
-	margin-right: 10px;
-	margin-bottom: 10px;
-	margin-left: 10px;
 	color: #333333;
 	border-top-width: 0px;
 	border-right-width: 1px;
