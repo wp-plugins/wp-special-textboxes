@@ -1,0 +1,132 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: wp-special-textboxes\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-05-03 18:02+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Константин Леонов <rublezoid@gmail.com>\n"
+"Language-Team: minimus <minimus@blogovod.co.cc>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: BELARUS\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: _e;__;__ngettext:1,2;__ngettext_noop:1,2;_c\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: wp-special-textboxes.php:155
+msgid "Special Text Boxes"
+msgstr "Подсветка текста"
+
+#: wp-special-textboxes.php:164
+msgid "Basic Settings"
+msgstr "Основные параметры"
+
+#: wp-special-textboxes.php:168
+msgid "Select border style for Special Text Boxes"
+msgstr "Выбор стиля рамки блока специального текста"
+
+#: wp-special-textboxes.php:169
+msgid "Selecting \"None\" will disable Special Text Boxes border."
+msgstr "Выбрав \"Без рамки\", Вы запретите прорисовку рамки блока специального текста. "
+
+#: wp-special-textboxes.php:175
+msgid "Define top margin for Special Text Boxes"
+msgstr "Верхний отступ специального текста"
+
+#: wp-special-textboxes.php:176
+msgid "This is a gap between top edge of Special Text Box and text above."
+msgstr "Этот параметр определяет промежуток между верхним краем блока специального текста и текстом (елементом) расположенным выше."
+
+#: wp-special-textboxes.php:181
+msgid "Define left margin for Special Text Boxes"
+msgstr "Левый отступ специального текста"
+
+#: wp-special-textboxes.php:182
+msgid "This is a gap between left edge of Special Text Box and left edge of post area."
+msgstr "Этот параметр определяет промежуток между левым краем блока специального текста и левым краем области статьи."
+
+#: wp-special-textboxes.php:187
+msgid "Define right margin for Special Text Boxes"
+msgstr "Правый отступ специального текста"
+
+#: wp-special-textboxes.php:188
+msgid "This is a gap between right edge of Special Text Box and right edge of post area."
+msgstr "Этот параметр определяет промежуток между правым краем блока специального текста и правым краем области статьи."
+
+#: wp-special-textboxes.php:193
+msgid "Define bottom margin for Special Text Boxes"
+msgstr "Нижний отступ специального текста"
+
+#: wp-special-textboxes.php:194
+msgid "This is a gap between bottom edge of Special Text Box and text below."
+msgstr "Этот параметр определяет промежуток между нижним краем блока специального текста и текстом (елементом) расположенным ниже."
+
+#: wp-special-textboxes.php:202
+msgid "Extended Settings"
+msgstr "Дополнительные параметры"
+
+#: wp-special-textboxes.php:203
+msgid "Parameters below add elements of CSS3 standard to Style Sheet. Not all browsers can interpret this elements properly, but including this elements to HTML page not crash browser."
+msgstr "Использование следующих параметров добавляет в таблицу стилей елементы стандарта CSS3. Не все браузеры могут интерпретировать эти элементы должным образом, но использование этих элементов не приводит к сбою в работе браузера."
+
+#: wp-special-textboxes.php:207
+msgid "Allow rounded corners for Special Text Boxes?"
+msgstr "Разрешить использование закруглённых углов?"
+
+#: wp-special-textboxes.php:208
+msgid "Selecting \"No\" will disable Special Text Boxes rounded corners."
+msgstr "Выбрав \"Нет\", Вы запретите прорисовку закруглённых углов. "
+
+#: wp-special-textboxes.php:211
+#: wp-special-textboxes.php:218
+#: wp-special-textboxes.php:225
+msgid "Yes"
+msgstr "Да"
+
+#: wp-special-textboxes.php:211
+#: wp-special-textboxes.php:218
+#: wp-special-textboxes.php:225
+msgid "No"
+msgstr "Нет"
+
+#: wp-special-textboxes.php:214
+msgid "Allow box shadow for Special Text Boxes?"
+msgstr "Разрешить использование тени блока специального текста?"
+
+#: wp-special-textboxes.php:215
+msgid "Selecting \"No\" will disable Special Text Boxes shadow."
+msgstr "Выбрав \"Нет\", Вы запретите прорисовку тени блока специального текста. "
+
+#: wp-special-textboxes.php:221
+msgid "Allow text shadow for Special Text Boxes?"
+msgstr "Разрешить использование теней текста?"
+
+#: wp-special-textboxes.php:222
+msgid "Selecting \"No\" will disable Special Text Boxes text shadow."
+msgstr "Выбрав \"Нет\", Вы запретите прорисовку теней текста. "
+
+#: wp-special-textboxes.php:235
+msgid "Special Text Boxes Settings Updated."
+msgstr "Параметры подсветки специального текста сохранены."
+
+#: wp-special-textboxes.php:241
+msgid "Special Text Boxes Settings"
+msgstr "Параметры подсветки специального текста"
+
+#: wp-special-textboxes.php:303
+msgid "Update Settings"
+msgstr "Сохранить параметры"
+
+#~ msgid "Solid"
+#~ msgstr "Сплошная линия"
+#~ msgid "Dashed"
+#~ msgstr "Пунктир"
+#~ msgid "Dotted"
+#~ msgstr "Точки"
+#~ msgid "None"
+#~ msgstr "Без рамки"
+

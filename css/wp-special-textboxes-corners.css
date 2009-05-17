@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* CSS Document */
+
+.alert_box,
+.download_box,
+.grey_box,
+.info_box ,
+.warning_box,
+.black_box  {
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+.black-caption_box,
+.alert-caption_box,
+.download-caption_box,
+.info-caption_box,
+.warning-caption_box,
+.grey-caption_box  {
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+}
+.black-body_box,
+.alert-body_box,
+.download-body_box,
+.info-body_box,
+.warning-body_box,
+.grey-body_box {
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+}
