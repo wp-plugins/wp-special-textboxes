@@ -4,7 +4,7 @@ Donate link: http://simplelib.co.cc/
 Tags: content, performance, text
 Requires at least: 2.6
 Tested up to: 2.7.1
-Stable tag: 1.1.3
+Stable tag: 1.1.6
 
 Highlights any portion of text as text in the colored boxes.
 
@@ -16,8 +16,22 @@ Available languages:
 
   * English
   * Russian
+
+If you have created your own language pack, or have an update of an existing one, you can send __.po__ and __.mo files__ to me so that I can bundle it into __wp-special-textboxes__.
+
+= Version History =
+
+* 1.0.1
+	* Initial upload
+* 1.1.6
+	* codes and variables cleanup
+		* admin page codes optimised
+		* activation codes optimised for future upgrades
+	* margin settings added
+* 1.1.7
+	* black box margins bug fixed
   
-Real examples of outputs you can see on the [plagin page](http://simplelib.co.cc/?p=11)
+Real examples of outputs you can see on the [plugin page](http://simplelib.co.cc/?p=11)
 
 == Installation ==
 
