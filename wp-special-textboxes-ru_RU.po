@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp-special-textboxes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-03 18:02+0200\n"
+"POT-Creation-Date: 2009-05-30 11:44+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Константин Леонов <rublezoid@gmail.com>\n"
 "Language-Team: minimus <minimus@blogovod.co.cc>\n"
@@ -17,107 +17,176 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: wp-special-textboxes.php:155
+#: wp-special-textboxes.php:239
+msgid "This is example of Custom Special Text Box. You must save options to view changes."
+msgstr "Это пример настраиваемого блока специального текста. Чтобы увидеть внесённые изменения, необходимо сохранить параметры."
+
+#: wp-special-textboxes.php:240
+msgid "This is caption"
+msgstr "Это заголовок блока"
+
+#: wp-special-textboxes.php:241
+msgid "This is example of Captioned Custom Special Text Box. You must save options to view changes."
+msgstr "Это пример настраиваемого блока специального текста с заголовком. Чтобы увидеть внесённые изменения, необходимо сохранить параметры."
+
+#: wp-special-textboxes.php:247
 msgid "Special Text Boxes"
 msgstr "Подсветка текста"
 
-#: wp-special-textboxes.php:164
+#: wp-special-textboxes.php:260
 msgid "Basic Settings"
 msgstr "Основные параметры"
 
-#: wp-special-textboxes.php:168
+#: wp-special-textboxes.php:264
 msgid "Select border style for Special Text Boxes"
 msgstr "Выбор стиля рамки блока специального текста"
 
-#: wp-special-textboxes.php:169
+#: wp-special-textboxes.php:265
 msgid "Selecting \"None\" will disable Special Text Boxes border."
 msgstr "Выбрав \"Без рамки\", Вы запретите прорисовку рамки блока специального текста. "
 
-#: wp-special-textboxes.php:175
+#: wp-special-textboxes.php:271
 msgid "Define top margin for Special Text Boxes"
 msgstr "Верхний отступ специального текста"
 
-#: wp-special-textboxes.php:176
+#: wp-special-textboxes.php:272
 msgid "This is a gap between top edge of Special Text Box and text above."
 msgstr "Этот параметр определяет промежуток между верхним краем блока специального текста и текстом (елементом) расположенным выше."
 
-#: wp-special-textboxes.php:181
+#: wp-special-textboxes.php:277
 msgid "Define left margin for Special Text Boxes"
 msgstr "Левый отступ специального текста"
 
-#: wp-special-textboxes.php:182
+#: wp-special-textboxes.php:278
 msgid "This is a gap between left edge of Special Text Box and left edge of post area."
 msgstr "Этот параметр определяет промежуток между левым краем блока специального текста и левым краем области статьи."
 
-#: wp-special-textboxes.php:187
+#: wp-special-textboxes.php:283
 msgid "Define right margin for Special Text Boxes"
 msgstr "Правый отступ специального текста"
 
-#: wp-special-textboxes.php:188
+#: wp-special-textboxes.php:284
 msgid "This is a gap between right edge of Special Text Box and right edge of post area."
 msgstr "Этот параметр определяет промежуток между правым краем блока специального текста и правым краем области статьи."
 
-#: wp-special-textboxes.php:193
+#: wp-special-textboxes.php:289
 msgid "Define bottom margin for Special Text Boxes"
 msgstr "Нижний отступ специального текста"
 
-#: wp-special-textboxes.php:194
+#: wp-special-textboxes.php:290
 msgid "This is a gap between bottom edge of Special Text Box and text below."
 msgstr "Этот параметр определяет промежуток между нижним краем блока специального текста и текстом (елементом) расположенным ниже."
 
-#: wp-special-textboxes.php:202
+#: wp-special-textboxes.php:298
 msgid "Extended Settings"
 msgstr "Дополнительные параметры"
 
-#: wp-special-textboxes.php:203
+#: wp-special-textboxes.php:299
 msgid "Parameters below add elements of CSS3 standard to Style Sheet. Not all browsers can interpret this elements properly, but including this elements to HTML page not crash browser."
 msgstr "Использование следующих параметров добавляет в таблицу стилей елементы стандарта CSS3. Не все браузеры могут интерпретировать эти элементы должным образом, но использование этих элементов не приводит к сбою в работе браузера."
 
-#: wp-special-textboxes.php:207
+#: wp-special-textboxes.php:303
 msgid "Allow rounded corners for Special Text Boxes?"
 msgstr "Разрешить использование закруглённых углов?"
 
-#: wp-special-textboxes.php:208
+#: wp-special-textboxes.php:304
 msgid "Selecting \"No\" will disable Special Text Boxes rounded corners."
 msgstr "Выбрав \"Нет\", Вы запретите прорисовку закруглённых углов. "
 
-#: wp-special-textboxes.php:211
-#: wp-special-textboxes.php:218
-#: wp-special-textboxes.php:225
+#: wp-special-textboxes.php:307
+#: wp-special-textboxes.php:314
+#: wp-special-textboxes.php:321
 msgid "Yes"
 msgstr "Да"
 
-#: wp-special-textboxes.php:211
-#: wp-special-textboxes.php:218
-#: wp-special-textboxes.php:225
+#: wp-special-textboxes.php:307
+#: wp-special-textboxes.php:314
+#: wp-special-textboxes.php:321
 msgid "No"
 msgstr "Нет"
 
-#: wp-special-textboxes.php:214
+#: wp-special-textboxes.php:310
 msgid "Allow box shadow for Special Text Boxes?"
 msgstr "Разрешить использование тени блока специального текста?"
 
-#: wp-special-textboxes.php:215
+#: wp-special-textboxes.php:311
 msgid "Selecting \"No\" will disable Special Text Boxes shadow."
 msgstr "Выбрав \"Нет\", Вы запретите прорисовку тени блока специального текста. "
 
-#: wp-special-textboxes.php:221
+#: wp-special-textboxes.php:317
 msgid "Allow text shadow for Special Text Boxes?"
 msgstr "Разрешить использование теней текста?"
 
-#: wp-special-textboxes.php:222
+#: wp-special-textboxes.php:318
 msgid "Selecting \"No\" will disable Special Text Boxes text shadow."
 msgstr "Выбрав \"Нет\", Вы запретите прорисовку теней текста. "
 
-#: wp-special-textboxes.php:235
+#: wp-special-textboxes.php:338
+#: wp-special-textboxes.php:413
+msgid "Custom Box Editor"
+msgstr "Редактор настраиваемого блока"
+
+#: wp-special-textboxes.php:339
+msgid "Use parameters below for customising custom Special Text Box."
+msgstr "Используйте эти параметры для настройки внешнего вида настраиваемого блока специального текста."
+
+#: wp-special-textboxes.php:343
+msgid "Define font color for Custom Special Text Box"
+msgstr "Цвет шрифта"
+
+#: wp-special-textboxes.php:344
+msgid "This is a font color of Custom Special Text Box (Six Hex Digits)."
+msgstr "Этот параметр задаёт цвет шрифта настраиваемого блока специального текста (шесть шестнадцатиричных цифр)."
+
+#: wp-special-textboxes.php:349
+msgid "Define caption font color for Custom Special Text Box"
+msgstr "Цвет шрифта заголовка"
+
+#: wp-special-textboxes.php:350
+msgid "This is a font color of Custom Special Text Box caption (Six Hex Digits)."
+msgstr "Этот параметр задаёт цвет шрифта заголовка настраиваемого блока специального текста (шесть шестнадцатиричных цифр)."
+
+#: wp-special-textboxes.php:355
+msgid "Define background color for Custom Special Text Box"
+msgstr "Цвет фона"
+
+#: wp-special-textboxes.php:356
+msgid "This is a background color of Custom Special Text Box (Six Hex Digits)."
+msgstr "Этот параметр задаёт цвет фона настраиваемого блока специального текста (шесть шестнадцатиричных цифр)."
+
+#: wp-special-textboxes.php:361
+msgid "Define background color for Custom Special Text Box caption"
+msgstr "Цвет фона заголовка"
+
+#: wp-special-textboxes.php:362
+msgid "This is a background color of Custom Special Text Box caption (Six Hex Digits)."
+msgstr "Этот параметр задаёт цвет фона заголовка настраиваемого блока специального текста (шесть шестнадцатиричных цифр)."
+
+#: wp-special-textboxes.php:367
+msgid "Define border color for Custom Special Text Box"
+msgstr "Цвет окантовки"
+
+#: wp-special-textboxes.php:368
+msgid "This is a border color of Custom Special Text Box (Six Hex Digits)."
+msgstr "Этот параметр определяет цвет окантовки настраиваемого блока специального текста."
+
+#: wp-special-textboxes.php:373
+msgid "Define image for Custom Special Text Box"
+msgstr "Изображение"
+
+#: wp-special-textboxes.php:374
+msgid "This is an image of Custom Special Text Box (Full URL). 25x25 pixels, transparent background PNG image recommended."
+msgstr "Этот параметр задаёт пиктограмму настраиваемого блока специального текста (полный URL). Рекомендуется изображение PNG, 25x25 пиксел, прозрачный фон."
+
+#: wp-special-textboxes.php:393
 msgid "Special Text Boxes Settings Updated."
 msgstr "Параметры подсветки специального текста сохранены."
 
-#: wp-special-textboxes.php:241
+#: wp-special-textboxes.php:400
 msgid "Special Text Boxes Settings"
 msgstr "Параметры подсветки специального текста"
 
-#: wp-special-textboxes.php:303
+#: wp-special-textboxes.php:488
 msgid "Update Settings"
 msgstr "Сохранить параметры"
 

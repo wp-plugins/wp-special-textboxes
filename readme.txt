@@ -3,8 +3,8 @@ Contributors: minimus
 Donate link: http://simplelib.co.cc/
 Tags: content, performance, text
 Requires at least: 2.6
-Tested up to: 2.7.1
-Stable tag: 1.1.7
+Tested up to: 2.8
+Stable tag: 1.2.10
 
 Highlights any portion of text as text in the colored boxes.
 
@@ -30,6 +30,11 @@ If you have created your own language pack, or have an update of an existing one
 	* margin settings added
 * 1.1.7
 	* black box margins bug fixed
+* 1.2.10
+	* custom box added
+	* custom editor added
+	* customising "on the fly" added
+	* Wordpress 2.8 compatibility checked
   
 Real examples of outputs you can see on the [plugin page](http://simplelib.co.cc/?p=11)
 
@@ -41,7 +46,7 @@ Real examples of outputs you can see on the [plugin page](http://simplelib.co.cc
 
 == Frequently Asked Questions ==
 
-= How to insert special text box to post's text =
+= How to insert special text box to post's text? =
 
 Use short codes: 
 
@@ -53,7 +58,7 @@ or (for captioned textbox)
 
 were
  
-__ValidID__ may be: _alert_, _info_, _download_, _grey_, _black_
+__ValidID__ may be: _alert_, _info_, _download_, _grey_, _black_, _custom_
 
 __CaptionText__ may be: _any text you needed_.
 
@@ -61,3 +66,4 @@ __CaptionText__ may be: _any text you needed_.
 
 1. Examples of special textboxes
 2. wp-special-textboxes Admin Page
+3. wp-special-textboxes Custom Box Editor

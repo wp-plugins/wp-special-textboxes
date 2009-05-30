@@ -1,17 +1,19 @@
 @charset "utf-8";
 /* CSS Document */
 
-.alert_box,
-.download_box,
-.grey_box,
-.info_box,
-.warning_box,
-.black_box,
-.black-body_box,
-.alert-body_box,
-.download-body_box,
-.info-body_box,
-.warning-body_box,
-.grey-body_box {
+.stb-alert_box,
+.stb-download_box,
+.stb-grey_box,
+.stb-info_box,
+.stb-warning_box,
+.stb-black_box,
+.stb-custom_box,
+.stb-black-body_box,
+.stb-alert-body_box,
+.stb-download-body_box,
+.stb-info-body_box,
+.stb-warning-body_box,
+.stb-grey-body_box,
+.stb-custom-body_box {
 	text-shadow: 1px 1px 2px #888;
 }

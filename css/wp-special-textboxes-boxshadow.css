@@ -1,24 +1,27 @@
 @charset "utf-8";
 /* CSS Document */
 
-.alert_box,
-.download_box,
-.grey_box,
-.info_box ,
-.warning_box,
-.black_box,
-.black-body_box,
-.alert-body_box,
-.download-body_box,
-.info-body_box,
-.warning-body_box,
-.grey-body_box,
-.black-caption_box,
-.alert-caption_box,
-.download-caption_box,
-.info-caption_box,
-.warning-caption_box,
-.grey-caption_box {
+.stb-alert_box,
+.stb-download_box,
+.stb-grey_box,
+.stb-info_box ,
+.stb-warning_box,
+.stb-black_box,
+.stb-black-body_box,
+.stb-alert-body_box,
+.stb-download-body_box,
+.stb-info-body_box,
+.stb-warning-body_box,
+.stb-grey-body_box,
+.stb-black-caption_box,
+.stb-alert-caption_box,
+.stb-download-caption_box,
+.stb-info-caption_box,
+.stb-warning-caption_box,
+.stb-grey-caption_box,
+.stb-custom_box,
+.stb-custom-caption_box,
+.stb-custom-body_box {
 	-webkit-box-shadow: 3px 3px 3px #888;
 	-moz-box-shadow: 3px 3px 3px #888;
 	box-shadow: 3px 3px 3px #888;
