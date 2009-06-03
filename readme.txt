@@ -4,7 +4,7 @@ Donate link: http://simplelib.co.cc/
 Tags: content, performance, text
 Requires at least: 2.6
 Tested up to: 2.8
-Stable tag: 1.2.10
+Stable tag: 1.2.12
 
 Highlights any portion of text as text in the colored boxes.
 
@@ -30,11 +30,13 @@ If you have created your own language pack, or have an update of an existing one
 	* margin settings added
 * 1.1.7
 	* black box margins bug fixed
-* 1.2.10
+* 1.2.11
 	* custom box added
 	* custom editor added
 	* customising "on the fly" added
 	* Wordpress 2.8 compatibility checked
+* 1.2.12
+	* Italian language by [Gianni Diurno](http://gidibao.net/) added
   
 Real examples of outputs you can see on the [plugin page](http://simplelib.co.cc/?p=11)
 
