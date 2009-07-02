@@ -1,0 +1,201 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: wp-special-textboxes in italiano\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-05-30 11:44+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Gianni Diurno (aka gidibao) <gidibao@gmail.com>\n"
+"Language-Team: Gianni Diurno | http://gidibao.net/ <gidibao@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Italian\n"
+"X-Poedit-Country: ITALY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: _e;__;__ngettext:1,2;__ngettext_noop:1,2;_c\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: wp-special-textboxes.php:239
+msgid "This is example of Custom Special Text Box. You must save options to view changes."
+msgstr "Questo é un esempio di Custom Special Text Box. Salvando le impostazioni potrai vedere le modifiche."
+
+#: wp-special-textboxes.php:240
+msgid "This is caption"
+msgstr "Questa é la didascalia"
+
+#: wp-special-textboxes.php:241
+msgid "This is example of Captioned Custom Special Text Box. You must save options to view changes."
+msgstr "Questo é un esempio di didascalia per Captioned Custom Special Text Box. Salvando le impostazioni potrai vedere le modifiche."
+
+#: wp-special-textboxes.php:247
+msgid "Special Text Boxes"
+msgstr "Caselle speciali di testo"
+
+#: wp-special-textboxes.php:260
+msgid "Basic Settings"
+msgstr "Impostazioni di base"
+
+#: wp-special-textboxes.php:264
+msgid "Select border style for Special Text Boxes"
+msgstr "Seleziona lo stile per il bordo delle caselle speciali di testo"
+
+#: wp-special-textboxes.php:265
+msgid "Selecting \"None\" will disable Special Text Boxes border."
+msgstr "Selezionando \"Nessuno\" verrà disattivato il bordo per le caselle speciali di testo."
+
+#: wp-special-textboxes.php:271
+msgid "Define top margin for Special Text Boxes"
+msgstr "Definisci il margine superiore per le caselle speciali di testo"
+
+#: wp-special-textboxes.php:272
+msgid "This is a gap between top edge of Special Text Box and text above."
+msgstr "Questo é lo spazio tra il contorno superiore della casella speciale di testo ed il testo al di sopra."
+
+#: wp-special-textboxes.php:277
+msgid "Define left margin for Special Text Boxes"
+msgstr "Definisci il margine del lato sinistro per le caselle speciali di testo"
+
+#: wp-special-textboxes.php:278
+msgid "This is a gap between left edge of Special Text Box and left edge of post area."
+msgstr "Questo é lo spazio tra il contorno del lato sinistro della casella speciale di testo ed il contorno del lato sinistro dell'area articolo."
+
+#: wp-special-textboxes.php:283
+msgid "Define right margin for Special Text Boxes"
+msgstr "Definisci il margine destro per le caselle speciali di testo"
+
+#: wp-special-textboxes.php:284
+msgid "This is a gap between right edge of Special Text Box and right edge of post area."
+msgstr "Questo é lo spazio tra il contorno del lato destro della casella speciale di testo ed il contorno del lato destro dell'area articolo."
+
+#: wp-special-textboxes.php:289
+msgid "Define bottom margin for Special Text Boxes"
+msgstr "Definisci il margine inferiore per le caselle speciali di testo"
+
+#: wp-special-textboxes.php:290
+msgid "This is a gap between bottom edge of Special Text Box and text below."
+msgstr "Questo é lo spazio tra il contorno inferiore della casella speciale di testo ed il testo al di sotto."
+
+#: wp-special-textboxes.php:298
+msgid "Extended Settings"
+msgstr "Impostazioni avanzate"
+
+#: wp-special-textboxes.php:299
+msgid "Parameters below add elements of CSS3 standard to Style Sheet. Not all browsers can interpret this elements properly, but including this elements to HTML page not crash browser."
+msgstr "Parameters below add elements of CSS3 standard al foglio di stile. Non tutti i browser saranno in grado di potere interpretare correttamente questi elementi; in ogni caso, l'inclusione di questi elementi all'HTML della pagina non bloccherà il browser."
+
+#: wp-special-textboxes.php:303
+msgid "Allow rounded corners for Special Text Boxes?"
+msgstr "Desideri gli angoli arrotondati per le caselle speciali di testo?"
+
+#: wp-special-textboxes.php:304
+msgid "Selecting \"No\" will disable Special Text Boxes rounded corners."
+msgstr "Selezionando \"No\" verranno disattivati gli angoli arrotondati per le caselle speciali di testo."
+
+#: wp-special-textboxes.php:307
+#: wp-special-textboxes.php:314
+#: wp-special-textboxes.php:321
+msgid "Yes"
+msgstr "Sì"
+
+#: wp-special-textboxes.php:307
+#: wp-special-textboxes.php:314
+#: wp-special-textboxes.php:321
+msgid "No"
+msgstr "No"
+
+#: wp-special-textboxes.php:310
+msgid "Allow box shadow for Special Text Boxes?"
+msgstr "Desideri un effetto ombra per per il box delle caselle speciali di testo?"
+
+#: wp-special-textboxes.php:311
+msgid "Selecting \"No\" will disable Special Text Boxes shadow."
+msgstr "Selezionando \"No\" verrà disattivato l'effetto ombra per il box delle caselle speciali di testo. "
+
+#: wp-special-textboxes.php:317
+msgid "Allow text shadow for Special Text Boxes?"
+msgstr "Desideri un effetto ombra per il testo delle caselle speciali di testo?"
+
+#: wp-special-textboxes.php:318
+msgid "Selecting \"No\" will disable Special Text Boxes text shadow."
+msgstr "Selezionando \"No\" verrà disattivato l'effetto ombra per il testo delle caselle speciali di testo. "
+
+#: wp-special-textboxes.php:338
+#: wp-special-textboxes.php:413
+msgid "Custom Box Editor"
+msgstr "Editor casella personalizzata"
+
+#: wp-special-textboxes.php:339
+msgid "Use parameters below for customising custom Special Text Box."
+msgstr "Utilizza i parametri qui sotto per personalizzare la casella speciale di testo."
+
+#: wp-special-textboxes.php:343
+msgid "Define font color for Custom Special Text Box"
+msgstr "Definisci il colore del carattere per la casella speciale di testo"
+
+#: wp-special-textboxes.php:344
+msgid "This is a font color of Custom Special Text Box (Six Hex Digits)."
+msgstr "Questo é il colore per la casella speciale di testo personalizzata (sei caratteri esagesimali)."
+
+#: wp-special-textboxes.php:349
+msgid "Define caption font color for Custom Special Text Box"
+msgstr "Definisci il colore del carattere per la didascalia della casella speciale di testo personalizzata"
+
+#: wp-special-textboxes.php:350
+msgid "This is a font color of Custom Special Text Box caption (Six Hex Digits)."
+msgstr "Questo é il colore del carattere per la didascalia della casella speciale di testo personalizzata (sei caratteri esagesimali)."
+
+#: wp-special-textboxes.php:355
+msgid "Define background color for Custom Special Text Box"
+msgstr "Definisci il colore di sfondo per la casella speciale di testo personalizzata"
+
+#: wp-special-textboxes.php:356
+msgid "This is a background color of Custom Special Text Box (Six Hex Digits)."
+msgstr "Questo é il colore di sfondo per la casella speciale di testo personalizzata (sei caratteri esagesimali)."
+
+#: wp-special-textboxes.php:361
+msgid "Define background color for Custom Special Text Box caption"
+msgstr "Definisci il colore dello sfondo della didascalia per la casella speciale di testo personalizzata"
+
+#: wp-special-textboxes.php:362
+msgid "This is a background color of Custom Special Text Box caption (Six Hex Digits)."
+msgstr "Questo é il colore di sfondo della didascalia per la casella speciale di testo personalizzata (sei caratteri esagesimali)."
+
+#: wp-special-textboxes.php:367
+msgid "Define border color for Custom Special Text Box"
+msgstr "Definisci il colore del bordo per la casella speciale di testo personalizzata"
+
+#: wp-special-textboxes.php:368
+msgid "This is a border color of Custom Special Text Box (Six Hex Digits)."
+msgstr "Questo é il colore del bordo per la casella speciale di testo personalizzata (sei caratteri esagesimali)."
+
+#: wp-special-textboxes.php:373
+msgid "Define image for Custom Special Text Box"
+msgstr "Definisci l'immagine per la casella speciale di testo personalizzata"
+
+#: wp-special-textboxes.php:374
+msgid "This is an image of Custom Special Text Box (Full URL). 25x25 pixels, transparent background PNG image recommended."
+msgstr "Questa é una immagine per la casella speciale di testo personalizzata (URL completo). 25x25 pixel, immagine PNG sfondo trasparente."
+
+#: wp-special-textboxes.php:393
+msgid "Special Text Boxes Settings Updated."
+msgstr "Le impostazioni sono state aggiornate."
+
+#: wp-special-textboxes.php:400
+msgid "Special Text Boxes Settings"
+msgstr "Impostazioni Special Text Boxes"
+
+#: wp-special-textboxes.php:488
+msgid "Update Settings"
+msgstr "Aggiorna le impostazioni"
+
+#~ msgid "Solid"
+#~ msgstr "Сплошная линия"
+#~ msgid "Dashed"
+#~ msgstr "Пунктир"
+#~ msgid "Dotted"
+#~ msgstr "Точки"
+#~ msgid "None"
+#~ msgstr "Без рамки"
+

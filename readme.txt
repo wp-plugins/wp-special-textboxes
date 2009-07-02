@@ -3,8 +3,8 @@ Contributors: minimus
 Donate link: http://simplelib.co.cc/
 Tags: content, performance, text
 Requires at least: 2.6
-Tested up to: 2.8
-Stable tag: 1.2.10
+Tested up to: 2.8.1
+Stable tag: 1.2.13
 
 Highlights any portion of text as text in the colored boxes.
 
@@ -16,6 +16,8 @@ Available languages:
 
   * English
   * Russian
+  * Italian
+  * Belarus
 
 If you have created your own language pack, or have an update of an existing one, you can send __.po__ and __.mo files__ to me so that I can bundle it into __wp-special-textboxes__.
 
@@ -30,11 +32,16 @@ If you have created your own language pack, or have an update of an existing one
 	* margin settings added
 * 1.1.7
 	* black box margins bug fixed
-* 1.2.10
+* 1.2.11
 	* custom box added
 	* custom editor added
 	* customising "on the fly" added
 	* Wordpress 2.8 compatibility checked
+* 1.2.12
+	* Italian language by [Gianni Diurno](http://gidibao.net/) added
+* 1.2.13
+	* Belarus language by [Fat Cower](http://www.fatcow.com) added
+	* Wordpress 2.8.1 compatibility tested
   
 Real examples of outputs you can see on the [plugin page](http://simplelib.co.cc/?p=11)
 
