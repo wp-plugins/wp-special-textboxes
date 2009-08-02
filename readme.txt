@@ -1,40 +1,25 @@
-=== wp-special-textboxes ===
+=== Special Text Boxes ===
 Contributors: minimus
 Donate link: http://simplelib.co.cc/
 Tags: content, performance, text
 Requires at least: 2.6
-Tested up to: 2.8
-Stable tag: 1.2.10
+Tested up to: 2.8.2
+Stable tag: 2.0.20
 
 Highlights any portion of text as text in the colored boxes.
 
 == Description ==
 
-wp-special-textboxes is very simple, very little and very usefull Wordpress plugin (for me and, I hope, for you). It adds little style sheet file and short code to blog for highlighting some portion of text in post as colored boxes. That may be warning, alert, info and download portion of post’s text.
+Special Text Boxes is very simple, very little and very usefull Wordpress plugin (for me and, I hope, for you). It adds little style sheet file and short code to blog for highlighting some portion of text in post as colored boxes. That may be warning, alert, info and download portion of post’s text.
 
 Available languages:
 
   * English
   * Russian
+  * Italian
+  * Belarus
 
-If you have created your own language pack, or have an update of an existing one, you can send __.po__ and __.mo files__ to me so that I can bundle it into __wp-special-textboxes__.
-
-= Version History =
-
-* 1.0.1
-	* Initial upload
-* 1.1.6
-	* codes and variables cleanup
-		* admin page codes optimised
-		* activation codes optimised for future upgrades
-	* margin settings added
-* 1.1.7
-	* black box margins bug fixed
-* 1.2.10
-	* custom box added
-	* custom editor added
-	* customising "on the fly" added
-	* Wordpress 2.8 compatibility checked
+If you have created your own language pack, or have an update of an existing one, you can send __.po__ and __.mo files__ to me so that I can bundle it into __Special Text Boxes__.
   
 Real examples of outputs you can see on the [plugin page](http://simplelib.co.cc/?p=11)
 
@@ -62,8 +47,43 @@ __ValidID__ may be: _alert_, _info_, _download_, _grey_, _black_, _custom_
 
 __CaptionText__ may be: _any text you needed_.
 
+= How to insert special text box to theme file (not to post)? =
+
+Use function __stbHighlightText__: `<?php if(function_exists('stbHighlightText')) stbHighlightText('Test of function stbHighlightText.', 'warning'); ?>` defined as `function stbHighlightText( $content = null, $id = 'warning', $caption = '', $atts = null )`
+
 == Screenshots ==
 
 1. Examples of special textboxes
-2. wp-special-textboxes Admin Page
-3. wp-special-textboxes Custom Box Editor
+2. Special Text Boxes Admin Page
+3. Special Text Boxes Custom Box Editor
+4. Insertion dialog
+
+== Changelog ==
+
+= Version History =
+
+* 1.0.1
+	* Initial upload
+* 1.1.6
+	* codes and variables cleanup
+		* admin page codes optimised
+		* activation codes optimised for future upgrades
+	* margin settings added
+* 1.1.7
+	* black box margins bug fixed
+* 1.2.11
+	* custom box added
+	* custom editor added
+	* customising "on the fly" added
+	* Wordpress 2.8 compatibility checked
+* 1.2.12
+	* Italian language by [Gianni Diurno](http://gidibao.net/) added
+* 1.2.13
+	* Belarus language by [Fat Cower](http://www.fatcow.com) added
+	* Wordpress 2.8.1 compatibility tested
+* 2.0.20
+	* Plugin style sheet optimised
+	* Big icons for simple (non-captioned) boxes added
+	* Short Codes Insert Dialog added
+	* Output function added
+	* Plugin codes optimised
