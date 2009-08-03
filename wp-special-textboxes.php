@@ -3,7 +3,7 @@
 Plugin Name: Special Text Boxes
 Plugin URI: http://simplelib.co.cc/?p=11
 Description: Adds simple colored text boxes to highlight some portion of post text. Use it for highlights warnings, alerts, infos and downloads in your blog posts. Visit <a href="http://simplelib.co.cc/">SimpleLib blog</a> for more details.
-Version: 2.0.20
+Version: 2.0.22
 Author: minimus
 Author URI: http://blogovod.co.cc
 */
@@ -155,15 +155,17 @@ if (!class_exists("SpecialTextBoxes")) {
 			
 			if (!is_null($atts) & is_array($atts)) {
 				$style = $this->extendedStyleLogic(
-				  array( 'id' => $id, 
-                 'caption' => $caption, 
-								 'color' => $atts['color'], 
-								 'ccolor' => $atts['ccolor'], 
-								 'bcolor' => $atts['bcolor'], 
-								 'bgcolor' => $atts['bgcolor'], 
-								 'cbgcolor' => $atts['cbgcolor'], 
-								 'image' => $atts['image'], 
-								 'big' => $atts['big'] )
+				  shortcode_atts( array( 
+					       'id' => 'warning', 
+                 'caption' => '', 
+								 'color' => '', 
+								 'ccolor' => '', 
+								 'bcolor' => '', 
+								 'bgcolor' => '', 
+								 'cbgcolor' => '', 
+								 'image' => '', 
+								 'big' => '' ), 
+								 $atts)
 			  );
 			}
 			if ( $caption === '') {

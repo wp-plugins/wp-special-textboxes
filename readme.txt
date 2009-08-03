@@ -4,7 +4,7 @@ Donate link: http://simplelib.co.cc/
 Tags: content, performance, text
 Requires at least: 2.6
 Tested up to: 2.8.2
-Stable tag: 2.0.20
+Stable tag: 2.0.22
 
 Highlights any portion of text as text in the colored boxes.
 
@@ -87,3 +87,6 @@ Use function __stbHighlightText__: `<?php if(function_exists('stbHighlightText')
 	* Short Codes Insert Dialog added
 	* Output function added
 	* Plugin codes optimised
+* 2.0.22
+	* Direct output codes optimised
+	* Italian language pack updated
