@@ -3,8 +3,8 @@ Contributors: minimus
 Donate link: http://simplelib.co.cc/
 Tags: content, performance, text
 Requires at least: 2.6
-Tested up to: 2.8.2
-Stable tag: 2.0.22
+Tested up to: 2.8.4
+Stable tag: 2.0.23
 
 Highlights any portion of text as text in the colored boxes.
 
@@ -18,6 +18,7 @@ Available languages:
   * Russian
   * Italian
   * Belarus
+  * Uzbek
 
 If you have created your own language pack, or have an update of an existing one, you can send __.po__ and __.mo files__ to me so that I can bundle it into __Special Text Boxes__.
   
@@ -43,7 +44,7 @@ or (for captioned textbox)
 
 were
  
-__ValidID__ may be: _alert_, _info_, _download_, _grey_, _black_, _custom_
+__ValidID__ may be: _alert_, _info_, _download_, _grey_, _black_, _warning_, _custom_
 
 __CaptionText__ may be: _any text you needed_.
 
@@ -56,7 +57,9 @@ Use function __stbHighlightText__: `<?php if(function_exists('stbHighlightText')
 1. Examples of special textboxes
 2. Special Text Boxes Admin Page
 3. Special Text Boxes Custom Box Editor
-4. Insertion dialog
+4. Insertion dialog. Basic Settings
+5. Insertion dialog. Extended Settings
+
 
 == Changelog ==
 
@@ -90,3 +93,6 @@ Use function __stbHighlightText__: `<?php if(function_exists('stbHighlightText')
 * 2.0.22
 	* Direct output codes optimised
 	* Italian language pack updated
+* 2.0.23
+	* Uzbek language pack by [Alisher Safarov](http://www.comfi.com) added
+	* Wordpress 2.8.4 compatibility tested
