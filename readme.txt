@@ -4,7 +4,7 @@ Donate link: http://simplelib.co.cc/
 Tags: content, performance, text
 Requires at least: 2.6
 Tested up to: 2.8.4
-Stable tag: 2.0.23
+Stable tag: 2.0.25
 
 Highlights any portion of text as text in the colored boxes.
 
@@ -16,9 +16,10 @@ Available languages:
 
   * English
   * Russian
-  * Italian
-  * Belarus
-  * Uzbek
+  * Italian by [Gianni Diurno](http://gidibao.net/)
+  * Belarus by [Fat Cower](http://www.fatcow.com)
+  * Uzbek by [Alisher Safarov](http://www.comfi.com)
+  * Polish by [Daniel Fruzynski](http://www.poradnik-webmastera.com)
 
 If you have created your own language pack, or have an update of an existing one, you can send __.po__ and __.mo files__ to me so that I can bundle it into __Special Text Boxes__.
   
@@ -96,3 +97,6 @@ Use function __stbHighlightText__: `<?php if(function_exists('stbHighlightText')
 * 2.0.23
 	* Uzbek language pack by [Alisher Safarov](http://www.comfi.com) added
 	* Wordpress 2.8.4 compatibility tested
+* 2.0.25
+	* Polish language pack by [Daniel Fruzynski](http://www.poradnik-webmastera.com) added
+	* Italian language pack updated
