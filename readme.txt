@@ -4,13 +4,15 @@ Donate link: http://simplelib.co.cc/
 Tags: content, performance, text
 Requires at least: 2.6
 Tested up to: 2.8.4
-Stable tag: 2.0.25
+Stable tag: 3.0.27
 
 Highlights any portion of text as text in the colored boxes.
 
 == Description ==
 
 Special Text Boxes is very simple, very little and very usefull Wordpress plugin (for me and, I hope, for you). It adds little style sheet file and short code to blog for highlighting some portion of text in post as colored boxes. That may be warning, alert, info and download portion of post’s text.
+
+__WARNING!!!__ __Special Text widget__ works only under __Wordpress 2.8+__ !
 
 Available languages:
 
@@ -53,6 +55,12 @@ __CaptionText__ may be: _any text you needed_.
 
 Use function __stbHighlightText__: `<?php if(function_exists('stbHighlightText')) stbHighlightText('Test of function stbHighlightText.', 'warning'); ?>` defined as `function stbHighlightText( $content = null, $id = 'warning', $caption = '', $atts = null )`
 
+= Can I use Special Text widget with Wordpress 2.7? =
+
+No! _Special Text widget_ wrote with using _Wordpress Widget Factory technology_ and this one can work only under Wordpress 2.8 and higher!
+
+More about Special Text Boxes usage and customising read on the [plugin page](http://simplelib.co.cc/?p=11)
+
 == Screenshots ==
 
 1. Examples of special textboxes
@@ -60,6 +68,7 @@ Use function __stbHighlightText__: `<?php if(function_exists('stbHighlightText')
 3. Special Text Boxes Custom Box Editor
 4. Insertion dialog. Basic Settings
 5. Insertion dialog. Extended Settings
+6. Special Text widget. Admin Page
 
 
 == Changelog ==
@@ -100,3 +109,6 @@ Use function __stbHighlightText__: `<?php if(function_exists('stbHighlightText')
 * 2.0.25
 	* Polish language pack by [Daniel Fruzynski](http://www.poradnik-webmastera.com) added
 	* Italian language pack updated
+* 3.0.27
+	* Special Text widget added
+	* Special Text Box Float Mode added

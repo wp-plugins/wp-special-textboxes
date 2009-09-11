@@ -56,6 +56,32 @@ require_once(ABSPATH.'/wp-admin/admin.php');
 			      <td><input id="wstb_caption" name="wstb_caption" style="width: 320px"/></td>
 		      </tr>		  
 		    </table>
+		    <table border="0" cellpadding="4" cellspacing="0">
+				  <tr>
+					  <td>&nbsp;<br /><strong><?php _e('Floating Mode Settings', 'wp-special-textboxes'); ?></strong></td>
+					</tr>
+				</table>
+		    <table border="0" cellpadding="4" cellspacing="0">
+ 					<tr>
+						<td><input id="wstb_float" name="wstb_float" class="checkbox" type="checkbox" /></td>
+						<td><label for="wstb_float"><?php _e('Float Mode', 'wp-special-textboxes'); ?></label></td>
+					</tr>
+				</table>
+				<table border="0" cellpadding="4" cellspacing="0">
+		      <tr>
+			      <td nowrap="nowrap"><label for="wstb_align"><?php _e('Box Alignment', 'wp-special-textboxes').':'; ?></label></td>
+			      <td nowrap="nowrap">
+				      <select id="wstb_align" name="wstb_align" style="width: 120px">
+				        <option value="left"><?php _e('Left', 'wp-special-textboxes'); ?></option>
+				        <option value="right"><?php _e('Right', 'wp-special-textboxes'); ?></option>
+				      </select>
+				    </td>
+		      </tr>
+		      <tr>
+			      <td nowrap="nowrap"><label for="wstb_width"><?php _e('Box Width (in pixels)', 'wp-special-textboxes').':'; ?></label></td>
+			      <td><input id="wstb_width" name="wstb_width" style="width: 120px"/></td>
+		      </tr>		  
+		    </table>
       </div>
       <div id="extended_panel" class="panel">
         <table border="0" width="100%">

@@ -3,7 +3,7 @@
 Plugin Name: Special Text Boxes
 Plugin URI: http://simplelib.co.cc/?p=11
 Description: Adds simple colored text boxes to highlight some portion of post text. Use it for highlights warnings, alerts, infos and downloads in your blog posts. Visit <a href="http://simplelib.co.cc/">SimpleLib blog</a> for more details.
-Version: 2.0.25
+Version: 3.0.27
 Author: minimus
 Author URI: http://blogovod.co.cc
 */
@@ -105,9 +105,17 @@ if (!class_exists("SpecialTextBoxes")) {
 			$styleBody = '';
 			$styleCaption = '';
 			$styleEnd = '"';
+			$floatStart = '';
+			$floatEnd = '';
 			
 			if ( is_array($atts) ) {
 				$needResizing = ( ( $atts['big'] !== '' ) & ( $atts['big'] !==  $stbOptions['bigImg'] ) );
+				
+				// Float Mode
+				if (( $atts['float'] === 'true' ) && in_array($atts['align'], array('left', 'right')) ) {
+				  $floatStart = "<div style='float:{$atts['align']}; width:{$atts['width']}px;' >";
+				  $floatEnd = '</div>';
+		    }
 				
 				// Body style 
 			  $styleBody .= ( $atts['color'] === '' ) ? '' : "color:#{$atts['color']}; ";
@@ -144,14 +152,17 @@ if (!class_exists("SpecialTextBoxes")) {
 					  $styleCaption .= ( $image === 'null' ) ? "background-image: url(none); padding-left: 5px; " : "background-image: url({$atts['image']}); padding-left: 25px; ";
 				}
 				
-				return array('body' => ( $styleBody !== '' ) ? $styleStart.$styleBody.$styleEnd : '', 'caption' => ( $styleCaption !== '' ) ? $styleStart.$styleCaption.$styleEnd : '');
+				return array('body' => ( $styleBody !== '' ) ? $styleStart.$styleBody.$styleEnd : '', 
+				             'caption' => ( $styleCaption !== '' ) ? $styleStart.$styleCaption.$styleEnd : '',
+										 'floatStart' => $floatStart,
+										 'floatEnd' => $floatEnd);
 			}
 			else return '';
 		}
 		
 		function drawTextBox( $content = null, $id = 'warning', $caption = '', $atts = null ) {
 			$stextbox_classes = array( 'alert', 'download', 'info', 'warning', 'black', 'custom' );
-			$style = array('body' => '', 'caption' => '');
+			$style = array('body' => '', 'caption' => '', 'floatStart' => '', 'floatEnd' => '');
 			
 			if (!is_null($atts) & is_array($atts)) {
 				$style = $this->extendedStyleLogic(
@@ -164,23 +175,26 @@ if (!class_exists("SpecialTextBoxes")) {
 								 'bgcolor' => '', 
 								 'cbgcolor' => '', 
 								 'image' => '', 
-								 'big' => '' ), 
+								 'big' => '',
+			           'float' => 'false',
+			           'align' => 'left',
+			           'width' => '200' ), 
 								 $atts)
 			  );
 			}
 			if ( $caption === '') {
 				if ( in_array( $id, $stextbox_classes ) ) {
-					return "<div class='stb-{$id}_box' {$style['body']}>" . do_shortcode($content) . "</div>";
+					return $style['floatStart']."<div class='stb-{$id}_box' {$style['body']}>" . do_shortcode($content) . "</div>".$style['floatEnd'];
 				} elseif ( $id === 'grey' ) {
-					return "<div class='stb-{$id}_box' {$style['body']}>{$content}</div>";
+					return $style['floatStart']."<div class='stb-{$id}_box' {$style['body']}>{$content}</div>".$style['floatEnd'];
 				} else { 
 					return do_shortcode($content);	
 				}
 			} else {
 				if ( in_array( $id, $stextbox_classes ) ) {
-					return "<div class='stb-{$id}-caption_box' {$style['caption']}>" . $caption . "</div><div class='stb-{$id}-body_box' {$style['body']}>" . do_shortcode($content) . "</div>";
+					return $style['floatStart']."<div class='stb-{$id}-caption_box' {$style['caption']}>" . $caption . "</div><div class='stb-{$id}-body_box' {$style['body']}>" . do_shortcode($content) . "</div>".$style['floatEnd'];
 				} elseif ( $id === 'grey' ) {
-					return "<div class='stb-{$id}-caption_box' {$style['caption']}>{$caption}</div><div class='stb-{$id}-body_box' {$style['body']}>{$content}</div>";
+					return $style['floatStart']."<div class='stb-{$id}-caption_box' {$style['caption']}>{$caption}</div><div class='stb-{$id}-body_box' {$style['body']}>{$content}</div>".$style['floatEnd'];
 				} else { 
 					return do_shortcode($content);	
 				}
@@ -197,7 +211,10 @@ if (!class_exists("SpecialTextBoxes")) {
 				'bgcolor' => '',
 				'cbgcolor' => '',
 				'image' => '',
-				'big' => ''), 
+				'big' => '',
+			  'float' => 'false',
+			  'align' => 'left',
+			  'width' => '200'), 
 				$atts );
 
 			return $this->drawTextBox( $content, $attributes['id'], $attributes['caption'], $attributes );   
@@ -526,11 +543,123 @@ if (!class_exists("SpecialTextBoxes")) {
 	} // End of class SpecialTextBoxes
 } // End of If
 
+if (!class_exists('special_text') && class_exists('WP_Widget')) {
+	class special_text extends WP_Widget {
+		function special_text() {
+			$widget_ops = array( 'classname' => 'special_text', 'description' => __('Arbitrary text or PHP in colored block.', 'wp-special-textboxes'));
+			$control_ops = array( 'width' => 350, 'height' => 450, 'id_base' => 'special_text' );
+			$this->WP_Widget( 'special_text', __('Special Text', 'wp-special-textboxes'), $widget_ops, $control_ops );
+		}
+		
+		function widget( $args, $instance ) {
+			extract($args);
+			$title = apply_filters('widget_title', empty($instance['title']) ? '' : $instance['title']);
+			$box_id = empty($instance['box_id']) ? 'warning' : $instance['box_id'];
+			$parse = $instance['parse'];
+			$text = $instance['text'];
+			$showAll = $instance['show_all'];
+			$canShow = ((is_home() && $instance['show_home']) || 
+			            (is_category() && $instance['show_cat']) ||
+									(is_archive() && $instance['show_arc']) ||
+									(is_single() && $instance['show_single']) ||
+									(is_tag() && $instance['show_tag']) ||
+									(is_author() && $instance['show_author']));
+			
+			if ( $showAll || $canShow ) {
+			  echo $before_widget;
+		      if ( !empty( $title ) ) { echo $before_title . $title . $after_title; } ?>
+			      <div class="<?php echo "stb-{$box_id}_box" ?>" style="margin: 0px"><?php echo $parse ? eval("?>".$text."<?") : $text; ?></div>
+		    <?php
+		    echo $after_widget;
+		  }
+		}
+		
+		function update( $new_instance, $old_instance ) {
+			$instance = $old_instance;
+			$instance['title'] = strip_tags($new_instance['title']);
+			$instance['box_id'] = $new_instance['box_id'];
+			$instance['parse'] = isset($new_instance['parse']);
+			$instance['text'] = $new_instance['text'];
+			$instance['show_all'] = isset($new_instance['show_all']);
+			$instance['show_home'] = isset($new_instance['show_home']);
+			$instance['show_single'] = isset($new_instance['show_single']);
+			$instance['show_arc'] = isset($new_instance['show_arc']);
+			$instance['show_cat'] = isset($new_instance['show_cat']);
+			$instance['show_tag'] = isset($new_instance['show_tag']);
+			$instance['show_author'] = isset($new_instance['show_author']);
+			return $instance;
+		}
+		
+		function form( $instance ) {
+			$ids = array( 
+			  'alert'    => __('Alert', 'wp-special-textboxes'),
+			  'download' => __('Download', 'wp-special-textboxes'),
+			  'info'     => __('Info', 'wp-special-textboxes'),
+			  'warning'  => __('Warning', 'wp-special-textboxes'),
+			  'black'    => __('Black', 'wp-special-textboxes'),
+			  'custom'   => __('Custom', 'wp-special-textboxes')
+			);
+			
+			$instance = wp_parse_args((array) $instance, 
+			  array('title'       => '', 
+				      'box_id'      => 'warning', 
+							'parse'       => false, 
+							'text'        => '', 
+							'show_all'    => true, 
+							'show_home'   => false, 
+							'show_cat'    => false, 
+							'show_arc'    => false, 
+							'show_single' => false,
+							'show_tag'    => false,
+							'show_author' => false));
+			$title = strip_tags($instance['title']);
+			$box_id = $instance['box_id'];
+			$parse = $instance['parse'];
+			$text = format_to_edit($instance['text']);
+			$show_all = $instance['show_all'];
+			$show_home = $instance['show_home'];
+			$show_single = $instance['show_single'];
+			$show_arc = $instance['show_arc'];
+			$show_cat = $instance['show_cat'];
+			$show_tag = $instance['show_tag'];
+			$show_author = $instance['show_author'];
+			?>
+		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'wp-special-textboxes'); ?></label>
+		<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" /></p>
+
+		<textarea class="widefat" rows="10" cols="20" id="<?php echo $this->get_field_id('text'); ?>" name="<?php echo $this->get_field_name('text'); ?>"><?php echo $text; ?></textarea><br />&nbsp;
+
+		<p><label for="<?php echo $this->get_field_id('box_id'); ?>"><?php _e('ID of Box:', 'wp-special-textboxes') ?></label>
+		<select class="widefat" id="<?php echo $this->get_field_id('box_id'); ?>" name="<?php echo $this->get_field_name('box_id'); ?>" >
+		<?php 
+		foreach ($ids as $key => $option) echo '<option value='.$key.(($instance['box_id'] === $key) ? ' selected' : '' ).'>'.$option.'</option>';?> 
+		</select></p>
+		
+		<p><input id="<?php echo $this->get_field_id('parse'); ?>" name="<?php echo $this->get_field_name('parse'); ?>" type="checkbox" <?php checked($instance['parse']); ?> />&nbsp;<label for="<?php echo $this->get_field_id('parse'); ?>"><?php _e('Evaluate as PHP code.', 'wp-special-textboxes'); ?></label></p>
+		
+		<p><input id="<?php echo $this->get_field_id('show_all'); ?>" name="<?php echo $this->get_field_name('show_all'); ?>" type="checkbox" <?php checked($instance['show_all']); ?> />&nbsp;<label for="<?php echo $this->get_field_id('show_all'); ?>"><?php _e('Show on all pages of blog', 'wp-special-textboxes'); ?></label></p>
+		
+		<p><?php _e('Show only on', 'wp-special-textboxes') ?>:<br />
+		<input id="<?php echo $this->get_field_id('show_home'); ?>" name="<?php echo $this->get_field_name('show_home'); ?>" type="checkbox" <?php checked($instance['show_home']); ?> />&nbsp;<label for="<?php echo $this->get_field_id('show_home'); ?>"><?php _e('Home Page', 'wp-special-textboxes'); ?></label><br />
+		<input id="<?php echo $this->get_field_id('show_single'); ?>" name="<?php echo $this->get_field_name('show_single'); ?>" type="checkbox" <?php checked($instance['show_single']); ?> />&nbsp;<label for="<?php echo $this->get_field_id('show_single'); ?>"><?php _e('Single Post Pages', 'wp-special-textboxes'); ?></label><br />
+		<input id="<?php echo $this->get_field_id('show_arc'); ?>" name="<?php echo $this->get_field_name('show_arc'); ?>" type="checkbox" <?php checked($instance['show_arc']); ?> />&nbsp;<label for="<?php echo $this->get_field_id('show_arc'); ?>"><?php _e('Archive Pages', 'wp-special-textboxes'); ?></label><br />
+		<input id="<?php echo $this->get_field_id('show_cat'); ?>" name="<?php echo $this->get_field_name('show_cat'); ?>" type="checkbox" <?php checked($instance['show_cat']); ?> />&nbsp;<label for="<?php echo $this->get_field_id('show_cat'); ?>"><?php _e('Category Archive Pages', 'wp-special-textboxes'); ?></label><br />
+		<input id="<?php echo $this->get_field_id('show_tag'); ?>" name="<?php echo $this->get_field_name('show_tag'); ?>" type="checkbox" <?php checked($instance['show_tag']); ?> />&nbsp;<label for="<?php echo $this->get_field_id('show_tag'); ?>"><?php _e('Tag Archive Pages', 'wp-special-textboxes'); ?></label><br />
+		<input id="<?php echo $this->get_field_id('show_author'); ?>" name="<?php echo $this->get_field_name('show_author'); ?>" type="checkbox" <?php checked($instance['show_author']); ?> />&nbsp;<label for="<?php echo $this->get_field_id('show_author'); ?>"><?php _e('Author Archive Pages', 'wp-special-textboxes'); ?></label><br /></p>
+<?php
+		}
+	} // End of class special_text
+} // End of if
+
 if (class_exists("SpecialTextBoxes")) {
 	$stbObject = new SpecialTextBoxes();
 	function stbHighlightText( $content = null, $id = 'warning', $caption = '', $atts = null ) {
 		$stb = new SpecialTextBoxes();	
 	  echo $stb->highlightText( $content, $id, $caption, $atts );
 	}
+}
+
+if (class_exists("special_text")) {
+	add_action('widgets_init', create_function('', 'return register_widget("special_text");'));
 }
 ?>

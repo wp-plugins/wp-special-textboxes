@@ -15,10 +15,17 @@ function init() {
 function insertWSTBCode() {
 	
 	var wstbCode;
+	
 	var wstbIDObj = document.getElementById('wstb_id');
 	var wstbID = wstbIDObj.value;
 	var wstbCaptionObj = document.getElementById('wstb_caption');
 	var wstbCaption = wstbCaptionObj.value;
+	var wstbFloatObj = document.getElementById('wstb_float');
+	var wstbFloat = wstbFloatObj.checked;
+	var wstbAlignObj = document.getElementById('wstb_align');
+	var wstbAlign = wstbAlignObj.value;
+	var wstbWidthObj = document.getElementById('wstb_width');
+	var wstbWidth = wstbWidthObj.value;
 	var wstbColorObj = document.getElementById('wstb_fcolor');
 	var wstbColor = wstbColorObj.value.replace("#", "");
 	var wstbCColorObj = document.getElementById('wstb_cfcolor');
@@ -35,11 +42,17 @@ function insertWSTBCode() {
 	var wstbBigImage = wstbBigImageObj.checked;
 	var wstbNoImageObj = document.getElementById('wstb_noimage');
 	var wstbNoImage = wstbNoImageObj.checked;
+	
 	var contentObj = tinyMCE.getInstanceById('content');
 	var wstbBody = contentObj.selection.getContent();
 	
 	wstbCode = ' [stextbox id="' + wstbID + '"'; 
 	if (wstbCaption != '') wstbCode += ' caption="' + wstbCaption + '"';
+	if (wstbFloat) {
+		wstbCode += ' float="true"';
+		if (wstbAlign != 'left') wstbCode += ' align="right"';
+		if (wstbWidth != '') wstbCode += ' width="' + wstbWidth + '"';
+	}
 	if (wstbColor != '') wstbCode += ' color="' + wstbColor + '"';
 	if (wstbCColor != '') wstbCode += ' ccolor="' + wstbCColor + '"';
 	if (wstbBColor != '') wstbCode += ' bcolor="' + wstbBColor + '"';
