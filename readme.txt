@@ -4,13 +4,13 @@ Donate link: http://simplelib.co.cc/
 Tags: content, performance, text
 Requires at least: 2.6
 Tested up to: 2.8.4
-Stable tag: 3.0.27
+Stable tag: 3.1.29
 
 Highlights any portion of text as text in the colored boxes.
 
 == Description ==
 
-Special Text Boxes is very simple, very little and very usefull Wordpress plugin (for me and, I hope, for you). It adds little style sheet file and short code to blog for highlighting some portion of text in post as colored boxes. That may be warning, alert, info and download portion of post’s text.
+Adds little style sheet file and short code to blog for highlighting some portion of text in post as colored boxes. That may be warning, alert, info and download portion of post’s text.
 
 __WARNING!!!__ __Special Text widget__ works only under __Wordpress 2.8+__ !
 
@@ -112,3 +112,10 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 * 3.0.27
 	* Special Text widget added
 	* Special Text Box Float Mode added
+* 3.1.29
+	* Some admin page improvements added
+	* Codes optimised
+	
+== Other Notes ==
+
+This plugin is using jQuery ColorPicker plugin by [Stefan Petre](http://www.eyecon.ro)

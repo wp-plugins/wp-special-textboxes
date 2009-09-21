@@ -42,7 +42,7 @@
 					author 	  : 'minimus',
 					authorurl : 'http://blogovod.co.cc',
 					infourl   : 'http://blogovod.co.cc',
-					version   : "2.0.20"
+					version   : "3.1.29"
 			};
 		}
 	});
