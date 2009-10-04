@@ -11,7 +11,15 @@ $stextboxesOptions = $stbObject->getAdminOptions();
 
 ?>
 
-
+.stb-container {
+	margin: 0px auto; 
+	padding: 0px;
+}
+.stb-tool {
+	float: right; 
+	padding: 0px; 
+	margin: 0px auto;
+}
 .stb-alert_box {
 	background-color: #FFE7E6;
 	<?php if ($stextboxesOptions['showImg'] === 'true') {?>

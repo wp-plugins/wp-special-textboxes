@@ -1,10 +1,10 @@
 === Special Text Boxes ===
 Contributors: minimus
 Donate link: http://simplelib.co.cc/
-Tags: content, performance, text
+Tags: content, performance, text, code, php, widget
 Requires at least: 2.6
-Tested up to: 2.8.4
-Stable tag: 3.1.29
+Tested up to: 2.9-rare
+Stable tag: 3.2.31
 
 Highlights any portion of text as text in the colored boxes.
 
@@ -53,7 +53,13 @@ __CaptionText__ may be: _any text you needed_.
 
 = How to insert special text box to theme file (not to post)? =
 
-Use function __stbHighlightText__: `<?php if(function_exists('stbHighlightText')) stbHighlightText('Test of function stbHighlightText.', 'warning'); ?>` defined as `function stbHighlightText( $content = null, $id = 'warning', $caption = '', $atts = null )`
+Use function __stbHighlightText__: 
+
+`<?php if(function_exists('stbHighlightText')) stbHighlightText('Test of function stbHighlightText.', 'warning'); ?>` 
+
+defined as 
+
+`function stbHighlightText( $content = null, $id = 'warning', $caption = '', $atts = null )`
 
 = Can I use Special Text widget with Wordpress 2.7? =
 
@@ -110,11 +116,14 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 	* Polish language pack by [Daniel Fruzynski](http://www.poradnik-webmastera.com) added
 	* Italian language pack updated
 * 3.0.27
-	* Special Text widget added
-	* Special Text Box Float Mode added
+	* Special Text widget was added
+	* Special Text Box Float Mode was added
 * 3.1.29
-	* Some admin page improvements added
-	* Codes optimised
+	* Some admin page improvements was added
+	* Codes was optimised
+* 3.2.31
+	* Collapsing/Expanding of captioned Special Text Boxes was added
+	* Codes was optimised
 	
 == Other Notes ==
 
