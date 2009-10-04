@@ -4,7 +4,7 @@ Donate link: http://simplelib.co.cc/
 Tags: content, performance, text, code, php, widget
 Requires at least: 2.6
 Tested up to: 2.9-rare
-Stable tag: 3.2.31
+Stable tag: 3.2.32
 
 Highlights any portion of text as text in the colored boxes.
 
@@ -121,7 +121,7 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 * 3.1.29
 	* Some admin page improvements was added
 	* Codes was optimised
-* 3.2.31
+* 3.2.32
 	* Collapsing/Expanding of captioned Special Text Boxes was added
 	* Codes was optimised
 	
