@@ -35,7 +35,7 @@ require_once(ABSPATH.'/wp-admin/admin.php');
         <li id="extended_tab"><span><a href="javascript:mcTabs.displayTab('extended_tab','extended_panel');" onmousedown="return false;"><?php _e("Extended Settings", 'wp-special-textboxes'); ?></a></span></li>
       </ul>
     </div>
-    <div class="panel_wrapper" style="height: 150px;">
+    <div class="panel_wrapper" style="height: 200px;">
       <div id="basic_panel" class="panel current">
 		    <table border="0" cellpadding="4" cellspacing="0">
 		      <tr>
@@ -56,6 +56,12 @@ require_once(ABSPATH.'/wp-admin/admin.php');
 			      <td><input id="wstb_caption" name="wstb_caption" style="width: 320px"/></td>
 		      </tr>		  
 		    </table>
+		    <table border="0" cellpadding="4" cellspacing="0">
+		    	<tr><td><?php _e('Collapsed on Load (for captioned box only)', 'wp-special-textboxes'); ?></td></tr>
+ 					<tr>						
+						<td><label for="wstb_collapsed_yes"><input type="radio" id="wstb_collapsed_yes" name="wstb_collapsed" class="radio" value="yes" /><?php _e('Yes', 'wp-special-textboxes'); ?></label>&nbsp;&nbsp;&nbsp;&nbsp;<label for="wstb_collapsed_no"><input type="radio" id="wstb_collapsed_no" name="wstb_collapsed" class="radio" value="no" /><?php _e('No', 'wp-special-textboxes'); ?></label>&nbsp;&nbsp;&nbsp;&nbsp;<label for="wstb_collapsed_default"><input type="radio" id="wstb_collapsed_default" name="wstb_collapsed" class="radio" value="default" checked="checked" /><?php _e('Default', 'wp-special-textboxes'); ?></label></td>
+					</tr>
+				</table>
 		    <table border="0" cellpadding="4" cellspacing="0">
 				  <tr>
 					  <td>&nbsp;<br /><strong><?php _e('Floating Mode Settings', 'wp-special-textboxes'); ?></strong></td>
