@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp-special-textboxes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-31 17:11+0200\n"
+"POT-Creation-Date: 2010-01-30 12:38+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Константин Леонов <rublezoid@gmail.com>\n"
 "Language-Team: minimus <minimus@blogovod.co.cc>\n"
@@ -19,6 +19,7 @@ msgstr ""
 
 #: wp-special-textboxes.php:161
 #: wp-special-textboxes.php:280
+#: wp-special-textboxes.php:288
 #: js/wstb.admin.js.php:21
 #: js/wstb.js.php:21
 msgid "Show"
@@ -26,6 +27,7 @@ msgstr "Показать"
 
 #: wp-special-textboxes.php:161
 #: wp-special-textboxes.php:280
+#: wp-special-textboxes.php:288
 #: js/wstb.admin.js.php:30
 #: js/wstb.js.php:30
 msgid "Hide"
@@ -40,304 +42,359 @@ msgid "This is example of Custom Special Text Box with big image. You must save 
 msgstr "Это пример настраиваемого блока специального текста с большой иконкой. Чтобы увидеть внесённые изменения, необходимо сохранить параметры."
 
 #: wp-special-textboxes.php:280
+#: wp-special-textboxes.php:287
 msgid "This is caption"
 msgstr "Это заголовок блока"
 
 #: wp-special-textboxes.php:280
+#: wp-special-textboxes.php:289
 msgid "This is example of Captioned Custom Special Text Box. You must save options to view changes."
 msgstr "Это пример настраиваемого блока специального текста с заголовком. Чтобы увидеть внесённые изменения, необходимо сохранить параметры."
 
 #: wp-special-textboxes.php:286
+msgid "This is example of Custom Special Text Box. You must save options to view changes."
+msgstr "Это пример настраиваемого блока специального текста. Чтобы увидеть внесённые изменения, необходимо сохранить параметры."
+
+#: wp-special-textboxes.php:295
 msgid "Special Text Boxes"
 msgstr "Подсветка текста"
 
-#: wp-special-textboxes.php:301
+#: wp-special-textboxes.php:310
 #: js/dialog.php:34
 msgid "Basic Settings"
 msgstr "Основные параметры"
 
-#: wp-special-textboxes.php:305
+#: wp-special-textboxes.php:314
 msgid "Select border style for Special Text Boxes"
 msgstr "Выбор стиля рамки блока специального текста"
 
-#: wp-special-textboxes.php:306
+#: wp-special-textboxes.php:315
 msgid "Selecting \"None\" will disable Special Text Boxes border."
 msgstr "Выбрав \"Без рамки\", Вы запретите прорисовку рамки блока специального текста. "
 
-#: wp-special-textboxes.php:312
+#: wp-special-textboxes.php:321
 msgid "Define top margin for Special Text Boxes"
 msgstr "Верхний отступ специального текста"
 
-#: wp-special-textboxes.php:313
+#: wp-special-textboxes.php:322
 msgid "This is a gap between top edge of Special Text Box and text above."
 msgstr "Этот параметр определяет промежуток между верхним краем блока специального текста и текстом (елементом) расположенным выше."
 
-#: wp-special-textboxes.php:318
+#: wp-special-textboxes.php:327
 msgid "Define left margin for Special Text Boxes"
 msgstr "Левый отступ специального текста"
 
-#: wp-special-textboxes.php:319
+#: wp-special-textboxes.php:328
 msgid "This is a gap between left edge of Special Text Box and left edge of post area."
 msgstr "Этот параметр определяет промежуток между левым краем блока специального текста и левым краем области статьи."
 
-#: wp-special-textboxes.php:324
+#: wp-special-textboxes.php:333
 msgid "Define right margin for Special Text Boxes"
 msgstr "Правый отступ специального текста"
 
-#: wp-special-textboxes.php:325
+#: wp-special-textboxes.php:334
 msgid "This is a gap between right edge of Special Text Box and right edge of post area."
 msgstr "Этот параметр определяет промежуток между правым краем блока специального текста и правым краем области статьи."
 
-#: wp-special-textboxes.php:330
+#: wp-special-textboxes.php:339
 msgid "Define bottom margin for Special Text Boxes"
 msgstr "Нижний отступ специального текста"
 
-#: wp-special-textboxes.php:331
+#: wp-special-textboxes.php:340
 msgid "This is a gap between bottom edge of Special Text Box and text below."
 msgstr "Этот параметр определяет промежуток между нижним краем блока специального текста и текстом (елементом) расположенным ниже."
 
-#: wp-special-textboxes.php:336
+#: wp-special-textboxes.php:345
+msgid "Define font size for Special Text Boxes"
+msgstr "Размер шрифта"
+
+#: wp-special-textboxes.php:346
+#: wp-special-textboxes.php:453
+msgid "This is font size in pixels."
+msgstr "Размер шрифта в пикселах."
+
+#: wp-special-textboxes.php:346
+#: wp-special-textboxes.php:352
+#: wp-special-textboxes.php:453
+#: wp-special-textboxes.php:459
+msgid "Set this parameter to value 0 for theme default font size."
+msgstr "Для использования размера шрифта заданного темой, установите значение этого параметра в 0."
+
+#: wp-special-textboxes.php:351
+msgid "Define caption font size for Special Text Boxes"
+msgstr "Размер шрифта заголовка"
+
+#: wp-special-textboxes.php:352
+#: wp-special-textboxes.php:459
+msgid "This is caption font size in pixels."
+msgstr "Размер шрифта заголовка в пикселах."
+
+#: wp-special-textboxes.php:357
 msgid "Allow Big Image for Simple (non-captioned) Special Text Boxes?"
 msgstr "Разрешить использование большой иконки в простом (без заголовка) блоке специального текста?"
 
-#: wp-special-textboxes.php:337
+#: wp-special-textboxes.php:358
 msgid "Selecting \"Yes\" will allow big icons for simple (non-captioned) Special Text Boxes."
 msgstr "Выбрав \"Да\", Вы разрешите использование большой иконки в простом (без заголовка) блоке специального текста. "
 
-#: wp-special-textboxes.php:340
-#: wp-special-textboxes.php:347
-#: wp-special-textboxes.php:354
 #: wp-special-textboxes.php:361
-#: wp-special-textboxes.php:376
-#: wp-special-textboxes.php:383
-#: wp-special-textboxes.php:390
+#: wp-special-textboxes.php:375
+#: wp-special-textboxes.php:382
+#: wp-special-textboxes.php:389
+#: wp-special-textboxes.php:404
+#: wp-special-textboxes.php:411
+#: wp-special-textboxes.php:418
 #: js/dialog.php:62
 msgid "Yes"
 msgstr "Да"
 
-#: wp-special-textboxes.php:340
-#: wp-special-textboxes.php:347
-#: wp-special-textboxes.php:354
 #: wp-special-textboxes.php:361
-#: wp-special-textboxes.php:376
-#: wp-special-textboxes.php:383
-#: wp-special-textboxes.php:390
+#: wp-special-textboxes.php:375
+#: wp-special-textboxes.php:382
+#: wp-special-textboxes.php:389
+#: wp-special-textboxes.php:404
+#: wp-special-textboxes.php:411
+#: wp-special-textboxes.php:418
 #: js/dialog.php:62
 msgid "No"
 msgstr "Нет"
 
-#: wp-special-textboxes.php:343
+#: wp-special-textboxes.php:364
+msgid "Define language direction"
+msgstr "Направление текста"
+
+#: wp-special-textboxes.php:365
+msgid "Selecting \"Left-to-Right\" will set Left-to-Right language direction for Special Text Boxes and visa versa."
+msgstr "Выбор \"Слева-направо\" установит направление текста слева-направо и наоборот."
+
+#: wp-special-textboxes.php:368
+msgid "Left-to-Right"
+msgstr "Слева-направо"
+
+#: wp-special-textboxes.php:368
+msgid "Right-to-Left"
+msgstr "Справа-налево"
+
+#: wp-special-textboxes.php:371
 msgid "Allow icon images for Special Text Boxes?"
 msgstr "Разрешить использование иконок для блока специального текста?"
 
-#: wp-special-textboxes.php:344
+#: wp-special-textboxes.php:372
 msgid "Selecting \"Yes\" will allow displaying icon images in Special Text Boxes."
 msgstr "Выбрав \"Да\", Вы разрешите использование иконок в блоках специального текста, в противном случае иконки выводиться не будут. "
 
-#: wp-special-textboxes.php:350
+#: wp-special-textboxes.php:378
 msgid "Allow collapsing/expanding captioned Special Text Boxes?"
 msgstr "Разрешить сворачивание/разворачивание блока специального текста с заголовком?"
 
-#: wp-special-textboxes.php:351
+#: wp-special-textboxes.php:379
 msgid "Selecting \"Yes\" will allow displaying show/hide button in captioned Special Text Boxes."
 msgstr "Выбрав \"Да\", Вы разрешите вывод кнопки Скрыть/Показать в заголовке блока специального текста. "
 
-#: wp-special-textboxes.php:357
+#: wp-special-textboxes.php:385
 msgid "Allow \"collapsed on load\" captioned Special Text Boxes?"
 msgstr "Разрешить вывод свёрнутых блоков с заголовком при загрузке страницы?"
 
-#: wp-special-textboxes.php:358
+#: wp-special-textboxes.php:386
 msgid "Selecting \"Yes\" will allow displaying collapsed captioned Special Text Boxes after page loading."
 msgstr "Выбрав \"Да\", Вы разрешите показывать свёрнутые блоки специального текста с заголовком при загрузке страницы , в противном случае блоки будут показываться развёрнутыми. "
 
-#: wp-special-textboxes.php:367
+#: wp-special-textboxes.php:395
 #: js/dialog.php:35
 msgid "Extended Settings"
 msgstr "Дополнительные параметры"
 
-#: wp-special-textboxes.php:368
+#: wp-special-textboxes.php:396
 msgid "Parameters below add elements of CSS3 standard to Style Sheet. Not all browsers can interpret this elements properly, but including this elements to HTML page not crash browser."
 msgstr "Использование следующих параметров добавляет в таблицу стилей елементы стандарта CSS3. Не все браузеры могут интерпретировать эти элементы должным образом, но использование этих элементов не приводит к сбою в работе браузера."
 
-#: wp-special-textboxes.php:372
+#: wp-special-textboxes.php:400
 msgid "Allow rounded corners for Special Text Boxes?"
 msgstr "Разрешить использование закруглённых углов?"
 
-#: wp-special-textboxes.php:373
+#: wp-special-textboxes.php:401
 msgid "Selecting \"No\" will disable Special Text Boxes rounded corners."
 msgstr "Выбрав \"Нет\", Вы запретите прорисовку закруглённых углов. "
 
-#: wp-special-textboxes.php:379
+#: wp-special-textboxes.php:407
 msgid "Allow box shadow for Special Text Boxes?"
 msgstr "Разрешить использование тени блока специального текста?"
 
-#: wp-special-textboxes.php:380
+#: wp-special-textboxes.php:408
 msgid "Selecting \"No\" will disable Special Text Boxes shadow."
 msgstr "Выбрав \"Нет\", Вы запретите прорисовку тени блока специального текста. "
 
-#: wp-special-textboxes.php:386
+#: wp-special-textboxes.php:414
 msgid "Allow text shadow for Special Text Boxes?"
 msgstr "Разрешить использование теней текста?"
 
-#: wp-special-textboxes.php:387
+#: wp-special-textboxes.php:415
 msgid "Selecting \"No\" will disable Special Text Boxes text shadow."
 msgstr "Выбрав \"Нет\", Вы запретите прорисовку теней текста. "
 
-#: wp-special-textboxes.php:407
-#: wp-special-textboxes.php:489
+#: wp-special-textboxes.php:435
+#: wp-special-textboxes.php:529
 msgid "Custom Box Editor"
 msgstr "Редактор настраиваемого блока"
 
-#: wp-special-textboxes.php:408
+#: wp-special-textboxes.php:436
 msgid "Use parameters below for customising custom Special Text Box."
 msgstr "Используйте эти параметры для настройки внешнего вида настраиваемого блока специального текста."
 
-#: wp-special-textboxes.php:412
+#: wp-special-textboxes.php:440
 msgid "Define font color for Custom Special Text Box"
 msgstr "Цвет шрифта"
 
-#: wp-special-textboxes.php:413
+#: wp-special-textboxes.php:441
 msgid "This is a font color of Custom Special Text Box (Six Hex Digits)."
 msgstr "Этот параметр задаёт цвет шрифта настраиваемого блока специального текста (шесть шестнадцатиричных цифр)."
 
-#: wp-special-textboxes.php:418
+#: wp-special-textboxes.php:446
 msgid "Define caption font color for Custom Special Text Box"
 msgstr "Цвет шрифта заголовка"
 
-#: wp-special-textboxes.php:419
+#: wp-special-textboxes.php:447
 msgid "This is a font color of Custom Special Text Box caption (Six Hex Digits)."
 msgstr "Этот параметр задаёт цвет шрифта заголовка настраиваемого блока специального текста (шесть шестнадцатиричных цифр)."
 
-#: wp-special-textboxes.php:424
+#: wp-special-textboxes.php:452
+msgid "Define font size for Custom Special Text Box"
+msgstr "Размер шрифта"
+
+#: wp-special-textboxes.php:458
+msgid "Define caption font size for Custom Special Text Box"
+msgstr "Размер шрифта заголовка"
+
+#: wp-special-textboxes.php:464
 msgid "Define background color for Custom Special Text Box"
 msgstr "Цвет фона"
 
-#: wp-special-textboxes.php:425
+#: wp-special-textboxes.php:465
 msgid "This is a background color of Custom Special Text Box (Six Hex Digits)."
 msgstr "Этот параметр задаёт цвет фона настраиваемого блока специального текста (шесть шестнадцатиричных цифр)."
 
-#: wp-special-textboxes.php:430
+#: wp-special-textboxes.php:470
 msgid "Define background color for Custom Special Text Box caption"
 msgstr "Цвет фона заголовка"
 
-#: wp-special-textboxes.php:431
+#: wp-special-textboxes.php:471
 msgid "This is a background color of Custom Special Text Box caption (Six Hex Digits)."
 msgstr "Этот параметр задаёт цвет фона заголовка настраиваемого блока специального текста (шесть шестнадцатиричных цифр)."
 
-#: wp-special-textboxes.php:436
+#: wp-special-textboxes.php:476
 msgid "Define border color for Custom Special Text Box"
 msgstr "Цвет окантовки"
 
-#: wp-special-textboxes.php:437
+#: wp-special-textboxes.php:477
 msgid "This is a border color of Custom Special Text Box (Six Hex Digits)."
 msgstr "Этот параметр определяет цвет окантовки настраиваемого блока специального текста."
 
-#: wp-special-textboxes.php:442
+#: wp-special-textboxes.php:482
 msgid "Define image for Custom Special Text Box"
 msgstr "Изображение"
 
-#: wp-special-textboxes.php:443
+#: wp-special-textboxes.php:483
 msgid "This is an image of Custom Special Text Box (Full URL). 25x25 pixels, transparent background PNG image recommended."
 msgstr "Этот параметр задаёт пиктограмму настраиваемого блока специального текста (полный URL). Рекомендуется изображение PNG, 25x25 пиксел, прозрачный фон."
 
-#: wp-special-textboxes.php:449
+#: wp-special-textboxes.php:489
 msgid "Define big image for simple (non-captioned) Custom Special Text Box"
 msgstr "Большое изображение"
 
-#: wp-special-textboxes.php:450
+#: wp-special-textboxes.php:490
 msgid "This is big image for simple (non-captioned) Custom Special Text Box (Full URL). 50x50 pixels, transparent background PNG image recommended."
 msgstr "Этот параметр задаёт большую пиктограмму для простого (без заголовка) настраиваемого блока специального текста (полный URL). Рекомендуется изображение PNG, 50x50 пиксел, прозрачный фон."
 
-#: wp-special-textboxes.php:469
+#: wp-special-textboxes.php:509
 msgid "Special Text Boxes Settings Updated."
 msgstr "Параметры подсветки специального текста сохранены."
 
-#: wp-special-textboxes.php:476
+#: wp-special-textboxes.php:516
 msgid "Special Text Boxes Settings"
 msgstr "Параметры подсветки специального текста"
 
-#: wp-special-textboxes.php:564
+#: wp-special-textboxes.php:604
 msgid "Update Settings"
 msgstr "Сохранить параметры"
 
-#: wp-special-textboxes.php:606
+#: wp-special-textboxes.php:646
 msgid "Arbitrary text or PHP in colored block."
 msgstr "Произвольный текст или PHP-код в подсвеченном блоке."
 
-#: wp-special-textboxes.php:608
+#: wp-special-textboxes.php:648
 msgid "Special Text"
 msgstr "Специальный текст"
 
-#: wp-special-textboxes.php:652
+#: wp-special-textboxes.php:692
 #: js/dialog.php:45
 msgid "Alert"
 msgstr "Опасность"
 
-#: wp-special-textboxes.php:653
+#: wp-special-textboxes.php:693
 #: js/dialog.php:46
 msgid "Download"
 msgstr "Скачать"
 
-#: wp-special-textboxes.php:654
+#: wp-special-textboxes.php:694
 #: js/dialog.php:47
 msgid "Info"
 msgstr "Инфо"
 
-#: wp-special-textboxes.php:655
+#: wp-special-textboxes.php:695
 msgid "Warning"
 msgstr "Внимание"
 
-#: wp-special-textboxes.php:656
+#: wp-special-textboxes.php:696
 #: js/dialog.php:48
 msgid "Black"
 msgstr "Чёрный"
 
-#: wp-special-textboxes.php:657
+#: wp-special-textboxes.php:697
 #: js/dialog.php:50
 msgid "Custom"
 msgstr "Настраиваемый"
 
-#: wp-special-textboxes.php:684
+#: wp-special-textboxes.php:724
 msgid "Title:"
 msgstr "Заголовок:"
 
-#: wp-special-textboxes.php:689
+#: wp-special-textboxes.php:729
 msgid "ID of Box:"
 msgstr "Идентификатор блока:"
 
-#: wp-special-textboxes.php:695
+#: wp-special-textboxes.php:735
 msgid "Evaluate as PHP code."
 msgstr "Выполнить как код PHP."
 
-#: wp-special-textboxes.php:697
+#: wp-special-textboxes.php:737
 msgid "Show on all pages of blog"
 msgstr "Показывать на всех страницах блога"
 
-#: wp-special-textboxes.php:699
+#: wp-special-textboxes.php:739
 msgid "Show only on"
 msgstr "Показывать только на"
 
-#: wp-special-textboxes.php:700
+#: wp-special-textboxes.php:740
 msgid "Home Page"
 msgstr "главной странице"
 
-#: wp-special-textboxes.php:701
+#: wp-special-textboxes.php:741
 msgid "Single Post Pages"
 msgstr "страницах статей"
 
-#: wp-special-textboxes.php:702
+#: wp-special-textboxes.php:742
 msgid "Archive Pages"
 msgstr "страницах архивов"
 
-#: wp-special-textboxes.php:703
+#: wp-special-textboxes.php:743
 msgid "Category Archive Pages"
 msgstr "страницах архивов рубрик"
 
-#: wp-special-textboxes.php:704
+#: wp-special-textboxes.php:744
 msgid "Tag Archive Pages"
 msgstr "страницах архивов меток"
 
-#: wp-special-textboxes.php:705
+#: wp-special-textboxes.php:745
 msgid "Author Archive Pages"
 msgstr "страницах архивов авторов"
 

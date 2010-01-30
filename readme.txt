@@ -3,8 +3,8 @@ Contributors: minimus
 Donate link: http://simplelib.co.cc/
 Tags: content, performance, text, code, php, widget
 Requires at least: 2.6
-Tested up to: 2.9-rare
-Stable tag: 3.3.35
+Tested up to: 2.9.1
+Stable tag: 3.4.40
 
 Highlights any portion of text as text in the colored boxes.
 
@@ -22,6 +22,7 @@ Available languages:
   * Belarus by [Fat Cower](http://www.fatcow.com)
   * Uzbek by [Alisher Safarov](http://www.comfi.com)
   * Polish by [Daniel Fruzynski](http://www.poradnik-webmastera.com)
+  * Arabic language by [مدونة رسين](http://www.r-sn.com/wp/)
 
 If you have created your own language pack, or have an update of an existing one, you can send __.po__ and __.mo files__ to me so that I can bundle it into __Special Text Boxes__.
   
@@ -79,55 +80,115 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 
 == Changelog ==
 
-= Version History =
+= 3.4.40 =
+* Font size parameters are added
+* Bug of caption size is eliminated
+* Language pack is updated. Arabic language by [مدونة رسين](http://www.r-sn.com/wp/) is added. 
+* Support of text direction is added.
+* Codes are optimised
+= 3.3.35 =
+* Collapsing/Expanding mode of captioned Special Text Boxes was extended
+* PHP codes was optimised
+* JS codes was optimised
+= 3.2.32 =
+* Collapsing/Expanding of captioned Special Text Boxes was added
+* Codes was optimised
+= 3.1.29 =
+* Some admin page improvements was added
+* Codes was optimised
+= 3.0.27 =
+* Special Text widget was added
+* Special Text Box Float Mode was added
+= 2.0.25 =
+* Polish language pack by [Daniel Fruzynski](http://www.poradnik-webmastera.com) added
+* Italian language pack updated
+= 2.0.23 =
+* Uzbek language pack by [Alisher Safarov](http://www.comfi.com) added
+* Wordpress 2.8.4 compatibility tested
+= 2.0.22 =
+* Direct output codes optimised
+* Italian language pack updated
+= 2.0.20 =
+* Plugin style sheet optimised
+* Big icons for simple (non-captioned) boxes added
+* Short Codes Insert Dialog added
+* Output function added
+* Plugin codes optimised
+= 1.2.13 =
+* Belarus language by [Fat Cower](http://www.fatcow.com) added
+* Wordpress 2.8.1 compatibility tested
+= 1.2.12 =
+* Italian language by [Gianni Diurno](http://gidibao.net/) added
+= 1.2.11 =
+* custom box added
+* custom editor added
+* customising "on the fly" added
+* Wordpress 2.8 compatibility checked
+= 1.1.7 =
+* black box margins bug fixed
+= 1.1.6 =
+* codes and variables cleanup
+	* admin page codes optimised
+	* activation codes optimised for future upgrades
+* margin settings added
+= 1.0.1 =
+* Initial upload
 
-* 1.0.1
-	* Initial upload
-* 1.1.6
-	* codes and variables cleanup
-		* admin page codes optimised
-		* activation codes optimised for future upgrades
-	* margin settings added
-* 1.1.7
-	* black box margins bug fixed
-* 1.2.11
-	* custom box added
-	* custom editor added
-	* customising "on the fly" added
-	* Wordpress 2.8 compatibility checked
-* 1.2.12
-	* Italian language by [Gianni Diurno](http://gidibao.net/) added
-* 1.2.13
-	* Belarus language by [Fat Cower](http://www.fatcow.com) added
-	* Wordpress 2.8.1 compatibility tested
-* 2.0.20
-	* Plugin style sheet optimised
-	* Big icons for simple (non-captioned) boxes added
-	* Short Codes Insert Dialog added
-	* Output function added
-	* Plugin codes optimised
-* 2.0.22
-	* Direct output codes optimised
-	* Italian language pack updated
-* 2.0.23
-	* Uzbek language pack by [Alisher Safarov](http://www.comfi.com) added
-	* Wordpress 2.8.4 compatibility tested
-* 2.0.25
-	* Polish language pack by [Daniel Fruzynski](http://www.poradnik-webmastera.com) added
-	* Italian language pack updated
-* 3.0.27
-	* Special Text widget was added
-	* Special Text Box Float Mode was added
-* 3.1.29
-	* Some admin page improvements was added
-	* Codes was optimised
-* 3.2.32
-	* Collapsing/Expanding of captioned Special Text Boxes was added
-	* Codes was optimised
-* 3.3.35
-	* Collapsing/Expanding mode of captioned Special Text Boxes was extended
-	* PHP codes was optimised
-	* JS codes was optimised
+== Upgrade Notice ==
+
+= 3.4.40 =
+Font size parameters are added
+Bug of caption size is eliminated
+Language pack is updated. Arabic language by [مدونة رسين](http://www.r-sn.com/wp/) is added.
+Support of text direction is added.
+Codes are optimised
+= 3.3.35 =
+Collapsing/Expanding mode of captioned Special Text Boxes was extended
+PHP codes was optimised
+JS codes was optimised
+= 3.2.32 =
+Collapsing/Expanding of captioned Special Text Boxes was added
+Codes was optimised
+= 3.1.29 =
+Some admin page improvements was added
+Codes was optimised
+= 3.0.27 =
+Special Text widget was added
+Special Text Box Float Mode was added
+= 2.0.25 =
+Polish language pack by [Daniel Fruzynski](http://www.poradnik-webmastera.com) added
+Italian language pack updated
+= 2.0.23 =
+Uzbek language pack by [Alisher Safarov](http://www.comfi.com) added
+Wordpress 2.8.4 compatibility tested
+= 2.0.22 =
+Direct output codes optimised
+Italian language pack updated
+= 2.0.20 =
+Plugin style sheet optimised
+Big icons for simple (non-captioned) boxes added
+Short Codes Insert Dialog added
+Output function added
+Plugin codes optimised
+= 1.2.13 =
+Belarus language by [Fat Cower](http://www.fatcow.com) added
+Wordpress 2.8.1 compatibility tested
+= 1.2.12 =
+Italian language by [Gianni Diurno](http://gidibao.net/) added
+= 1.2.11 =
+custom box added
+custom editor added
+customising "on the fly" added
+Wordpress 2.8 compatibility checked
+= 1.1.7 =
+black box margins bug fixed
+= 1.1.6 =
+codes and variables cleanup
+admin page codes optimised
+activation codes optimised for future upgrades
+margin settings added
+= 1.0.1 =
+Initial upload
 	
 == Other Notes ==
 
