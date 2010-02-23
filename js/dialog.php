@@ -47,6 +47,7 @@ require_once(ABSPATH.'/wp-admin/admin.php');
 				        <option value="info"><?php _e('Info', 'wp-special-textboxes'); ?></option>
 				        <option value="black"><?php _e('Black', 'wp-special-textboxes'); ?></option>
 				        <option value="grey"><?php _e('Grey', 'wp-special-textboxes'); ?></option>
+								<option value="warning"><?php _e('Warning', 'wp-special-textboxes'); ?></option>
 				        <option value="custom"><?php _e('Custom', 'wp-special-textboxes'); ?></option>
 				      </select>
 				    </td>

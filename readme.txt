@@ -1,10 +1,10 @@
-=== Special Text Boxes ===
+﻿=== Special Text Boxes ===
 Contributors: minimus
 Donate link: http://simplelib.co.cc/
 Tags: content, performance, text, code, php, widget
 Requires at least: 2.6
 Tested up to: 2.9.1
-Stable tag: 3.4.40
+Stable tag: 3.4.41
 
 Highlights any portion of text as text in the colored boxes.
 
@@ -80,6 +80,8 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 
 == Changelog ==
 
+= 3.4.41 =
+* Insertion Dialog bug are fixed
 = 3.4.40 =
 * Font size parameters are added
 * Bug of caption size is eliminated
@@ -136,6 +138,8 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 
 == Upgrade Notice ==
 
+= 3.4.41 =
+Insertion Dialog bug are fixed
 = 3.4.40 =
 Font size parameters are added
 Bug of caption size is eliminated

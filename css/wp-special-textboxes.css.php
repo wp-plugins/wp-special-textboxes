@@ -97,7 +97,10 @@ $stextboxesOptions = $stbObject->getAdminOptions();
 .stb-grey_box {
 	background: #EEEEEE;
 	padding: 5px;
-	margin: 10px;
+	margin-top: <?php echo $stextboxesOptions['top_margin']; ?>px;  
+	margin-right: <?php echo $stextboxesOptions['right_margin']; ?>px;  
+	margin-bottom: <?php echo $stextboxesOptions['bottom_margin']; ?>px;  
+	margin-left: <?php echo $stextboxesOptions['left_margin']; ?>px;
 	border: 1px <?php echo $stextboxesOptions['border_style']; ?> #BBBBBB;
 	color: #000000;
 	<?php if($stextboxesOptions['fontSize'] !== '0') { ?>font-size: <?php echo $stextboxesOptions['fontSize'] ?>px;<?php } ?>
@@ -132,6 +135,10 @@ $stextboxesOptions = $stbObject->getAdminOptions();
 	<?php if($stextboxesOptions['langDirect'] === 'ltr') {?>
 	text-align: left;<?php } else {?>
 	text-align: right;<?php } ?>
+	margin-top: <?php echo $stextboxesOptions['top_margin']; ?>px;  
+	margin-right: <?php echo $stextboxesOptions['right_margin']; ?>px;  
+	margin-bottom: 0px;  
+	margin-left: <?php echo $stextboxesOptions['left_margin']; ?>px;
 }
 .stb-grey-body_box {
 	background-color: #EEEEEE;
@@ -149,6 +156,10 @@ $stextboxesOptions = $stbObject->getAdminOptions();
 	<?php if($stextboxesOptions['langDirect'] === 'ltr') {?>
 	text-align: left;<?php } else {?>
 	text-align: right;<?php } ?>
+	margin-top: 0px;  
+	margin-right: <?php echo $stextboxesOptions['right_margin']; ?>px;  
+	margin-bottom: <?php echo $stextboxesOptions['bottom_margin']; ?>px;  
+	margin-left: <?php echo $stextboxesOptions['left_margin']; ?>px;
 }
 
 .stb-alert-caption_box,
