@@ -16,38 +16,35 @@ function insertWSTBCode() {
 	
 	var wstbCode;
 	
-	var wstbIDObj = document.getElementById('wstb_id');
-	var wstbID = wstbIDObj.value;
-	var wstbCaptionObj = document.getElementById('wstb_caption');
-	var wstbCaption = wstbCaptionObj.value;
-	var wstbFloatObj = document.getElementById('wstb_float');
-	var wstbFloat = wstbFloatObj.checked;
-	var wstbAlignObj = document.getElementById('wstb_align');
-	var wstbAlign = wstbAlignObj.value;
-	var wstbWidthObj = document.getElementById('wstb_width');
-	var wstbWidth = wstbWidthObj.value;
-	var wstbColorObj = document.getElementById('wstb_fcolor');
-	var wstbColor = wstbColorObj.value.replace("#", "");
-	var wstbCColorObj = document.getElementById('wstb_cfcolor');
-	var wstbCColor = wstbCColorObj.value.replace("#", "");
-	var wstbBGColorObj = document.getElementById('wstb_bgcolor');
-	var wstbBGColor = wstbBGColorObj.value.replace("#", "");
-	var wstbCBGColorObj = document.getElementById('wstb_cbgcolor');
-	var wstbCBGColor = wstbCBGColorObj.value.replace("#", "");
-	var wstbBColorObj = document.getElementById('wstb_bcolor');
-	var wstbBColor = wstbBColorObj.value.replace("#", "");
-	var wstbImageObj = document.getElementById('wstb_image_url');
-	var wstbImage = wstbImageObj.value;
-	var wstbBigImageObj = document.getElementById('wstb_big_image');
-	var wstbBigImage = wstbBigImageObj.checked;
-	var wstbNoImageObj = document.getElementById('wstb_noimage');
-	var wstbNoImage = wstbNoImageObj.checked;
+	var f = document.forms[0];
+	var radio = f.elements.wstb_collapsed;
+	
+	var wstbID = f.elements.wstb_id.value;
+	var wstbCaption = f.elements.wstb_caption.value;
+	var wstbFloat = f.elements.wstb_float.checked;
+	var wstbAlign = f.elements.wstb_align.value;
+	var wstbWidth = f.elements.wstb_width.value;
+	var wstbColor = f.elements.wstb_fcolor.value.replace("#", "");
+	var wstbCColor = f.elements.wstb_cfcolor.value.replace("#", "");
+	var wstbBGColor = f.elements.wstb_bgcolor.value.replace("#", "");
+	var wstbCBGColor = f.elements.wstb_cbgcolor.value.replace("#", "");
+	var wstbBColor = f.elements.wstb_bcolor.value.replace("#", "");
+	var wstbImage = f.elements.wstb_image_url.value;
+	var wstbBigImage = f.elements.wstb_big_image.checked;
+	var wstbNoImage = f.elements.wstb_noimage.checked;
+	var wstbCollapsed = 0;
+	if(radio[0].checked) wstbCollapsed = 1;
+	else if(radio[1].checked) wstbCollapsed = 2;
 	
 	var contentObj = tinyMCE.getInstanceById('content');
 	var wstbBody = contentObj.selection.getContent();
 	
 	wstbCode = ' [stextbox id="' + wstbID + '"'; 
-	if (wstbCaption != '') wstbCode += ' caption="' + wstbCaption + '"';
+	if (wstbCaption != '') { 
+		wstbCode += ' caption="' + wstbCaption + '"';
+		if (wstbCollapsed == 1) wstbCode += ' collapsed="true"';
+		else if(wstbCollapsed == 2) wstbCode += ' collapsed="false"';
+	}
 	if (wstbFloat) {
 		wstbCode += ' float="true"';
 		if (wstbAlign != 'left') wstbCode += ' align="right"';
