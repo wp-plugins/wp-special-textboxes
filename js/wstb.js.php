@@ -2,7 +2,7 @@
 
 /**
  * @author minimus
- * @copyright 2009
+ * @copyright 2009 - 2010
  */
 
 header("Content-type: text/css"); 
@@ -23,7 +23,9 @@ $stextboxesOptions = $stbObject->getAdminOptions();
 				sc.css({'-webkit-border-bottom-left-radius' : '5px', 
 						'-webkit-border-bottom-right-radius' : '5px', 
 						'-moz-border-radius-bottomleft' : '5px', 
-						'-moz-border-radius-bottomright' : '5px'});
+						'-moz-border-radius-bottomright' : '5px',
+            'border-bottom-left-radius' : '5px', 
+						'border-bottom-right-radius' : '5px'});
 				<?php }?>
 			}
 			else {
@@ -35,8 +37,8 @@ $stextboxesOptions = $stbObject->getAdminOptions();
 		}
 	
 		$(".stb-tool").bind("click", function() {
-			sb = $(this).parent().parent().children('#body');
-			sc = $(this).parent().parent().children('#caption');
+			sb = $(this).parent().parent().children('.stb_body');
+			sc = $(this).parent().parent().children('.stb_caption');
 			si = $(this).children('#stb-toolimg');
 			if (sb.css('display') != 'none')	{				
 				sb.hide('blind',options,500, function() {callback(sb,sc,si);});
@@ -48,7 +50,9 @@ $stextboxesOptions = $stbObject->getAdminOptions();
 				sc.css({'-webkit-border-bottom-left-radius' : '0px', 
 						'-webkit-border-bottom-right-radius' : '0px', 
 						'-moz-border-radius-bottomleft' : '0px', 
-						'-moz-border-radius-bottomright' : '0px'});
+						'-moz-border-radius-bottomright' : '0px',
+            'border-bottom-left-radius' : '0px', 
+						'border-bottom-right-radius' : '0px'});
 				<?php }?>
 			}
 			return false;

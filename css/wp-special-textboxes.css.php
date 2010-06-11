@@ -116,6 +116,8 @@ $stextboxesOptions = $stbObject->getAdminOptions();
 	-webkit-background-clip: border;
 	-moz-background-origin: border;
 	-moz-background-clip: border;
+  background-origin: border;
+	background-clip: border;
 	background-color: #BBBBBB;
 	color: #FFFFFF;
 	padding-top: 3px;
@@ -180,6 +182,8 @@ $stextboxesOptions = $stbObject->getAdminOptions();
 	-webkit-background-clip: border;
 	-moz-background-origin: border;
 	-moz-background-clip: border;
+  background-origin: border;
+	background-clip: border;
 	<?php if($stextboxesOptions['langDirect'] === 'ltr') {?>
 	padding-left: <?php echo (($stextboxesOptions['showImg'] === 'true') ? '25' : '5' ); ?>px;
 	padding-right: 5px;
@@ -461,6 +465,8 @@ $stextboxesOptions = $stbObject->getAdminOptions();
 	-webkit-border-top-right-radius: 5px;
 	-moz-border-radius-topleft: 5px;
 	-moz-border-radius-topright: 5px;
+  border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }
 .stb-black-body_box,
 .stb-alert-body_box,
@@ -473,6 +479,8 @@ $stextboxesOptions = $stbObject->getAdminOptions();
 	-webkit-border-bottom-right-radius: 5px;
 	-moz-border-radius-bottomleft: 5px;
 	-moz-border-radius-bottomright: 5px;
+  border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
 }
 <?php 
 }
@@ -500,7 +508,7 @@ if ( $stextboxesOptions['box_shadow'] == "true" ) { ?>
 .stb-custom-body_box {
 	-webkit-box-shadow: 3px 3px 3px #888;
 	-moz-box-shadow: 3px 3px 3px #888;
-	box-shadow: 3px 3px 3px #888;
+  box-shadow: 3px 3px 3px #888;
 }	
 <?php 
 } 

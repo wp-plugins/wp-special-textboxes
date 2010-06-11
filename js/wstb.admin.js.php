@@ -23,7 +23,9 @@ $stextboxesOptions = $stbObject->getAdminOptions();
 				sc.css({'-webkit-border-bottom-left-radius' : '5px', 
 								'-webkit-border-bottom-right-radius' : '5px', 
 								'-moz-border-radius-bottomleft' : '5px', 
-								'-moz-border-radius-bottomright' : '5px'});
+								'-moz-border-radius-bottomright' : '5px',
+                'border-bottom-left-radius' : '5px', 
+								'border-bottom-right-radius' : '5px'});
 				<?php }?>
 			}
 			else {
@@ -49,7 +51,9 @@ $stextboxesOptions = $stbObject->getAdminOptions();
 				sc.css({'-webkit-border-bottom-left-radius' : '0px', 
 								'-webkit-border-bottom-right-radius' : '0px', 
 								'-moz-border-radius-bottomleft' : '0px', 
-								'-moz-border-radius-bottomright' : '0px'});
+								'-moz-border-radius-bottomright' : '0px',
+                'border-bottom-left-radius' : '0px', 
+								'border-bottom-right-radius' : '0px'});
 				<?php }?>
 			}
 			return false;

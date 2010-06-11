@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Special Text Boxes
-Plugin URI: http://simplelib.co.cc/?p=11
+Plugin URI: http://www.simplelib.com/?p=11
 Description: Adds simple colored text boxes to highlight some portion of post text. Use it for highlights warnings, alerts, infos and downloads in your blog posts. Visit <a href="http://simplelib.co.cc/">SimpleLib blog</a> for more details.
-Version: 3.4.41
+Version: 3.5.44
 Author: minimus
 Author URI: http://blogcoding.ru
 */
@@ -28,7 +28,7 @@ Author URI: http://blogcoding.ru
 if (!class_exists("SpecialTextBoxes")) {
 	class SpecialTextBoxes {
 		var $adminOptionsName = "SpecialTextBoxesAdminOptions";
-		var $stextboxesInitOptions = array( 
+		var $stextboxesInitOptions = array(
 			'rounded_corners' => 'true', 
 			'text_shadow' => 'false', 
 			'box_shadow' => 'false', 
@@ -54,17 +54,18 @@ if (!class_exists("SpecialTextBoxes")) {
 			'cb_captionFontSize' => '0',
 			'langDirect' => 'ltr' );
 		//var $plugin_page;
+		var $version = '3.5.44';
 		
 		function SpecialTextBoxes() { //constructor
 			//load language
 			$plugin_dir = basename(dirname(__FILE__));
 			if (function_exists( 'load_plugin_textdomain' ))
-				load_plugin_textdomain( 'wp-special-textboxes', PLUGINDIR . $plugin_dir, $plugin_dir );
+				load_plugin_textdomain( 'wp-special-textboxes', false, $plugin_dir );
 			
 			//Actions and Shortcodes
 			add_action('admin_menu', array(&$this, 'regAdminPage'));
 			add_action('wp_head', array(&$this, 'addHeaderCSS'), 1);
-			add_action('activate_wp-special-textboxes/wp-special-textboxes.php',  array(&$this, 'init'));
+			add_action('activate_wp-special-textboxes/wp-special-textboxes.php',  array(&$this, 'onActivate'));
 			add_action('deactivate_wp-special-textboxes/wp-special-textboxes.php', array(&$this, 'onDeactivate'));
 			add_filter('tiny_mce_version', array(&$this, 'tinyMCEVersion') );
 			add_action('template_redirect', array(&$this, 'headerScripts'));
@@ -73,7 +74,7 @@ if (!class_exists("SpecialTextBoxes")) {
 			add_shortcode('sgreybox', array(&$this, 'doShortcodeGrey'));
 		}
 		
-		function init() {
+		function onActivate() {
 			$stextboxesAdminOptions = $this->getAdminOptions();
 			update_option($this->adminOptionsName, $stextboxesAdminOptions);
 		}
@@ -107,7 +108,7 @@ if (!class_exists("SpecialTextBoxes")) {
 		function headerScripts() {
 			wp_enqueue_script('jquery');
 			wp_enqueue_script('jquery-ui-effects', WP_PLUGIN_URL.'/wp-special-textboxes/js/jquery-ui-1.7.2.custom.min.js', array('jquery'), '1.7.2');
-			wp_enqueue_script('wstbLayout', WP_PLUGIN_URL.'/wp-special-textboxes/js/wstb.js.php', array('jquery'), '3.4.40');
+			wp_enqueue_script('wstbLayout', WP_PLUGIN_URL.'/wp-special-textboxes/js/wstb.js.php', array('jquery'), $this->version);
 		}
 		
 		function adminHeaderScripts() {
@@ -115,7 +116,7 @@ if (!class_exists("SpecialTextBoxes")) {
 			wp_enqueue_script('jquery');
 			wp_enqueue_script('jquery-ui-effects', WP_PLUGIN_URL.'/wp-special-textboxes/js/jquery-ui-1.7.2.custom.min.js', array('jquery'), '1.7.2');
 			wp_enqueue_script('ColorPicker');
-			wp_enqueue_script('wstbAdminLayout', WP_PLUGIN_URL.'/wp-special-textboxes/js/wstb.admin.js.php', array('jquery'), '3.4.40');
+			wp_enqueue_script('wstbAdminLayout', WP_PLUGIN_URL.'/wp-special-textboxes/js/wstb.admin.js.php', array('jquery'), $this->version);
 		}
 		
 		function addHeaderCSS() {
@@ -183,7 +184,7 @@ if (!class_exists("SpecialTextBoxes")) {
 				} else {
 					if ( $collapsed ) {
 						$styleBody .= 'display: none; ';
-						$styleCaption .= '-webkit-border-bottom-left-radius: 5px; -webkit-border-bottom-right-radius: 5px; -moz-border-radius-bottomleft: 5px; -moz-border-radius-bottomright: 5px; ';
+						$styleCaption .= '-webkit-border-bottom-left-radius: 5px; -webkit-border-bottom-right-radius: 5px; -moz-border-radius-bottomleft: 5px; -moz-border-radius-bottomright: 5px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; ';
 					}					 
 					if ( $atts['image'] !== '' )
 					  $styleCaption .= ( $image === 'null' ) ? "background-image: url(none); padding-".(($stbOptions['langDirect'] === 'ltr')?'left':'right').": 5px; " : "background-image: url({$atts['image']}); padding-".(($stbOptions['langDirect'] === 'ltr')?'left':'right').": 25px; ";
@@ -207,20 +208,20 @@ if (!class_exists("SpecialTextBoxes")) {
 			if (!is_null($atts) & is_array($atts)) {
 				$style = $this->extendedStyleLogic(
 				  shortcode_atts( array( 
-					       'id' => 'warning', 
-                 'caption' => '', 
-								 'color' => '', 
-								 'ccolor' => '', 
-								 'bcolor' => '', 
-								 'bgcolor' => '', 
-								 'cbgcolor' => '', 
-								 'image' => '', 
-								 'big' => '',
-			           'float' => 'false',
-			           'align' => 'left',
-			           'width' => '200',
-								 'collapsed' => '' ), 
-								 $atts)
+							'id' => $id, 
+							'caption' => $caption, 
+							'color' => '', 
+							'ccolor' => '', 
+							'bcolor' => '', 
+							'bgcolor' => '', 
+							'cbgcolor' => '', 
+							'image' => '', 
+							'big' => '',
+							'float' => 'false',
+							'align' => 'left',
+							'width' => '200',
+							'collapsed' => '' ), 
+						 $atts)
 			  );
 			}
 			if ( $caption === '') {
@@ -233,7 +234,7 @@ if (!class_exists("SpecialTextBoxes")) {
 				}
 			} else {
 				if ( in_array( $id, $stextbox_classes ) ) {
-					return $style['floatStart']. $cntStart ."<div id='caption' class='stb-{$id}-caption_box' {$style['caption']}>" . $caption . $style['toolImg'] . "</div><div id='body' class='stb-{$id}-body_box' {$style['body']}>" . do_shortcode($content) . "</div>". $cntEnd .$style['floatEnd'];
+					return $style['floatStart']. $cntStart ."<div class='stb-{$id}-caption_box stb_caption' {$style['caption']}>" . $caption . $style['toolImg'] . "</div><div class='stb-{$id}-body_box stb_body' {$style['body']}>" . do_shortcode($content) . "</div>". $cntEnd .$style['floatEnd'];
 				} elseif ( $id === 'grey' ) {
 					return $style['floatStart']."<div class='stb-{$id}-caption_box' {$style['caption']}>{$caption}</div><div class='stb-{$id}-body_box' {$style['body']}>{$content}</div>".$style['floatEnd'];
 				} else { 
@@ -275,9 +276,65 @@ if (!class_exists("SpecialTextBoxes")) {
 		
 		function getSamples2() {
 			$stextboxesOptions = $this->getAdminOptions();
-			$sampleBox = "<div style='color:#{$stextboxesOptions['cb_color']}; border-top-color: #{$stextboxesOptions['cb_border_color']}; border-left-color: #{$stextboxesOptions['cb_border_color']}; border-right-color: #{$stextboxesOptions['cb_border_color']}; border-bottom-color: #{$stextboxesOptions['cb_border_color']}; background-color: #{$stextboxesOptions['cb_background']}; background-image: url({$stextboxesOptions['cb_image']}); background-repeat: no-repeat; margin-top: {$stextboxesOptions['top_margin']}px;  margin-right: {$stextboxesOptions['right_margin']}px;  margin-bottom: {$stextboxesOptions['bottom_margin']}px;  margin-left: {$stextboxesOptions['left_margin']}px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 25px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-width: 1px; border-top-style: {$stextboxesOptions['border_style']}; border-bottom-style: {$stextboxesOptions['border_style']}; border-right-style: {$stextboxesOptions['border_style']}; border-left-style: {$stextboxesOptions['border_style']};".(($stextboxesOptions['rounded_corners'] === 'true') ? '	-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;' : '').(($stextboxesOptions['text_shadow'] === 'true') ? 'text-shadow: 1px 1px 2px #888;' : '').(($stextboxesOptions['box_shadow'] === 'true') ? '-webkit-box-shadow: 3px 3px 3px #888; -moz-box-shadow: 3px 3px 3px #888; box-shadow: 3px 3px 3px #888;' : '')." min-height: 20px;'>".__("This is example of Custom Special Text Box with small image. You must save options to view changes.", "wp-special-textboxes")."</div>";
-			$sampleBoxBI = "<div style='color:#{$stextboxesOptions['cb_color']}; border-top-color: #{$stextboxesOptions['cb_border_color']}; border-left-color: #{$stextboxesOptions['cb_border_color']}; border-right-color: #{$stextboxesOptions['cb_border_color']}; border-bottom-color: #{$stextboxesOptions['cb_border_color']}; background-color: #{$stextboxesOptions['cb_background']}; background-image: url({$stextboxesOptions['cb_bigImg']}); background-repeat: no-repeat; margin-top: {$stextboxesOptions['top_margin']}px;  margin-right: {$stextboxesOptions['right_margin']}px;  margin-bottom: {$stextboxesOptions['bottom_margin']}px;  margin-left: {$stextboxesOptions['left_margin']}px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 50px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-width: 1px; border-top-style: {$stextboxesOptions['border_style']}; border-bottom-style: {$stextboxesOptions['border_style']}; border-right-style: {$stextboxesOptions['border_style']}; border-left-style: {$stextboxesOptions['border_style']};".(($stextboxesOptions['rounded_corners'] === 'true') ? '	-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;' : '').(($stextboxesOptions['text_shadow'] === 'true') ? 'text-shadow: 1px 1px 2px #888;' : '').(($stextboxesOptions['box_shadow'] === 'true') ? '-webkit-box-shadow: 3px 3px 3px #888; -moz-box-shadow: 3px 3px 3px #888; box-shadow: 3px 3px 3px #888;' : '')." min-height: 40px; '>".__("This is example of Custom Special Text Box with big image. You must save options to view changes.", "wp-special-textboxes")."</div>";
-			$sampleCaptionedBox = "<div id='stb-container' class='stb-container'><div id='caption' style='".((($stextboxesOptions['collapsed'] === 'true') && ($stextboxesOptions['collapsing'] === 'true')) ? '-webkit-border-bottom-left-radius: 5px; -webkit-border-bottom-right-radius: 5px; -moz-border-radius-bottomleft: 5px; -moz-border-radius-bottomright: 5px; ' : '')."color:#{$stextboxesOptions['cb_caption_color']}; font-weight: bold; border-top-color: #{$stextboxesOptions['cb_border_color']}; border-right-color: #{$stextboxesOptions['cb_border_color']}; border-bottom-color: #{$stextboxesOptions['cb_border_color']}; border-left-color: #{$stextboxesOptions['cb_border_color']}; border-top-style: {$stextboxesOptions['border_style']}; border-right-style: {$stextboxesOptions['border_style']}; border-left-style: {$stextboxesOptions['border_style']}; background-color: #{$stextboxesOptions['cb_caption_background']}; background-image: url({$stextboxesOptions['cb_image']}); background-repeat: no-repeat; margin-top: {$stextboxesOptions['top_margin']}px; margin-right: {$stextboxesOptions['right_margin']}px; margin-bottom: 0px; margin-left: {$stextboxesOptions['left_margin']}px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px; padding-top: 5px; padding-right: 5px; padding-bottom: 7px; padding-left: 25px; ".(($stextboxesOptions['rounded_corners'] === 'true') ? '-webkit-border-top-left-radius: 5px; -webkit-border-top-right-radius: 5px; -moz-border-radius-topleft: 5px; -moz-border-radius-topright: 5px;' : '').(($stextboxesOptions['text_shadow'] === 'true') ? 'text-shadow: 1px 1px 2px #888;' : '').(($stextboxesOptions['box_shadow'] === 'true') ? '-webkit-box-shadow: 3px 3px 3px #888; -moz-box-shadow: 3px 3px 3px #888; box-shadow: 3px 3px 3px #888;' : '')."'>".__("This is caption", "wp-special-textboxes").(($stextboxesOptions['collapsing'] === 'true') ? '<div id="stb-tool" class="stb-tool" style="float:right; padding:0px; margin:0px auto"><img id="stb-toolimg" style="border: none; background-color: transparent;" src="'.WP_PLUGIN_URL.(($stextboxesOptions['collapsed'] === 'true') ? '/wp-special-textboxes/images/show.png" title="'.__('Show', 'wp-special-textboxes') : '/wp-special-textboxes/images/hide.png" title="'.__('Hide', 'wp-special-textboxes')).'" /></div>' : '')."</div><div id='body' style='".((($stextboxesOptions['collapsed'] === 'true') && ($stextboxesOptions['collapsing'] === 'true')) ? 'display: none; ' : '')."color:#{$stextboxesOptions['cb_color']}; border-top-color: #{$stextboxesOptions['cb_border_color']}; border-right-color: #{$stextboxesOptions['cb_border_color']}; border-bottom-color: #{$stextboxesOptions['cb_border_color']}; border-left-color: #{$stextboxesOptions['cb_border_color']}; border-bottom-style: {$stextboxesOptions['border_style']}; border-right-style: {$stextboxesOptions['border_style']}; border-left-style: {$stextboxesOptions['border_style']}; background-color: #{$stextboxesOptions['cb_background']}; margin-top: 0px; margin-right: {$stextboxesOptions['right_margin']}px; margin-bottom: {$stextboxesOptions['bottom_margin']}px; margin-left: {$stextboxesOptions['left_margin']}px; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px;padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; ".(($stextboxesOptions['rounded_corners'] === 'true') ? '-webkit-border-bottom-left-radius: 5px; -webkit-border-bottom-right-radius: 5px; -moz-border-radius-bottomleft: 5px; -moz-border-radius-bottomright: 5px;' : '').(($stextboxesOptions['text_shadow'] === 'true') ? 'text-shadow: 1px 1px 2px #888;' : '').(($stextboxesOptions['box_shadow'] === 'true') ? '-webkit-box-shadow: 3px 3px 3px #888; -moz-box-shadow: 3px 3px 3px #888; box-shadow: 3px 3px 3px #888;' : '')."'>".__("This is example of Captioned Custom Special Text Box. You must save options to view changes.", "wp-special-textboxes")."</div></div>";
+			$sampleBox = "<div style='color:#{$stextboxesOptions['cb_color']}; border-top-color: #{$stextboxesOptions['cb_border_color']};
+				border-left-color: #{$stextboxesOptions['cb_border_color']}; border-right-color: #{$stextboxesOptions['cb_border_color']};
+				border-bottom-color: #{$stextboxesOptions['cb_border_color']}; background-color: #{$stextboxesOptions['cb_background']};
+				background-image: url({$stextboxesOptions['cb_image']}); background-repeat: no-repeat; margin-top: {$stextboxesOptions['top_margin']}px;
+				margin-right: {$stextboxesOptions['right_margin']}px;  margin-bottom: {$stextboxesOptions['bottom_margin']}px;
+				margin-left: {$stextboxesOptions['left_margin']}px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 25px;
+				border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-width: 1px;
+				border-top-style: {$stextboxesOptions['border_style']}; border-bottom-style: {$stextboxesOptions['border_style']};
+				border-right-style: {$stextboxesOptions['border_style']};
+				border-left-style: {$stextboxesOptions['border_style']};"
+				.(($stextboxesOptions['rounded_corners'] === 'true') ? '	-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;' : '')
+				.(($stextboxesOptions['text_shadow'] === 'true') ? 'text-shadow: 1px 1px 2px #888;' : '')
+				.(($stextboxesOptions['box_shadow'] === 'true') ? '-webkit-box-shadow: 3px 3px 3px #888; -moz-box-shadow: 3px 3px 3px #888; box-shadow: 3px 3px 3px #888;' : '')." min-height: 20px;'>"
+				.__("This is example of Custom Special Text Box with small image. You must save options to view changes.", "wp-special-textboxes")."</div>";
+			$sampleBoxBI = "<div style='color:#{$stextboxesOptions['cb_color']}; border-top-color: #{$stextboxesOptions['cb_border_color']};
+				border-left-color: #{$stextboxesOptions['cb_border_color']}; border-right-color: #{$stextboxesOptions['cb_border_color']};
+				border-bottom-color: #{$stextboxesOptions['cb_border_color']}; background-color: #{$stextboxesOptions['cb_background']};
+				background-image: url({$stextboxesOptions['cb_bigImg']}); background-repeat: no-repeat; margin-top: {$stextboxesOptions['top_margin']}px;
+				margin-right: {$stextboxesOptions['right_margin']}px;  margin-bottom: {$stextboxesOptions['bottom_margin']}px;
+				margin-left: {$stextboxesOptions['left_margin']}px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 50px;
+				border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-width: 1px;
+				border-top-style: {$stextboxesOptions['border_style']}; border-bottom-style: {$stextboxesOptions['border_style']};
+				border-right-style: {$stextboxesOptions['border_style']};
+				border-left-style: {$stextboxesOptions['border_style']};"
+				.(($stextboxesOptions['rounded_corners'] === 'true') ? '	-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;' : '')
+				.(($stextboxesOptions['text_shadow'] === 'true') ? 'text-shadow: 1px 1px 2px #888;' : '')
+				.(($stextboxesOptions['box_shadow'] === 'true') ? '-webkit-box-shadow: 3px 3px 3px #888; -moz-box-shadow: 3px 3px 3px #888; box-shadow: 3px 3px 3px #888;' : '')
+				." min-height: 40px; '>".__("This is example of Custom Special Text Box with big image. You must save options to view changes.", "wp-special-textboxes")."</div>";
+			$sampleCaptionedBox = "<div id='stb-container' class='stb-container'><div id='caption' style='"
+				.((($stextboxesOptions['collapsed'] === 'true') && ($stextboxesOptions['collapsing'] === 'true')) ? '-webkit-border-bottom-left-radius: 5px; -webkit-border-bottom-right-radius: 5px; -moz-border-radius-bottomleft: 5px; -moz-border-radius-bottomright: 5px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; ' : '')
+				."color:#{$stextboxesOptions['cb_caption_color']}; font-weight: bold; border-top-color: #{$stextboxesOptions['cb_border_color']};
+				border-right-color: #{$stextboxesOptions['cb_border_color']}; border-bottom-color: #{$stextboxesOptions['cb_border_color']};
+				border-left-color: #{$stextboxesOptions['cb_border_color']}; border-top-style: {$stextboxesOptions['border_style']};
+				border-right-style: {$stextboxesOptions['border_style']}; border-left-style: {$stextboxesOptions['border_style']};
+				background-color: #{$stextboxesOptions['cb_caption_background']}; background-image: url({$stextboxesOptions['cb_image']});
+				background-repeat: no-repeat; margin-top: {$stextboxesOptions['top_margin']}px; margin-right: {$stextboxesOptions['right_margin']}px;
+				margin-bottom: 0px; margin-left: {$stextboxesOptions['left_margin']}px; border-top-width: 1px; border-right-width: 1px;
+				border-bottom-width: 0px; border-left-width: 1px; padding-top: 5px; padding-right: 5px; padding-bottom: 7px; padding-left: 25px; "
+				.(($stextboxesOptions['rounded_corners'] === 'true') ? '-webkit-border-top-left-radius: 5px; -webkit-border-top-right-radius: 5px; -moz-border-radius-topleft: 5px; -moz-border-radius-topright: 5px; border-top-left-radius: 5px; border-top-right-radius: 5px;' : '')
+				.(($stextboxesOptions['text_shadow'] === 'true') ? 'text-shadow: 1px 1px 2px #888;' : '')
+				.(($stextboxesOptions['box_shadow'] === 'true') ? '-webkit-box-shadow: 3px 3px 3px #888; -moz-box-shadow: 3px 3px 3px #888; box-shadow: 3px 3px 3px #888;' : '')."'>"
+				.__("This is caption", "wp-special-textboxes")
+				.(($stextboxesOptions['collapsing'] === 'true') ? '<div id="stb-tool" class="stb-tool" style="float:right; padding:0px; margin:0px auto"><img id="stb-toolimg" style="border: none; background-color: transparent;" src="'
+				.WP_PLUGIN_URL.(($stextboxesOptions['collapsed'] === 'true') ? '/wp-special-textboxes/images/show.png" title="'
+				.__('Show', 'wp-special-textboxes') : '/wp-special-textboxes/images/hide.png" title="'
+				.__('Hide', 'wp-special-textboxes')).'" /></div>' : '')."</div><div id='body' style='"
+				.((($stextboxesOptions['collapsed'] === 'true') && ($stextboxesOptions['collapsing'] === 'true')) ? 'display: none; ' : '')
+				."color:#{$stextboxesOptions['cb_color']}; border-top-color: #{$stextboxesOptions['cb_border_color']};
+				border-right-color: #{$stextboxesOptions['cb_border_color']}; border-bottom-color: #{$stextboxesOptions['cb_border_color']};
+				border-left-color: #{$stextboxesOptions['cb_border_color']}; border-bottom-style: {$stextboxesOptions['border_style']};
+				border-right-style: {$stextboxesOptions['border_style']}; border-left-style: {$stextboxesOptions['border_style']};
+				background-color: #{$stextboxesOptions['cb_background']}; margin-top: 0px; margin-right: {$stextboxesOptions['right_margin']}px;
+				margin-bottom: {$stextboxesOptions['bottom_margin']}px; margin-left: {$stextboxesOptions['left_margin']}px; border-top-width: 0px;
+				border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px;padding-top: 5px; padding-right: 5px; padding-bottom: 5px;
+				padding-left: 5px; "
+				.(($stextboxesOptions['rounded_corners'] === 'true') ? '-webkit-border-bottom-left-radius: 5px; -webkit-border-bottom-right-radius: 5px; -moz-border-radius-bottomleft: 5px; -moz-border-radius-bottomright: 5px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;' : '')
+				.(($stextboxesOptions['text_shadow'] === 'true') ? 'text-shadow: 1px 1px 2px #888;' : '')
+				.(($stextboxesOptions['box_shadow'] === 'true') ? '-webkit-box-shadow: 3px 3px 3px #888; -moz-box-shadow: 3px 3px 3px #888; box-shadow: 3px 3px 3px #888;' : '')."'>"
+				.__("This is example of Captioned Custom Special Text Box. You must save options to view changes.", "wp-special-textboxes")."</div></div>";
 			return $sampleBox.$sampleBoxBI.$sampleCaptionedBox;
 		}
 		
@@ -656,7 +713,7 @@ if (!class_exists('special_text') && class_exists('WP_Widget')) {
 			$parse = $instance['parse'];
 			$text = $instance['text'];
 			$showAll = $instance['show_all'];
-			$canShow = ((is_home() && $instance['show_home']) || 
+			$canShow = (((is_home() || is_front_page()) && $instance['show_home']) || 
 						(is_category() && $instance['show_cat']) ||
 						(is_archive() && $instance['show_arc']) ||
 						(is_single() && $instance['show_single']) ||
