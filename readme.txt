@@ -27,7 +27,7 @@ Available languages:
   * Ukrainian by [official ukrainian localization team](http://wordpress.co.ua/)
   * German by [Renate](http://www.bhvnederland.nl/)
 
-If you have created your own language pack, or have an update of an existing one, you can send __.po__ and __.mo files__ to me (minimus AT simlelib.com) so that I can bundle it into __Special Text Boxes__.
+If you have created your own language pack, or have an update of an existing one, you can send __.po__ and __.mo files__ to me (minimus AT simplelib.com) so that I can bundle it into __Special Text Boxes__.
   
 Real examples of outputs you can see on the [plugin page](http://www.simplelib.com/?p=11)
 
