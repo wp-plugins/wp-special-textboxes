@@ -3,8 +3,8 @@ Contributors: minimus
 Donate link: http://www.simplelib.com/
 Tags: content, performance, text, code, php, widget
 Requires at least: 2.6
-Tested up to: 3.0
-Stable tag: 3.5.45
+Tested up to: 3.0.1
+Stable tag: 3.6.49
 
 Highlights any portion of text as text in the colored boxes.
 
@@ -22,10 +22,12 @@ Available languages:
   * Belarus by [Fat Cower](http://www.fatcow.com)
   * Uzbek by [Alisher Safarov](http://www.comfi.com)
   * Polish by [Daniel Fruzynski](http://www.poradnik-webmastera.com)
-  * Arabic language by [مدونة رسين](http://www.r-sn.com/wp/)
-  * Dutch language by [Rene](http://wpwebshop.com/blog/)
+  * Arabic by [مدونة رسين](http://www.r-sn.com/wp/)
+  * Dutch by [Rene](http://wpwebshop.com/blog/)
+  * Ukrainian by [official ukrainian localization team](http://wordpress.co.ua/)
+  * German by [Renate](http://www.bhvnederland.nl/)
 
-If you have created your own language pack, or have an update of an existing one, you can send __.po__ and __.mo files__ to me so that I can bundle it into __Special Text Boxes__.
+If you have created your own language pack, or have an update of an existing one, you can send __.po__ and __.mo files__ to me (minimus AT simlelib.com) so that I can bundle it into __Special Text Boxes__.
   
 Real examples of outputs you can see on the [plugin page](http://www.simplelib.com/?p=11)
 
@@ -81,8 +83,13 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 
 == Changelog ==
 
+= 3.6.49 =
+* Collapsed mode bug are fixed.
+* Special Text Widget bug are fixed.
+* Language pack is updated. Ukrainian by [official ukrainian localization team](http://wordpress.co.ua/) is added.
+* Language pack is updated. German by [Renate](http://www.bhvnederland.nl/) is added.
 = 3.5.45 =
-* Dutch language are added
+* Language pack is updated. Dutch by [Rene](http://wpwebshop.com/blog/) are added.
 = 3.5.44 =
 * Floating mode bug are fixed
 * __stbHighlightText__ function bug (collapsed option) are fixed
@@ -145,6 +152,11 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 
 == Upgrade Notice ==
 
+= 3.6.49 =
+Collapsed mode bug are fixed.
+Special Text Widget bug are fixed.
+Language pack is updated. Ukrainian by [official ukrainian localization team](http://wordpress.co.ua/) is added.
+Language pack is updated. German by [Renate](http://www.bhvnederland.nl/) is added.
 = 3.5.45 =
 Dutch language are added
 = 3.5.44 =
