@@ -3,7 +3,7 @@
 Plugin Name: Special Text Boxes
 Plugin URI: http://www.simplelib.com/?p=11
 Description: Adds simple colored text boxes to highlight some portion of post text. Use it for highlights warnings, alerts, infos and downloads in your blog posts. Visit <a href="http://simplelib.co.cc/">SimpleLib blog</a> for more details.
-Version: 3.6.49
+Version: 3.5.49
 Author: minimus
 Author URI: http://blogcoding.ru
 */
@@ -721,17 +721,17 @@ if (!class_exists('special_text') && class_exists('WP_Widget')) {
 						(is_tag() && $instance['show_tag']) ||
 						(is_author() && $instance['show_author']));
 			
-			$before_title = '<div class="stb-'.$box_id.'-caption_box">';
-			$after_title = '</div>'.( !empty($title) ? '<div class="stb-'.$box_id.'-body_box">' : '' );
-			$before_widget = '<div class="stb-container">'.( empty($title) ? '<div class="stb-'.$box_id.'_box">' : '' );
+			$before_title = '<div class="stb-'.$box_id.'-caption_box" style="margin-left: 0px; margin-right: 0px" >';
+			$after_title = '</div>'.( !empty($title) ? '<div class="stb-'.$box_id.'-body_box" style="margin-left: 0px; margin-right: 0px" >' : '' );
+			$before_widget = '<div class="stb-container">'.( empty($title) ? '<div class="stb-'.$box_id.'_box" style="margin-left: 0px; margin-right: 0px" >' : '' );
 			$after_widget = '</div></div>';
 			
 			if ( $showAll || $canShow ) {
-				echo $before_widget;
-				if ( !empty( $title ) ) echo $before_title . $title . $after_title;
-				echo ($parse ? eval("?>".$text."<?") : $text);
-				echo $after_widget;
-			}
+			  echo $before_widget;
+		    if ( !empty( $title ) ) echo $before_title . $title . $after_title;
+			  echo ($parse ? eval("?>".$text."<?") : $text);
+		    echo $after_widget;
+		  }
 		}
 		
 		function update( $new_instance, $old_instance ) {
