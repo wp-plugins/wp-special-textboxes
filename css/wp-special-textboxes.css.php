@@ -12,9 +12,10 @@ $stextboxesOptions = $stbObject->getAdminOptions();
 .stb-container {
 	margin: 0px auto; 
 	padding: 0px;
+	position: static;
 }
 .stb-tool {
-	float: right; 
+	<?php if($stextboxesOptions['langDirect'] === 'ltr') {?> float: right; <?php } else { ?> float: left; <?php } ?>
 	padding: 0px; 
 	margin: 0px auto;
 }

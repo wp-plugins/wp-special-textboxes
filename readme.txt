@@ -4,7 +4,7 @@ Donate link: http://www.simplelib.com/
 Tags: content, performance, text, code, php, widget
 Requires at least: 2.6
 Tested up to: 3.0.1
-Stable tag: 3.6.49
+Stable tag: 3.7.51
 
 Highlights any portion of text as text in the colored boxes.
 
@@ -12,7 +12,7 @@ Highlights any portion of text as text in the colored boxes.
 
 Adds little style sheet file and short code to blog for highlighting some portion of text in post as colored boxes. That may be warning, alert, info and download portion of post's text.
 
-__WARNING!!!__ __Special Text widget__ works only under __Wordpress 2.8+__ !
+__WARNING!!!__ __Special Text Widget__ works only under __Wordpress 2.8+__ !
 
 Available languages:
 
@@ -69,6 +69,12 @@ defined as
 
 No! _Special Text widget_ wrote with using _Wordpress Widget Factory technology_ and this one can work only under Wordpress 2.8 and higher!
 
+= How to insert special text box into special text box? =
+
+Use _stb_ shortcode inside _stextbox_ shortcode
+
+`[stextbox]Some text [stb]Some text in the indoor box[/stb][/stextbox]`
+
 More about Special Text Boxes usage and customising read on the [plugin page](http://www.simplelib.com/?p=11)
 
 == Screenshots ==
@@ -83,6 +89,9 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 
 == Changelog ==
 
+= 3.7.51 =
+* Tool Button bug are fixed.
+* STB in STB shortcodes are added.
 = 3.6.49 =
 * Collapsed mode bug are fixed.
 * Special Text Widget bug are fixed.
@@ -152,6 +161,9 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 
 == Upgrade Notice ==
 
+= 3.7.51 =
+Tool Button bug are fixed.
+STB in STB shortcodes are added.
 = 3.6.49 =
 Collapsed mode bug are fixed.
 Special Text Widget bug are fixed.

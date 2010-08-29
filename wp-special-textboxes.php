@@ -3,12 +3,12 @@
 Plugin Name: Special Text Boxes
 Plugin URI: http://www.simplelib.com/?p=11
 Description: Adds simple colored text boxes to highlight some portion of post text. Use it for highlights warnings, alerts, infos and downloads in your blog posts. Visit <a href="http://simplelib.co.cc/">SimpleLib blog</a> for more details.
-Version: 3.6.49
+Version: 3.7.51
 Author: minimus
 Author URI: http://blogcoding.ru
 */
 
-/*  Copyright 2009, minimus  (email : minimus.blogovod@gmail.com)
+/*  Copyright 2009 - 2010, minimus  (email : minimus@simplelib.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -54,7 +54,7 @@ if (!class_exists("SpecialTextBoxes")) {
 			'cb_captionFontSize' => '0',
 			'langDirect' => 'ltr' );
 		//var $plugin_page;
-		var $version = '3.6.49';
+		var $version = '3.7.51';
 		
 		function SpecialTextBoxes() { //constructor
 			//load language
@@ -71,6 +71,7 @@ if (!class_exists("SpecialTextBoxes")) {
 			add_action('template_redirect', array(&$this, 'headerScripts'));
 			add_action('init', array(&$this, 'addButtons'));
 			add_shortcode('stextbox', array(&$this, 'doShortcode'));
+			add_shortcode('stb', array(&$this, 'doShortcode'));
 			add_shortcode('sgreybox', array(&$this, 'doShortcodeGrey'));
 		}
 		
@@ -159,7 +160,7 @@ if (!class_exists("SpecialTextBoxes")) {
 				
 				// Tool Image
 				
-				$toolImg = ($stbOptions['collapsing'] === 'true') ? '<div id="stb-tool" class="stb-tool" style="float:'.(($stbOptions['langDirect'] === 'ltr')?'right':'left').'; padding:0px; margin:0px auto"><img id="stb-toolimg" style="border: none; background-color: transparent;" src="'.WP_PLUGIN_URL.(($collapsed) ? '/wp-special-textboxes/images/show.png" title="'.__('Show', 'wp-special-textboxes') : '/wp-special-textboxes/images/hide.png" title="'.__('Hide', 'wp-special-textboxes')).'" /></div>'  : '';
+				$toolImg = ($stbOptions['collapsing'] === 'true') ? '<div id="stb-tool" class="stb-tool" style="float:'.(($stbOptions['langDirect'] === 'ltr')?'right':'left').'; padding:0px; margin:0px auto"><img id="stb-toolimg" style="border: none; background-color: transparent; padding: 0px; margin: 0px auto;" src="'.WP_PLUGIN_URL.(($collapsed) ? '/wp-special-textboxes/images/show.png" title="'.__('Show', 'wp-special-textboxes') : '/wp-special-textboxes/images/hide.png" title="'.__('Hide', 'wp-special-textboxes')).'" /></div>'  : '';
 			  
 			  // Image logic
 			  if ($atts['caption'] === '') {
