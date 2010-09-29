@@ -26,6 +26,7 @@ Available languages:
   * Dutch by [Rene](http://wpwebshop.com/blog/)
   * Ukrainian by [official ukrainian localization team](http://wordpress.co.ua/)
   * German by [Renate](http://www.bhvnederland.nl/)
+  * Czech by [Stanislav Čihák](http://www.abacomp.cz/)
 
 If you have created your own language pack, or have an update of an existing one, you can send __.po__ and __.mo files__ to me (minimus AT simplelib.com) so that I can bundle it into __Special Text Boxes__.
   
