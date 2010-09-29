@@ -4,7 +4,7 @@ Donate link: http://www.simplelib.com/
 Tags: content, performance, text, code, php, widget
 Requires at least: 2.6
 Tested up to: 3.0.1
-Stable tag: 3.7.51
+Stable tag: 3.7.52
 
 Highlights any portion of text as text in the colored boxes.
 
@@ -88,7 +88,8 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 
 
 == Changelog ==
-
+= 3.7.52 =
+* Language pack is updated. Czech by [Stanislav Čihák](http://www.abacomp.cz/) are added.
 = 3.7.51 =
 * Tool Button bug are fixed.
 * STB in STB shortcodes are added.
@@ -161,6 +162,8 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 
 == Upgrade Notice ==
 
+= 3.7.52 =
+Language pack is updated. Czech by [Stanislav Čihák](http://www.abacomp.cz/) are added.
 = 3.7.51 =
 Tool Button bug are fixed.
 STB in STB shortcodes are added.
