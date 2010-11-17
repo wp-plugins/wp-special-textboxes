@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp-special-textboxes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-16 08:21+0200\n"
+"POT-Creation-Date: 2010-11-17 11:42+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: minimus <minimus@blogcoding.ru>\n"
 "Language-Team: minimus <minimus@blogovod.co.cc>\n"
@@ -17,389 +17,392 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: wp-special-textboxes.php:162
-#: wp-special-textboxes.php:323
-#: wp-special-textboxes.php:345
+#: stb-admin-class.php:43
+msgid "This is example of Custom Special Text Box. You must save options to view changes."
+msgstr "Это пример настраиваемого блока специального текста. Чтобы увидеть внесённые изменения, необходимо сохранить параметры."
+
+#: stb-admin-class.php:44
+msgid "This is caption"
+msgstr "Это заголовок блока"
+
+#: stb-admin-class.php:45
+#: stb-class.php:109
 #: js/wstb.admin.js.php:21
 #: js/wstb.js.php:21
 msgid "Show"
 msgstr "Показать"
 
-#: wp-special-textboxes.php:162
-#: wp-special-textboxes.php:324
-#: wp-special-textboxes.php:345
+#: stb-admin-class.php:45
+#: stb-class.php:109
 #: js/wstb.admin.js.php:32
 #: js/wstb.js.php:32
 msgid "Hide"
 msgstr "Скрыть"
 
-#: wp-special-textboxes.php:292
-msgid "This is example of Custom Special Text Box with small image. You must save options to view changes."
-msgstr "Это пример настраиваемого блока специального текста с маленькой иконкой. Чтобы увидеть внесённые изменения, необходимо сохранить параметры."
-
-#: wp-special-textboxes.php:306
-msgid "This is example of Custom Special Text Box with big image. You must save options to view changes."
-msgstr "Это пример настраиваемого блока специального текста с большой иконкой. Чтобы увидеть внесённые изменения, необходимо сохранить параметры."
-
-#: wp-special-textboxes.php:320
-#: wp-special-textboxes.php:344
-msgid "This is caption"
-msgstr "Это заголовок блока"
-
-#: wp-special-textboxes.php:337
-#: wp-special-textboxes.php:346
+#: stb-admin-class.php:46
 msgid "This is example of Captioned Custom Special Text Box. You must save options to view changes."
 msgstr "Это пример настраиваемого блока специального текста с заголовком. Чтобы увидеть внесённые изменения, необходимо сохранить параметры."
 
-#: wp-special-textboxes.php:343
-msgid "This is example of Custom Special Text Box. You must save options to view changes."
-msgstr "Это пример настраиваемого блока специального текста. Чтобы увидеть внесённые изменения, необходимо сохранить параметры."
-
-#: wp-special-textboxes.php:352
+#: stb-admin-class.php:52
 msgid "Special Text Boxes"
 msgstr "Подсветка текста"
 
-#: wp-special-textboxes.php:368
+#: stb-admin-class.php:61
 #: js/dialog.php:34
 msgid "Basic Settings"
 msgstr "Основные параметры"
 
-#: wp-special-textboxes.php:372
-msgid "Select border style for Special Text Boxes"
-msgstr "Выбор стиля рамки блока специального текста"
-
-#: wp-special-textboxes.php:373
-msgid "Selecting \"None\" will disable Special Text Boxes border."
-msgstr "Выбрав \"Без рамки\", Вы запретите прорисовку рамки блока специального текста. "
-
-#: wp-special-textboxes.php:379
-msgid "Define top margin for Special Text Boxes"
-msgstr "Верхний отступ специального текста"
-
-#: wp-special-textboxes.php:380
-msgid "This is a gap between top edge of Special Text Box and text above."
-msgstr "Этот параметр определяет промежуток между верхним краем блока специального текста и текстом (елементом) расположенным выше."
-
-#: wp-special-textboxes.php:385
-msgid "Define left margin for Special Text Boxes"
-msgstr "Левый отступ специального текста"
-
-#: wp-special-textboxes.php:386
-msgid "This is a gap between left edge of Special Text Box and left edge of post area."
-msgstr "Этот параметр определяет промежуток между левым краем блока специального текста и левым краем области статьи."
-
-#: wp-special-textboxes.php:391
-msgid "Define right margin for Special Text Boxes"
-msgstr "Правый отступ специального текста"
-
-#: wp-special-textboxes.php:392
-msgid "This is a gap between right edge of Special Text Box and right edge of post area."
-msgstr "Этот параметр определяет промежуток между правым краем блока специального текста и правым краем области статьи."
-
-#: wp-special-textboxes.php:397
-msgid "Define bottom margin for Special Text Boxes"
-msgstr "Нижний отступ специального текста"
-
-#: wp-special-textboxes.php:398
-msgid "This is a gap between bottom edge of Special Text Box and text below."
-msgstr "Этот параметр определяет промежуток между нижним краем блока специального текста и текстом (елементом) расположенным ниже."
-
-#: wp-special-textboxes.php:403
-msgid "Define font size for Special Text Boxes"
-msgstr "Размер шрифта"
-
-#: wp-special-textboxes.php:404
-#: wp-special-textboxes.php:511
-msgid "This is font size in pixels."
-msgstr "Размер шрифта в пикселах."
-
-#: wp-special-textboxes.php:404
-#: wp-special-textboxes.php:410
-#: wp-special-textboxes.php:511
-#: wp-special-textboxes.php:517
-msgid "Set this parameter to value 0 for theme default font size."
-msgstr "Для использования размера шрифта заданного темой, установите значение этого параметра в 0."
-
-#: wp-special-textboxes.php:409
-msgid "Define caption font size for Special Text Boxes"
-msgstr "Размер шрифта заголовка"
-
-#: wp-special-textboxes.php:410
-#: wp-special-textboxes.php:517
-msgid "This is caption font size in pixels."
-msgstr "Размер шрифта заголовка в пикселах."
-
-#: wp-special-textboxes.php:415
-msgid "Allow Big Image for Simple (non-captioned) Special Text Boxes?"
-msgstr "Разрешить использование большой иконки в простом (без заголовка) блоке специального текста?"
-
-#: wp-special-textboxes.php:416
-msgid "Selecting \"Yes\" will allow big icons for simple (non-captioned) Special Text Boxes."
-msgstr "Выбрав \"Да\", Вы разрешите использование большой иконки в простом (без заголовка) блоке специального текста. "
-
-#: wp-special-textboxes.php:419
-#: wp-special-textboxes.php:433
-#: wp-special-textboxes.php:440
-#: wp-special-textboxes.php:447
-#: wp-special-textboxes.php:462
-#: wp-special-textboxes.php:469
-#: wp-special-textboxes.php:476
-#: js/dialog.php:63
-msgid "Yes"
-msgstr "Да"
-
-#: wp-special-textboxes.php:419
-#: wp-special-textboxes.php:433
-#: wp-special-textboxes.php:440
-#: wp-special-textboxes.php:447
-#: wp-special-textboxes.php:462
-#: wp-special-textboxes.php:469
-#: wp-special-textboxes.php:476
-#: js/dialog.php:63
-msgid "No"
-msgstr "Нет"
-
-#: wp-special-textboxes.php:422
-msgid "Define language direction"
-msgstr "Направление текста"
-
-#: wp-special-textboxes.php:423
-msgid "Selecting \"Left-to-Right\" will set Left-to-Right language direction for Special Text Boxes and visa versa."
-msgstr "Выбор \"Слева-направо\" установит направление текста слева-направо и наоборот."
-
-#: wp-special-textboxes.php:426
-msgid "Left-to-Right"
-msgstr "Слева-направо"
-
-#: wp-special-textboxes.php:426
-msgid "Right-to-Left"
-msgstr "Справа-налево"
-
-#: wp-special-textboxes.php:429
-msgid "Allow icon images for Special Text Boxes?"
-msgstr "Разрешить использование иконок для блока специального текста?"
-
-#: wp-special-textboxes.php:430
-msgid "Selecting \"Yes\" will allow displaying icon images in Special Text Boxes."
-msgstr "Выбрав \"Да\", Вы разрешите использование иконок в блоках специального текста, в противном случае иконки выводиться не будут. "
-
-#: wp-special-textboxes.php:436
-msgid "Allow collapsing/expanding captioned Special Text Boxes?"
-msgstr "Разрешить сворачивание/разворачивание блока специального текста с заголовком?"
-
-#: wp-special-textboxes.php:437
-msgid "Selecting \"Yes\" will allow displaying show/hide button in captioned Special Text Boxes."
-msgstr "Выбрав \"Да\", Вы разрешите вывод кнопки Скрыть/Показать в заголовке блока специального текста. "
-
-#: wp-special-textboxes.php:443
-msgid "Allow \"collapsed on load\" captioned Special Text Boxes?"
-msgstr "Разрешить вывод свёрнутых блоков с заголовком при загрузке страницы?"
-
-#: wp-special-textboxes.php:444
-msgid "Selecting \"Yes\" will allow displaying collapsed captioned Special Text Boxes after page loading."
-msgstr "Выбрав \"Да\", Вы разрешите показывать свёрнутые блоки специального текста с заголовком при загрузке страницы , в противном случае блоки будут показываться развёрнутыми. "
-
-#: wp-special-textboxes.php:453
+#: stb-admin-class.php:62
 #: js/dialog.php:35
 msgid "Extended Settings"
 msgstr "Дополнительные параметры"
 
-#: wp-special-textboxes.php:454
-msgid "Parameters below add elements of CSS3 standard to Style Sheet. Not all browsers can interpret this elements properly, but including this elements to HTML page not crash browser."
-msgstr "Использование следующих параметров добавляет в таблицу стилей елементы стандарта CSS3. Не все браузеры могут интерпретировать эти элементы должным образом, но использование этих элементов не приводит к сбою в работе браузера."
-
-#: wp-special-textboxes.php:458
-msgid "Allow rounded corners for Special Text Boxes?"
-msgstr "Разрешить использование закруглённых углов?"
-
-#: wp-special-textboxes.php:459
-msgid "Selecting \"No\" will disable Special Text Boxes rounded corners."
-msgstr "Выбрав \"Нет\", Вы запретите прорисовку закруглённых углов. "
-
-#: wp-special-textboxes.php:465
-msgid "Allow box shadow for Special Text Boxes?"
-msgstr "Разрешить использование тени блока специального текста?"
-
-#: wp-special-textboxes.php:466
-msgid "Selecting \"No\" will disable Special Text Boxes shadow."
-msgstr "Выбрав \"Нет\", Вы запретите прорисовку тени блока специального текста. "
-
-#: wp-special-textboxes.php:472
-msgid "Allow text shadow for Special Text Boxes?"
-msgstr "Разрешить использование теней текста?"
-
-#: wp-special-textboxes.php:473
-msgid "Selecting \"No\" will disable Special Text Boxes text shadow."
-msgstr "Выбрав \"Нет\", Вы запретите прорисовку теней текста. "
-
-#: wp-special-textboxes.php:493
-#: wp-special-textboxes.php:588
+#: stb-admin-class.php:63
 msgid "Custom Box Editor"
 msgstr "Редактор настраиваемого блока"
 
-#: wp-special-textboxes.php:494
-msgid "Use parameters below for customising custom Special Text Box."
-msgstr "Используйте эти параметры для настройки внешнего вида настраиваемого блока специального текста."
+#: stb-admin-class.php:65
+msgid "Select border style for Special Text Boxes"
+msgstr "Выбор стиля рамки блока специального текста"
 
-#: wp-special-textboxes.php:498
+#: stb-admin-class.php:65
+msgid "Selecting \"None\" will disable Special Text Boxes border."
+msgstr "Выбрав \"Без рамки\", Вы запретите прорисовку рамки блока специального текста. "
+
+#: stb-admin-class.php:65
+msgid "Solid"
+msgstr "Сплошная линия"
+
+#: stb-admin-class.php:65
+msgid "Dashed"
+msgstr "Штриховая линия"
+
+#: stb-admin-class.php:65
+msgid "Dotted"
+msgstr "Пунктирная линия"
+
+#: stb-admin-class.php:65
+msgid "None"
+msgstr "Без рамки"
+
+#: stb-admin-class.php:66
+msgid "Define top margin for Special Text Boxes"
+msgstr "Верхний отступ специального текста"
+
+#: stb-admin-class.php:66
+msgid "This is a gap between top edge of Special Text Box and text above."
+msgstr "Этот параметр определяет промежуток между верхним краем блока специального текста и текстом (елементом) расположенным выше."
+
+#: stb-admin-class.php:67
+msgid "Define left margin for Special Text Boxes"
+msgstr "Левый отступ специального текста"
+
+#: stb-admin-class.php:67
+msgid "This is a gap between left edge of Special Text Box and left edge of post area."
+msgstr "Этот параметр определяет промежуток между левым краем блока специального текста и левым краем области статьи."
+
+#: stb-admin-class.php:68
+msgid "Define right margin for Special Text Boxes"
+msgstr "Правый отступ специального текста"
+
+#: stb-admin-class.php:68
+msgid "This is a gap between right edge of Special Text Box and right edge of post area."
+msgstr "Этот параметр определяет промежуток между правым краем блока специального текста и правым краем области статьи."
+
+#: stb-admin-class.php:69
+msgid "Define bottom margin for Special Text Boxes"
+msgstr "Нижний отступ специального текста"
+
+#: stb-admin-class.php:69
+msgid "This is a gap between bottom edge of Special Text Box and text below."
+msgstr "Этот параметр определяет промежуток между нижним краем блока специального текста и текстом (елементом) расположенным ниже."
+
+#: stb-admin-class.php:70
+msgid "Define font size for Special Text Boxes"
+msgstr "Размер шрифта"
+
+#: stb-admin-class.php:70
+#: stb-admin-class.php:84
+msgid "This is font size in pixels."
+msgstr "Размер шрифта в пикселах."
+
+#: stb-admin-class.php:70
+#: stb-admin-class.php:71
+#: stb-admin-class.php:84
+#: stb-admin-class.php:85
+msgid "Set this parameter to value 0 for theme default font size."
+msgstr "Для использования размера шрифта заданного темой, установите значение этого параметра в 0."
+
+#: stb-admin-class.php:71
+msgid "Define caption font size for Special Text Boxes"
+msgstr "Размер шрифта заголовка"
+
+#: stb-admin-class.php:71
+#: stb-admin-class.php:85
+msgid "This is caption font size in pixels."
+msgstr "Размер шрифта заголовка в пикселах."
+
+#: stb-admin-class.php:72
+msgid "Allow Big Image for Simple (non-captioned) Special Text Boxes?"
+msgstr "Разрешить использование большой иконки в простом (без заголовка) блоке специального текста?"
+
+#: stb-admin-class.php:72
+msgid "Selecting \"Yes\" will allow big icons for simple (non-captioned) Special Text Boxes."
+msgstr "Выбрав \"Да\", Вы разрешите использование большой иконки в простом (без заголовка) блоке специального текста. "
+
+#: stb-admin-class.php:72
+#: stb-admin-class.php:74
+#: stb-admin-class.php:75
+#: stb-admin-class.php:76
+#: stb-admin-class.php:78
+#: stb-admin-class.php:79
+#: stb-admin-class.php:80
+#: js/dialog.php:63
+msgid "Yes"
+msgstr "Да"
+
+#: stb-admin-class.php:72
+#: stb-admin-class.php:74
+#: stb-admin-class.php:75
+#: stb-admin-class.php:76
+#: stb-admin-class.php:78
+#: stb-admin-class.php:79
+#: stb-admin-class.php:80
+#: js/dialog.php:63
+msgid "No"
+msgstr "Нет"
+
+#: stb-admin-class.php:73
+msgid "Define language direction"
+msgstr "Направление текста"
+
+#: stb-admin-class.php:73
+msgid "Selecting \"Left-to-Right\" will set Left-to-Right language direction for Special Text Boxes and visa versa."
+msgstr "Выбор \"Слева-направо\" установит направление текста слева-направо и наоборот."
+
+#: stb-admin-class.php:73
+msgid "Left-to-Right"
+msgstr "Слева-направо"
+
+#: stb-admin-class.php:73
+msgid "Right-to-Left"
+msgstr "Справа-налево"
+
+#: stb-admin-class.php:74
+msgid "Allow icon images for Special Text Boxes?"
+msgstr "Разрешить использование иконок для блока специального текста?"
+
+#: stb-admin-class.php:74
+msgid "Selecting \"Yes\" will allow displaying icon images in Special Text Boxes."
+msgstr "Выбрав \"Да\", Вы разрешите использование иконок в блоках специального текста, в противном случае иконки выводиться не будут. "
+
+#: stb-admin-class.php:75
+msgid "Allow collapsing/expanding captioned Special Text Boxes?"
+msgstr "Разрешить сворачивание/разворачивание блока специального текста с заголовком?"
+
+#: stb-admin-class.php:75
+msgid "Selecting \"Yes\" will allow displaying show/hide button in captioned Special Text Boxes."
+msgstr "Выбрав \"Да\", Вы разрешите вывод кнопки Скрыть/Показать в заголовке блока специального текста. "
+
+#: stb-admin-class.php:76
+msgid "Allow \"collapsed on load\" captioned Special Text Boxes?"
+msgstr "Разрешить вывод свёрнутых блоков с заголовком при загрузке страницы?"
+
+#: stb-admin-class.php:76
+msgid "Selecting \"Yes\" will allow displaying collapsed captioned Special Text Boxes after page loading."
+msgstr "Выбрав \"Да\", Вы разрешите показывать свёрнутые блоки специального текста с заголовком при загрузке страницы , в противном случае блоки будут показываться развёрнутыми. "
+
+#: stb-admin-class.php:78
+msgid "Allow rounded corners for Special Text Boxes?"
+msgstr "Разрешить использование закруглённых углов?"
+
+#: stb-admin-class.php:78
+msgid "Selecting \"No\" will disable Special Text Boxes rounded corners."
+msgstr "Выбрав \"Нет\", Вы запретите прорисовку закруглённых углов. "
+
+#: stb-admin-class.php:79
+msgid "Allow box shadow for Special Text Boxes?"
+msgstr "Разрешить использование тени блока специального текста?"
+
+#: stb-admin-class.php:79
+msgid "Selecting \"No\" will disable Special Text Boxes shadow."
+msgstr "Выбрав \"Нет\", Вы запретите прорисовку тени блока специального текста. "
+
+#: stb-admin-class.php:80
+msgid "Allow text shadow for Special Text Boxes?"
+msgstr "Разрешить использование теней текста?"
+
+#: stb-admin-class.php:80
+msgid "Selecting \"No\" will disable Special Text Boxes text shadow."
+msgstr "Выбрав \"Нет\", Вы запретите прорисовку теней текста. "
+
+#: stb-admin-class.php:82
 msgid "Define font color for Custom Special Text Box"
 msgstr "Цвет шрифта"
 
-#: wp-special-textboxes.php:499
+#: stb-admin-class.php:82
 msgid "This is a font color of Custom Special Text Box (Six Hex Digits)."
 msgstr "Этот параметр задаёт цвет шрифта настраиваемого блока специального текста (шесть шестнадцатиричных цифр)."
 
-#: wp-special-textboxes.php:504
+#: stb-admin-class.php:83
 msgid "Define caption font color for Custom Special Text Box"
 msgstr "Цвет шрифта заголовка"
 
-#: wp-special-textboxes.php:505
+#: stb-admin-class.php:83
 msgid "This is a font color of Custom Special Text Box caption (Six Hex Digits)."
 msgstr "Этот параметр задаёт цвет шрифта заголовка настраиваемого блока специального текста (шесть шестнадцатиричных цифр)."
 
-#: wp-special-textboxes.php:510
+#: stb-admin-class.php:84
 msgid "Define font size for Custom Special Text Box"
 msgstr "Размер шрифта"
 
-#: wp-special-textboxes.php:516
+#: stb-admin-class.php:85
 msgid "Define caption font size for Custom Special Text Box"
 msgstr "Размер шрифта заголовка"
 
-#: wp-special-textboxes.php:522
+#: stb-admin-class.php:86
 msgid "Define background color for Custom Special Text Box"
 msgstr "Цвет фона"
 
-#: wp-special-textboxes.php:523
+#: stb-admin-class.php:86
 msgid "This is a background color of Custom Special Text Box (Six Hex Digits)."
 msgstr "Этот параметр задаёт цвет фона настраиваемого блока специального текста (шесть шестнадцатиричных цифр)."
 
-#: wp-special-textboxes.php:528
+#: stb-admin-class.php:87
 msgid "Define background color for Custom Special Text Box caption"
 msgstr "Цвет фона заголовка"
 
-#: wp-special-textboxes.php:529
+#: stb-admin-class.php:87
 msgid "This is a background color of Custom Special Text Box caption (Six Hex Digits)."
 msgstr "Этот параметр задаёт цвет фона заголовка настраиваемого блока специального текста (шесть шестнадцатиричных цифр)."
 
-#: wp-special-textboxes.php:534
+#: stb-admin-class.php:88
 msgid "Define border color for Custom Special Text Box"
 msgstr "Цвет окантовки"
 
-#: wp-special-textboxes.php:535
+#: stb-admin-class.php:88
 msgid "This is a border color of Custom Special Text Box (Six Hex Digits)."
 msgstr "Этот параметр определяет цвет окантовки настраиваемого блока специального текста."
 
-#: wp-special-textboxes.php:540
+#: stb-admin-class.php:89
 msgid "Define image for Custom Special Text Box"
 msgstr "Изображение"
 
-#: wp-special-textboxes.php:541
+#: stb-admin-class.php:89
 msgid "This is an image of Custom Special Text Box (Full URL). 25x25 pixels, transparent background PNG image recommended."
 msgstr "Этот параметр задаёт пиктограмму настраиваемого блока специального текста (полный URL). Рекомендуется изображение PNG, 25x25 пиксел, прозрачный фон."
 
-#: wp-special-textboxes.php:547
+#: stb-admin-class.php:90
 msgid "Define big image for simple (non-captioned) Custom Special Text Box"
 msgstr "Большое изображение"
 
-#: wp-special-textboxes.php:548
+#: stb-admin-class.php:90
 msgid "This is big image for simple (non-captioned) Custom Special Text Box (Full URL). 50x50 pixels, transparent background PNG image recommended."
 msgstr "Этот параметр задаёт большую пиктограмму для простого (без заголовка) настраиваемого блока специального текста (полный URL). Рекомендуется изображение PNG, 50x50 пиксел, прозрачный фон."
 
-#: wp-special-textboxes.php:567
-msgid "Special Text Boxes Settings Updated."
-msgstr "Параметры подсветки специального текста сохранены."
+#: stb-admin-class.php:151
+msgid "Parameters below add elements of CSS3 standard to Style Sheet. Not all browsers can interpret this elements properly, but including this elements to HTML page not crash browser."
+msgstr "Использование следующих параметров добавляет в таблицу стилей елементы стандарта CSS3. Не все браузеры могут интерпретировать эти элементы должным образом, но использование этих элементов не приводит к сбою в работе браузера."
 
-#: wp-special-textboxes.php:574
+#: stb-admin-class.php:155
+msgid "Use parameters below for customising custom Special Text Box."
+msgstr "Используйте эти параметры для настройки внешнего вида настраиваемого блока специального текста."
+
+#: stb-admin-class.php:222
 msgid "Special Text Boxes Settings"
 msgstr "Параметры подсветки специального текста"
 
-#: wp-special-textboxes.php:575
+#: stb-admin-class.php:223
 msgid "Plugin version"
 msgstr "Версия плагина"
 
-#: wp-special-textboxes.php:663
-msgid "Update Settings"
-msgstr "Сохранить параметры"
+#: stb-admin-class.php:228
+msgid "Special Text Boxes Settings Updated."
+msgstr "Параметры подсветки специального текста сохранены."
 
-#: wp-special-textboxes.php:705
+#: stb-class.php:233
 msgid "Arbitrary text or PHP in colored block."
 msgstr "Произвольный текст или PHP-код в подсвеченном блоке."
 
-#: wp-special-textboxes.php:707
+#: stb-class.php:235
 msgid "Special Text"
 msgstr "Специальный текст"
 
-#: wp-special-textboxes.php:751
+#: stb-class.php:285
 #: js/dialog.php:45
 msgid "Alert"
 msgstr "Опасность"
 
-#: wp-special-textboxes.php:752
+#: stb-class.php:286
 #: js/dialog.php:46
 msgid "Download"
 msgstr "Скачать"
 
-#: wp-special-textboxes.php:753
+#: stb-class.php:287
 #: js/dialog.php:47
 msgid "Info"
 msgstr "Инфо"
 
-#: wp-special-textboxes.php:754
+#: stb-class.php:288
 #: js/dialog.php:50
 msgid "Warning"
 msgstr "Внимание"
 
-#: wp-special-textboxes.php:755
+#: stb-class.php:289
 #: js/dialog.php:48
 msgid "Black"
 msgstr "Чёрный"
 
-#: wp-special-textboxes.php:756
+#: stb-class.php:290
 #: js/dialog.php:51
 msgid "Custom"
 msgstr "Настраиваемый"
 
-#: wp-special-textboxes.php:783
+#: stb-class.php:291
+msgid "Theme Style"
+msgstr "Стиль темы"
+
+#: stb-class.php:321
 msgid "Title:"
 msgstr "Заголовок:"
 
-#: wp-special-textboxes.php:788
+#: stb-class.php:326
 msgid "ID of Box:"
 msgstr "Идентификатор блока:"
 
-#: wp-special-textboxes.php:794
+#: stb-class.php:332
 msgid "Evaluate as PHP code."
 msgstr "Выполнить как код PHP."
 
-#: wp-special-textboxes.php:796
+#: stb-class.php:334
 msgid "Show on all pages of blog"
 msgstr "Показывать на всех страницах блога"
 
-#: wp-special-textboxes.php:798
+#: stb-class.php:336
 msgid "Show only on"
 msgstr "Показывать только на"
 
-#: wp-special-textboxes.php:799
+#: stb-class.php:337
 msgid "Home Page"
 msgstr "главной странице"
 
-#: wp-special-textboxes.php:800
+#: stb-class.php:338
 msgid "Single Post Pages"
 msgstr "страницах статей"
 
-#: wp-special-textboxes.php:801
+#: stb-class.php:339
 msgid "Archive Pages"
 msgstr "страницах архивов"
 
-#: wp-special-textboxes.php:802
+#: stb-class.php:340
 msgid "Category Archive Pages"
 msgstr "страницах архивов рубрик"
 
-#: wp-special-textboxes.php:803
+#: stb-class.php:341
 msgid "Tag Archive Pages"
 msgstr "страницах архивов меток"
 
-#: wp-special-textboxes.php:804
+#: stb-class.php:342
 msgid "Author Archive Pages"
 msgstr "страницах архивов авторов"
 
@@ -491,6 +494,23 @@ msgstr "Отмена"
 msgid "Insert"
 msgstr "Вставить"
 
+#~ msgid ""
+#~ "This is example of Custom Special Text Box with small image. You must "
+#~ "save options to view changes."
+#~ msgstr ""
+#~ "Это пример настраиваемого блока специального текста с маленькой иконкой. "
+#~ "Чтобы увидеть внесённые изменения, необходимо сохранить параметры."
+
+#~ msgid ""
+#~ "This is example of Custom Special Text Box with big image. You must save "
+#~ "options to view changes."
+#~ msgstr ""
+#~ "Это пример настраиваемого блока специального текста с большой иконкой. "
+#~ "Чтобы увидеть внесённые изменения, необходимо сохранить параметры."
+
+#~ msgid "Update Settings"
+#~ msgstr "Сохранить параметры"
+
 #~ msgid "alert"
 #~ msgstr "опасность"
 
@@ -520,15 +540,3 @@ msgstr "Вставить"
 
 #~ msgid "Extended"
 #~ msgstr "Дополнительные"
-
-#~ msgid "Solid"
-#~ msgstr "Сплошная линия"
-
-#~ msgid "Dashed"
-#~ msgstr "Пунктир"
-
-#~ msgid "Dotted"
-#~ msgstr "Точки"
-
-#~ msgid "None"
-#~ msgstr "Без рамки"

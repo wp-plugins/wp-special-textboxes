@@ -2,9 +2,9 @@
 Contributors: minimus
 Donate link: http://www.simplelib.com/
 Tags: content, performance, text, code, php, widget
-Requires at least: 2.6
+Requires at least: 3.0
 Tested up to: 3.0.1
-Stable tag: 3.7.52
+Stable tag: 3.8.55
 
 Highlights any portion of text as text in the colored boxes.
 
@@ -89,6 +89,11 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 
 
 == Changelog ==
+
+= 3.8.55 =
+* Now the plugin codes are using __Wordpress 3.0+__ standards (PHP5 only)
+* Wordpress Settings API are used
+* Now the plugin uses "resources saving technology" for saving server resources in blog runtime mode.
 = 3.7.52 =
 * Language pack is updated. Czech by [Stanislav Čihák](http://www.abacomp.cz/) are added.
 = 3.7.51 =
@@ -163,6 +168,10 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 
 == Upgrade Notice ==
 
+= 3.8.55 =
+Now the plugin codes are using __Wordpress 3.0+__ standards (PHP5 only). 
+Wordpress Settings API are used. 
+Now the plugin uses "resources saving technology" for saving server resources in blog runtime mode. 
 = 3.7.52 =
 Language pack is updated. Czech by [Stanislav Čihák](http://www.abacomp.cz/) are added.
 = 3.7.51 =
