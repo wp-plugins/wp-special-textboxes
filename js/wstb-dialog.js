@@ -18,6 +18,7 @@ function insertWSTBCode() {
 	
 	var f = document.forms[0];
 	var radio = f.elements.wstb_collapsed;
+  var cRadio = f.elements.wstb_collapsing;
 	
 	var wstbID = f.elements.wstb_id.value;
 	var wstbCaption = f.elements.wstb_caption.value;
@@ -32,8 +33,17 @@ function insertWSTBCode() {
 	var wstbImage = f.elements.wstb_image_url.value;
 	var wstbBigImage = f.elements.wstb_big_image.checked;
 	var wstbNoImage = f.elements.wstb_noimage.checked;
+  var wstbLeftMargin = f.elements.wstb_left_margin.value;
+  var wstbRightMargin = f.elements.wstb_right_margin.value;
+  var wstbTopMargin = f.elements.wstb_top_margin.value;
+  var wstbBottomMargin = f.elements.wstb_bottom_margin.value;
+  var wstbCollapsing = 0;
 	var wstbCollapsed = 0;
-	if(radio[0].checked) wstbCollapsed = 1;
+  
+	if(cRadio[0].checked) wstbCollapsing = 1;
+  else if(cRadio[1].checked) wstbCollapsing = 2;
+  
+  if(radio[0].checked) wstbCollapsed = 1;
 	else if(radio[1].checked) wstbCollapsed = 2;
 	
 	var contentObj = tinyMCE.getInstanceById('content');
@@ -42,7 +52,11 @@ function insertWSTBCode() {
 	wstbCode = ' [stextbox id="' + wstbID + '"'; 
 	if (wstbCaption != '') { 
 		wstbCode += ' caption="' + wstbCaption + '"';
-		if (wstbCollapsed == 1) wstbCode += ' collapsed="true"';
+		
+    if (wstbCollapsing == 1) wstbCode += ' collapsing="true"';
+    else if(wstbCollapsing == 2) wstbCode += ' collapsing="false"';
+    
+    if ((wstbCollapsed == 1) && (wstbCollapsing != 2)) wstbCode += ' collapsed="true"';
 		else if(wstbCollapsed == 2) wstbCode += ' collapsed="false"';
 	}
 	if (wstbFloat) {
@@ -55,6 +69,10 @@ function insertWSTBCode() {
 	if (wstbBColor != '') wstbCode += ' bcolor="' + wstbBColor + '"';
 	if (wstbBGColor != '') wstbCode += ' bgcolor="' + wstbBGColor + '"';
 	if (wstbCBGColor != '') wstbCode += ' cbgcolor="' + wstbCBGColor + '"';
+  if (wstbLeftMargin != '') wstbCode += ' mleft="' + wstbLeftMargin + '"';
+  if (wstbRightMargin != '') wstbCode += ' mright="' + wstbRightMargin + '"';
+  if (wstbTopMargin != '') wstbCode += ' mtop="' + wstbTopMargin + '"';
+  if (wstbBottomMargin != '') wstbCode += ' mbottom="' + wstbBottomMargin + '"';
 	if ((wstbImage != '') & !wstbNoImage) wstbCode += ' image="' + wstbImage + '"';
 	if (wstbBigImage) wstbCode += ' big="' + wstbBigImage.toString() + '"';
 	if (wstbNoImage) wstbCode += ' image="null"';

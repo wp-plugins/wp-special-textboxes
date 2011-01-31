@@ -4,7 +4,7 @@ Donate link: http://www.simplelib.com/
 Tags: content, performance, text, code, php, widget
 Requires at least: 3.0
 Tested up to: 3.0.1
-Stable tag: 3.8.55
+Stable tag: 3.9.57
 
 Highlights any portion of text as text in the colored boxes.
 
@@ -12,7 +12,7 @@ Highlights any portion of text as text in the colored boxes.
 
 Adds little style sheet file and short code to blog for highlighting some portion of text in post as colored boxes. That may be warning, alert, info and download portion of post's text.
 
-__WARNING!!!__ __Special Text Widget__ works only under __Wordpress 2.8+__ !
+**WARNING!!!** **Special Text Widget** works only under **Wordpress 2.8+** !
 
 Available languages:
 
@@ -28,15 +28,15 @@ Available languages:
   * German by [Renate](http://www.bhvnederland.nl/)
   * Czech by [Stanislav Čihák](http://www.abacomp.cz/)
 
-If you have created your own language pack, or have an update of an existing one, you can send __.po__ and __.mo files__ to me (minimus AT simplelib.com) so that I can bundle it into __Special Text Boxes__.
+If you have created your own language pack, or have an update of an existing one, you can send **.po** and **.mo files** to me (minimus AT simplelib.com) so that I can bundle it into **Special Text Boxes**.
   
 Real examples of outputs you can see on the [plugin page](http://www.simplelib.com/?p=11)
 
 == Installation ==
 
 1. Upload plugin dir to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Use short codes in the text of post to highlight any portion of it.
+1. Activate the plugin through the 'Plugins' menu in WordPress
+1. Use short codes in the text of post to highlight any portion of it.
 
 == Frequently Asked Questions ==
 
@@ -52,13 +52,13 @@ or (for captioned textbox)
 
 were
  
-__ValidID__ may be: _alert_, _info_, _download_, _grey_, _black_, _warning_, _custom_
+**ValidID** may be: *alert*, *info*, *download*, *grey*, *black*, *warning*, *custom*
 
-__CaptionText__ may be: _any text you needed_.
+**CaptionText** may be: *any text you needed*.
 
 = How to insert special text box to theme file (not to post)? =
 
-Use function __stbHighlightText__: 
+Use function **stbHighlightText**: 
 
 `<?php if(function_exists('stbHighlightText')) stbHighlightText('Test of function stbHighlightText.', 'warning'); ?>` 
 
@@ -68,11 +68,11 @@ defined as
 
 = Can I use Special Text widget with Wordpress 2.7? =
 
-No! _Special Text widget_ wrote with using _Wordpress Widget Factory technology_ and this one can work only under Wordpress 2.8 and higher!
+No! *Special Text widget* wrote with using *Wordpress Widget Factory technology* and this one can work only under Wordpress 2.8 and higher!
 
 = How to insert special text box into special text box? =
 
-Use _stb_ shortcode inside _stextbox_ shortcode
+Use *stb* shortcode inside *stextbox* shortcode
 
 `[stextbox]Some text [stb]Some text in the indoor box[/stb][/stextbox]`
 
@@ -81,17 +81,20 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 == Screenshots ==
 
 1. Examples of special textboxes
-2. Special Text Boxes Admin Page
-3. Special Text Boxes Custom Box Editor
-4. Insertion dialog. Basic Settings
-5. Insertion dialog. Extended Settings
-6. Special Text widget. Admin Page
+1. Special Text Boxes Admin Page
+1. Special Text Boxes Custom Box Editor
+1. Insertion dialog. Basic Settings
+1. Insertion dialog. Extended Settings
+1. Special Text widget. Admin Page
 
 
 == Changelog ==
 
+= 3.9.57 =
+* The amount of the parameters adjusted "on the fly" is increased
+* The output html code meets the requirements of the markup validity of Web documents
 = 3.8.55 =
-* Now the plugin codes are using __Wordpress 3.0+__ standards (PHP5 only)
+* Now the plugin codes are using **Wordpress 3.0+** standards (PHP5 only)
 * Wordpress Settings API are used
 * Now the plugin uses "resources saving technology" for saving server resources in blog runtime mode.
 = 3.7.52 =
@@ -108,7 +111,7 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 * Language pack is updated. Dutch by [Rene](http://wpwebshop.com/blog/) are added.
 = 3.5.44 =
 * Floating mode bug are fixed
-* __stbHighlightText__ function bug (collapsed option) are fixed
+* **stbHighlightText** function bug (collapsed option) are fixed
 * CSS3 styles are fixed
 = 3.4.41 =
 * Insertion Dialog bug are fixed
@@ -168,8 +171,11 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 
 == Upgrade Notice ==
 
+= 3.9.57 =
+The amount of the parameters adjusted "on the fly" is increased 
+The output html code meets the requirements of the markup validity of Web documents 
 = 3.8.55 =
-Now the plugin codes are using __Wordpress 3.0+__ standards (PHP5 only). 
+Now the plugin codes are using Wordpress 3.0+ standards (PHP5 only). 
 Wordpress Settings API are used. 
 Now the plugin uses "resources saving technology" for saving server resources in blog runtime mode. 
 = 3.7.52 =
@@ -186,7 +192,7 @@ Language pack is updated. German by [Renate](http://www.bhvnederland.nl/) is add
 Dutch language are added
 = 3.5.44 =
 Floating mode bug are fixed
-__stbHighlightText__ function bug (collapsed option) are fixed
+stbHighlightText function bug (collapsed option) are fixed
 CSS3 styles are fixed
 = 3.4.41 =
 Insertion Dialog bug are fixed

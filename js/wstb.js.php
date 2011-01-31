@@ -7,7 +7,7 @@
 
 header("Content-type: text/css"); 
 include("../../../../wp-load.php");
-$stextboxesOptions = $stbObject->getAdminOptions();
+$settings = $stbObject->getAdminOptions();
 
 ?>
 
@@ -17,9 +17,9 @@ $stextboxesOptions = $stbObject->getAdminOptions();
 	
 		function callback(sb,sc,si) {
 			if (sb.css('display') == 'none') {
-				sc.css({'margin-bottom' : '<?php echo $stextboxesOptions['bottom_margin']; ?>px'});
+				sc.css({'margin-bottom' : '<?php echo $settings['bottom_margin']; ?>px'});
 				si.attr({'src' : '<?php echo WP_PLUGIN_URL.'/wp-special-textboxes/images/show.png';?>', 'title' : '<?php _e('Show', 'wp-special-textboxes');?>'});
-				<?php if ($stextboxesOptions['rounded_corners'] === 'true') { ?>
+				<?php if ($settings['rounded_corners'] === 'true') { ?>
 				sc.css({'-webkit-border-bottom-left-radius' : '5px', 
 						'-webkit-border-bottom-right-radius' : '5px', 
 						'-moz-border-radius-bottomleft' : '5px', 
@@ -32,21 +32,23 @@ $stextboxesOptions = $stbObject->getAdminOptions();
 				si.attr({'src' : '<?php echo WP_PLUGIN_URL.'/wp-special-textboxes/images/hide.png';?>', 'title' : '<?php _e('Hide', 'wp-special-textboxes');?>'});
 			}
 		
-			$(this).parent().parent().children('#caption').css({'margin-bottom' : '<?php echo $stextboxesOptions['bottom_margin']; ?>px'});
+			$(this).parent().parent().children('#caption').css({'margin-bottom' : '<?php echo $settings['bottom_margin']; ?>px'});
 			return false;
 		}
 	
 		$(".stb-tool").bind("click", function() {
-			sb = $(this).parent().parent().children('.stb_body');
-			sc = $(this).parent().parent().children('.stb_caption');
-			si = $(this).children('#stb-toolimg');
+			id = $(this).attr('id').split('-');
+      idn = id[2];
+      sb = $('#stb-body-box-'+idn);
+			sc = $('#stb-caption-box-'+idn);
+      si = $('#stb-toolimg-'+idn);
 			if (sb.css('display') != 'none')	{				
 				sb.hide('blind',options,500, function() {callback(sb,sc,si);});
 			}
 			else {
 				sb.show('blind',options,500,function() {callback(sb,sc,si);});
 				sc.css({'margin-bottom' : '0px'});			
-				<?php if ($stextboxesOptions['rounded_corners'] === 'true') { ?>
+				<?php if ($settings['rounded_corners'] === 'true') { ?>
 				sc.css({'-webkit-border-bottom-left-radius' : '0px', 
 						'-webkit-border-bottom-right-radius' : '0px', 
 						'-moz-border-radius-bottomleft' : '0px', 

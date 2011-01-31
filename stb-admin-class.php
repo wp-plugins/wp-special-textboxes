@@ -4,7 +4,7 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
   class SpecialTextBoxesAdmin extends SpecialTextBoxes {
     public $settings;
     
-    function __construct() {
+    public function __construct() {
       parent::__construct();
       
       add_action('activate_wp-special-textboxes/wp-special-textboxes.php',  array(&$this, 'onActivate'));
@@ -17,28 +17,29 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       $this->settings = parent::getAdminOptions();
     }
     
-    function onActivate() {
+    public function onActivate() {
       $stbAdminOptions = $this->getAdminOptions();
       update_option(STB_OPTIONS, $stbAdminOptions);
     }
     
-    function onDeactivate() {
+    public function onDeactivate() {
       delete_option(STB_OPTIONS);
     }
     
-    function addAdminHeaderCSS() {
+    public function addAdminHeaderCSS() {
+      wp_enqueue_style('stbAdminCSS', STB_URL.'css/stb-admin.css', false, STB_VERSION);
       wp_enqueue_style('stbCSS', STB_URL.'css/wp-special-textboxes.css.php', false, STB_VERSION);
       wp_enqueue_style('ColorPickerCSS', STB_URL.'css/colorpicker.css');
     }
     
-    function adminHeaderScripts() {
+    public function adminHeaderScripts() {
       wp_enqueue_script('jquery');
       wp_enqueue_script('jquery-ui-effects', STB_URL.'js/jquery-ui-1.7.2.custom.min.js', array('jquery'), '1.7.2');
       wp_enqueue_script('ColorPicker', STB_URL.'js/colorpicker.js');
       wp_enqueue_script('wstbAdminLayout', STB_URL.'js/wstb.admin.js.php', array('jquery'), STB_VERSION);
     }
     
-    function getSamples() {
+    private function getSamples() {
       $stbOptions = $this->getAdminOptions();
       $sampleBox = "<div class='stb-custom_box' >".__("This is example of Custom Special Text Box. You must save options to view changes.", STB_DOMAIN).'</div>';
       $sampleCaptionedBox = "<div id='stb-container' class='stb-container'><div id='caption' class='stb-custom-caption_box' >".__("This is caption", STB_DOMAIN);
@@ -47,7 +48,7 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       return $sampleBox.$sampleCaptionedBox;
     }
     
-    function regAdminPage() {
+    public function regAdminPage() {
       if (function_exists('add_options_page')) {
         $plugin_page = add_options_page(__('Special Text Boxes', STB_DOMAIN), __('Special Text Boxes', STB_DOMAIN), 8, 'stb-settings', array(&$this, 'stbAdminPage'));
         add_action('admin_print_scripts-'.$plugin_page, array(&$this, 'adminHeaderScripts'));
@@ -55,7 +56,7 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       }
     }
     
-    function initSettings() {
+    public function initSettings() {
       register_setting('stbOptions', STB_OPTIONS);
       
       add_settings_section('basicSection', __('Basic Settings', STB_DOMAIN), array(&$this, 'drawBasicSection'), 'stb-settings');
@@ -90,18 +91,26 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       add_settings_field('cb_bigImg', __("Define big image for simple (non-captioned) Custom Special Text Box", STB_DOMAIN), array(&$this, 'drawTextOption'), 'stb-settings', 'editorSection', array('optionName' => 'cb_bigImg', 'description' => __("This is big image for simple (non-captioned) Custom Special Text Box (Full URL). 50x50 pixels, transparent background PNG image recommended.", STB_DOMAIN), 'width' => 100));
     }
     
-    function doSettingsSections($page) {
+    public function doSettingsSections($page) {
       global $wp_settings_sections, $wp_settings_fields;
 
       if ( !isset($wp_settings_sections) || !isset($wp_settings_sections[$page]) )
         return;
 
       $i = 0;
-      echo '<table><tr><td width="49%" valign="top">';
+      
+      echo '<div class="dashboard-widgets-wrap">';
+      echo '<div id="dashboard-widgets" class="metabox-holder">';
       foreach ( (array) $wp_settings_sections[$page] as $section ) {
-        if($i > 1) echo '</td><td width="1%"></td><td width="50%" valign="top">';
-        echo "<div id='poststuff' class='ui-sortable'>\n";
-        echo "<div class='postbox opened'>\n";
+        if($i == 0) {
+          echo '<div class="postbox-container" style="width: 49%;">';
+          echo '<div id="normal-sortables" class="meta-box-sortables ui-sortable">';
+        }
+        elseif($i == 2) {
+          echo '<div class="postbox-container" style="width: 49%;">';
+          echo '<div id="side-sortables" class="meta-box-sortables ui-sortable">';
+        }
+        echo "<div id='{$section['id']}' class='postbox'>"; 
         echo "<h3 class='hndle'>{$section['title']}</h3>\n";
         echo '<div class="inside">';
         call_user_func($section['callback'], $section);
@@ -110,13 +119,17 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
         $this->doSettingsFields($page, $section['id']);
         echo '</div>';
         echo '</div>';
-        echo '</div>';
+        if($i > 0) {
+          echo '</div>';
+          echo '</div>';
+        }
+        
         $i++;
       }
-      echo '</td></tr></table>';
+      echo '</div></div>';
     }
     
-    function doSettingsFields($page, $section) {
+    public function doSettingsFields($page, $section) {
       global $wp_settings_fields;
 
       if ( !isset($wp_settings_fields) || !isset($wp_settings_fields[$page]) || !isset($wp_settings_fields[$page][$section]) )
@@ -143,20 +156,20 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       }
     }
     
-    function drawBasicSection() {
+    public function drawBasicSection() {
       echo '';
     }
     
-    function drawExtendedSection() {
+    public function drawExtendedSection() {
       echo '<p>'.__('Parameters below add elements of CSS3 standard to Style Sheet. Not all browsers can interpret this elements properly, but including this elements to HTML page not crash browser.', STB_DOMAIN).'</p>';
     }
     
-    function drawEditorSection() {
+    public function drawEditorSection() {
       echo '<p>'.__('Use parameters below for customising custom Special Text Box.', STB_DOMAIN).'</p>';
       echo $this->getSamples();
     }
     
-    function drawSelectOption( $args ) {
+    public function drawSelectOption( $args ) {
       $optionName = $args['optionName'];
       $options = $args['options'];
       ?>
@@ -171,7 +184,7 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       <?php
     }
     
-    function drawRadioOption( $args ) {
+    public function drawRadioOption( $args ) {
       $optionName = $args['optionName'];
       $options = $args['options'];
       foreach ($options as $key => $option) {
@@ -187,7 +200,7 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       }
     }
     
-    function drawTextOption( $args ) {
+    public function drawTextOption( $args ) {
       $optionName = $args['optionName'];
       $width = $args['width'];
       ?>
@@ -199,7 +212,7 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       <?php
     }
 
-    function drawCheckboxOption( $args ) {
+    public function drawCheckboxOption( $args ) {
       $optionName = $args['optionName'];
       ?>
         <input id="<?php echo $optionName; ?>"
@@ -210,7 +223,7 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       <?php
     }
     
-    function stbAdminPage() {
+    public function stbAdminPage() {
       $this->settings = parent::getAdminOptions();
       ?>
       <div class="wrap">
@@ -236,7 +249,7 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       <?php
     }
     
-    function addButtons() {
+    public function addButtons() {
       // Don't bother doing this stuff if the current user lacks permissions
       if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') )
         return;
@@ -248,17 +261,17 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       }
     }
     
-    function registerButton( $buttons ) {
+    public function registerButton( $buttons ) {
       array_push($buttons, "separator", "wstb");
       return $buttons;
     }
     
-    function addTinyMCEPlugin( $plugin_array ) {
+    public function addTinyMCEPlugin( $plugin_array ) {
       $plugin_array['wstb'] = plugins_url('wp-special-textboxes/js/editor_plugin.js');
       return $plugin_array;
     }
     
-    function tinyMCEVersion( $version ) {
+    public function tinyMCEVersion( $version ) {
       return ++$version;
     }
   }

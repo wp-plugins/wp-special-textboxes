@@ -15,7 +15,7 @@
 				ed.windowManager.open({
 					file : url + '/dialog.php',
 					width : 450 + parseInt(ed.getLang('wstb.delta_width', 0)),
-					height : 280 + parseInt(ed.getLang('wstb.delta_height', 0)),
+					height : 320 + parseInt(ed.getLang('wstb.delta_height', 0)),
 					inline : 1
 				}, {
 					plugin_url : url 
@@ -42,7 +42,7 @@
 					author 	  : 'minimus',
 					authorurl : 'http://blogovod.co.cc',
 					infourl   : 'http://blogovod.co.cc',
-					version   : "3.3.35"
+					version   : "3.9.57"
 			};
 		}
 	});
