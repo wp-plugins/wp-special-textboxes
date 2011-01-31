@@ -1,0 +1,15 @@
+.postbox .inside p, 
+.postbox .inside ul, 
+.postbox .inside ol, 
+.postbox .inside blockquote, 
+.postbox .inside {
+  font-size: 11px;
+  margin: 6px 6px 8px;
+}
+.postbox div {
+  font-size: 11px;
+  line-height: 140%;
+}
+.bottom-button {
+  padding-left: 20px;
+}
