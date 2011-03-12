@@ -3,7 +3,7 @@ Contributors: minimus
 Donate link: http://www.simplelib.com/
 Tags: content, performance, text, code, php, widget
 Requires at least: 3.0
-Tested up to: 3.0.1
+Tested up to: 3.1
 Stable tag: 3.10.59
 
 Highlights any portion of text as text in the colored boxes.
