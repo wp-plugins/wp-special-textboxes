@@ -391,7 +391,7 @@ $stextboxesOptions = $stbObject->getAdminOptions();
 	border-right-color: #<?php echo $stextboxesOptions['cb_border_color']; ?>;
 	border-bottom-color: #<?php echo $stextboxesOptions['cb_border_color']; ?>;
 	border-left-color: #<?php echo $stextboxesOptions['cb_border_color']; ?>;
-	border-top-style: <?php echo $stextboxesOptions['border_style']; ?>;";
+	border-top-style: <?php echo $stextboxesOptions['border_style']; ?>;
   border-right-style: <?php echo $stextboxesOptions['border_style']; ?>;
   border-left-style: <?php echo $stextboxesOptions['border_style']; ?>;
 	background-color: #<?php echo $stextboxesOptions['cb_caption_background']; ?>;

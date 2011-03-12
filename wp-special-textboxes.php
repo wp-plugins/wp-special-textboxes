@@ -3,12 +3,12 @@
 Plugin Name: Special Text Boxes
 Plugin URI: http://www.simplelib.com/?p=11
 Description: Adds simple colored text boxes to highlight some portion of post text. Use it for highlights warnings, alerts, infos and downloads in your blog posts. Visit <a href="http://www.simplelib.com/">SimpleLib blog</a> for more details.
-Version: 3.9.57
+Version: 3.10.59
 Author: minimus
 Author URI: http://blogcoding.ru
 */
 
-/*  Copyright 2009 - 2010, minimus  (email : minimus@simplelib.com)
+/*  Copyright 2009 - 2011, minimus  (email : minimus@simplelib.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -36,8 +36,8 @@ else {
   if (class_exists("SpecialTextBoxes")) {
 	  $stbObject = new SpecialTextBoxes();
 	  function stbHighlightText( $content = null, $id = 'warning', $caption = '', $atts = null ) {
-		  $stb = new SpecialTextBoxes();	
-	    echo $stb->highlightText( $content, $id, $caption, $atts );
+		  $block = new StbBlock($content, $id, $caption, $atts);	
+	    echo $block->block;
 	  }
   }
 }

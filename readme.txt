@@ -4,7 +4,7 @@ Donate link: http://www.simplelib.com/
 Tags: content, performance, text, code, php, widget
 Requires at least: 3.0
 Tested up to: 3.0.1
-Stable tag: 3.9.57
+Stable tag: 3.10.59
 
 Highlights any portion of text as text in the colored boxes.
 
@@ -27,6 +27,7 @@ Available languages:
   * Ukrainian by [official ukrainian localization team](http://wordpress.co.ua/)
   * German by [Renate](http://www.bhvnederland.nl/)
   * Czech by [Stanislav Čihák](http://www.abacomp.cz/)
+	* Turkish by Serhat ESEN
 
 If you have created your own language pack, or have an update of an existing one, you can send **.po** and **.mo files** to me (minimus AT simplelib.com) so that I can bundle it into **Special Text Boxes**.
   
@@ -90,6 +91,9 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 
 == Changelog ==
 
+= 3.10.59 =
+* Minor bug are fixed
+* Language pack is updated. Turkish by Serhat ESEN is added
 = 3.9.57 =
 * The amount of the parameters adjusted "on the fly" is increased
 * The output html code meets the requirements of the markup validity of Web documents
@@ -171,6 +175,9 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 
 == Upgrade Notice ==
 
+= 3.10.59 =
+Minor bug are fixed. 
+Language pack is updated. Turkish by Serhat ESEN is added. 
 = 3.9.57 =
 The amount of the parameters adjusted "on the fly" is increased 
 The output html code meets the requirements of the markup validity of Web documents 

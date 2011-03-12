@@ -29,7 +29,7 @@ if (!class_exists("SpecialTextBoxes")) {
     );
     
     public function __construct() {
-      define('STB_VERSION', '3.9.57');
+      define('STB_VERSION', '3.10.59');
       define('STB_DIR', basename(dirname(__FILE__)));
       define('STB_DOMAIN', 'wp-special-textboxes');
       define('STB_OPTIONS', 'SpecialTextBoxesAdminOptions');
@@ -69,7 +69,7 @@ if (!class_exists("SpecialTextBoxes")) {
     
     public function headerScripts() {
       wp_enqueue_script('jquery');
-      wp_enqueue_script('jquery-ui-effects', STB_URL.'js/jquery-ui-1.7.2.custom.min.js', array('jquery'), '1.7.2');
+      wp_enqueue_script('jquery-ui-effects', STB_URL.'js/jquery-ui-1.8.10.custom.min.js', array('jquery'), '1.8.10');
       wp_enqueue_script('wstbLayout', STB_URL.'js/wstb.js.php', array('jquery'), STB_VERSION);
     }
     
