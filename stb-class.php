@@ -29,7 +29,7 @@ if (!class_exists("SpecialTextBoxes")) {
     );
     
     public function __construct() {
-      define('STB_VERSION', '3.10.59');
+      define('STB_VERSION', '3.10.60');
       define('STB_DIR', basename(dirname(__FILE__)));
       define('STB_DOMAIN', 'wp-special-textboxes');
       define('STB_OPTIONS', 'SpecialTextBoxesAdminOptions');
