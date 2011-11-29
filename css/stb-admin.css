@@ -1,15 +1,20 @@
-.postbox .inside p, 
-.postbox .inside ul, 
-.postbox .inside ol, 
-.postbox .inside blockquote, 
-.postbox .inside {
-  font-size: 11px;
-  margin: 6px 6px 8px;
+
+.ui-tooltip, .qtip {
+  max-width: 520px !important; 
 }
-.postbox div {
-  font-size: 11px;
-  line-height: 140%;
+
+#poststuff .inside,
+#poststuff .inside p,
+#poststuff .inside ul {
+  font-size: 11px !important;
+  font-family: Verdana,Arial,sans-serif !important;
 }
-.bottom-button {
-  padding-left: 20px;
+
+#tabs {
+  border-color: #DFDFDF;
+}
+
+#tabs li,
+#tabs li a {
+  font-size: 11px !important;
 }

@@ -13,7 +13,7 @@ $stextboxesOptions = $stbObject->getAdminOptions();
 
 (function($){
 	$(document).ready(function() {
-		var options = {};
+		var options = {direction: 'vertical'};
 	
 		function callback(sb,sc,si) {
 			if (sb.css('display') == 'none') {
@@ -58,6 +58,8 @@ $stextboxesOptions = $stbObject->getAdminOptions();
 			}
 			return false;
 		});
+    
+    $("#tabs").tabs();
 	
 		$('#cb_color, #cb_caption_color, #cb_background, #cb_caption_background, #cb_border_color').ColorPicker({
   			onSubmit: function(hsb, hex, rgb, el){

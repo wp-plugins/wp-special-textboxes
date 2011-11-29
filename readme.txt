@@ -3,8 +3,8 @@ Contributors: minimus
 Donate link: http://www.simplelib.com/
 Tags: content, performance, text, code, php, widget
 Requires at least: 3.0
-Tested up to: 3.1
-Stable tag: 3.10.60
+Tested up to: 3.3
+Stable tag: 4.0.65
 
 Highlights any portion of text as text in the colored boxes.
 
@@ -82,8 +82,8 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 == Screenshots ==
 
 1. Examples of special textboxes
-1. Special Text Boxes Admin Page
-1. Special Text Boxes Custom Box Editor
+1. Special Text Boxes Parameters Page
+1. Special Text Boxes Box Editor
 1. Insertion dialog. Basic Settings
 1. Insertion dialog. Extended Settings
 1. Special Text widget. Admin Page
@@ -91,6 +91,12 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 
 == Changelog ==
 
+= 4.0.65 =
+* Styles repository is added
+* Javascript drawing mode is added
+* New Styles Editor is added
+* New rules of text blocks drawing are added
+* Some bugs are resolved
 = 3.10.60 =
 * Italian language pack is updated.
 = 3.10.59 =
@@ -177,6 +183,12 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 
 == Upgrade Notice ==
 
+= 4.0.65 =
+Styles repository is added. 
+Javascript drawing mode is added. 
+New Styles Editor is added. 
+New rules of text blocks drawing are added. 
+Some bugs are resolved. 
 = 3.10.60 =
 Italian language pack is updated.
 = 3.10.59 =

@@ -7,6 +7,8 @@ function init() {
 	document.getElementById('wstb_cfcolor_pickcontainer').innerHTML = getColorPickerHTML('wstb_cfcolor_pick','wstb_cfcolor');
 	document.getElementById('wstb_bgcolor_pickcontainer').innerHTML = getColorPickerHTML('wstb_bgcolor_pick','wstb_bgcolor');
 	document.getElementById('wstb_cbgcolor_pickcontainer').innerHTML = getColorPickerHTML('wstb_cbgcolor_pick','wstb_cbgcolor');
+  document.getElementById('wstb_bgcolorto_pickcontainer').innerHTML = getColorPickerHTML('wstb_bgcolorto_pick','wstb_bgcolorto');
+  document.getElementById('wstb_cbgcolorto_pickcontainer').innerHTML = getColorPickerHTML('wstb_cbgcolorto_pick','wstb_cbgcolorto');
 	document.getElementById('wstb_bcolor_pickcontainer').innerHTML = getColorPickerHTML('wstb_bcolor_pick','wstb_bcolor');
 	
 	TinyMCE_EditableSelects.init();
@@ -19,9 +21,12 @@ function insertWSTBCode() {
 	var f = document.forms[0];
 	var radio = f.elements.wstb_collapsed;
   var cRadio = f.elements.wstb_collapsing;
+  var mRadio = f.elements.wstb_mode;
+  var dRadio = f.elements.wstb_dir;
 	
 	var wstbID = f.elements.wstb_id.value;
 	var wstbCaption = f.elements.wstb_caption.value;
+  var wstbDefCap = f.elements.wstb_default_caption.checked;
 	var wstbFloat = f.elements.wstb_float.checked;
 	var wstbAlign = f.elements.wstb_align.value;
 	var wstbWidth = f.elements.wstb_width.value;
@@ -29,7 +34,10 @@ function insertWSTBCode() {
 	var wstbCColor = f.elements.wstb_cfcolor.value.replace("#", "");
 	var wstbBGColor = f.elements.wstb_bgcolor.value.replace("#", "");
 	var wstbCBGColor = f.elements.wstb_cbgcolor.value.replace("#", "");
+  var wstbBGColorTo = f.elements.wstb_bgcolorto.value.replace("#", "");
+  var wstbCBGColorTo = f.elements.wstb_cbgcolorto.value.replace("#", "");
 	var wstbBColor = f.elements.wstb_bcolor.value.replace("#", "");
+  var wstbBWidth = f.elements.wstb_bwidth.value;
 	var wstbImage = f.elements.wstb_image_url.value;
 	var wstbBigImage = f.elements.wstb_big_image.checked;
 	var wstbNoImage = f.elements.wstb_noimage.checked;
@@ -39,19 +47,28 @@ function insertWSTBCode() {
   var wstbBottomMargin = f.elements.wstb_bottom_margin.value;
   var wstbCollapsing = 0;
 	var wstbCollapsed = 0;
+  var wstbMode = 0;
+  var wstbDir = 0;
   
 	if(cRadio[0].checked) wstbCollapsing = 1;
   else if(cRadio[1].checked) wstbCollapsing = 2;
   
   if(radio[0].checked) wstbCollapsed = 1;
 	else if(radio[1].checked) wstbCollapsed = 2;
+  
+  if(mRadio[0].checked) wstbMode = 1;
+  else if(mRadio[1].checked) wstbMode = 2;
+  
+  if(dRadio[0].checked) wstbDir = 1;
+  else if(dRadio[1].checked) wstbDir = 2;
 	
 	var contentObj = tinyMCE.getInstanceById('content');
 	var wstbBody = contentObj.selection.getContent();
 	
 	wstbCode = ' [stextbox id="' + wstbID + '"'; 
-	if (wstbCaption != '') { 
-		wstbCode += ' caption="' + wstbCaption + '"';
+	if (wstbCaption != '' || wstbDefCap) { 
+		if(wstbDefCap) wstbCode += ' defcaption="true"';
+    else wstbCode += ' caption="' + wstbCaption + '"';
 		
     if (wstbCollapsing == 1) wstbCode += ' collapsing="true"';
     else if(wstbCollapsing == 2) wstbCode += ' collapsing="false"';
@@ -59,16 +76,23 @@ function insertWSTBCode() {
     if ((wstbCollapsed == 1) && (wstbCollapsing != 2)) wstbCode += ' collapsed="true"';
 		else if(wstbCollapsed == 2) wstbCode += ' collapsed="false"';
 	}
+  if(wstbMode == 1) wstbCode += ' mode="css"';
+  else if(wstbMode == 2) wstbCode += ' mode="js"';
+  if(wstbDir == 1) wstbCode += ' direction="ltr"';
+  else if(wstbDir == 2) wstbCode += ' direction="rtl"';
 	if (wstbFloat) {
 		wstbCode += ' float="true"';
 		if (wstbAlign != 'left') wstbCode += ' align="right"';
 		if (wstbWidth != '') wstbCode += ' width="' + wstbWidth + '"';
 	}
+  if (wstbBWidth != '') wstbCode += ' bwidth="' + wstbBWidth + '"';
 	if (wstbColor != '') wstbCode += ' color="' + wstbColor + '"';
 	if (wstbCColor != '') wstbCode += ' ccolor="' + wstbCColor + '"';
 	if (wstbBColor != '') wstbCode += ' bcolor="' + wstbBColor + '"';
 	if (wstbBGColor != '') wstbCode += ' bgcolor="' + wstbBGColor + '"';
 	if (wstbCBGColor != '') wstbCode += ' cbgcolor="' + wstbCBGColor + '"';
+  if (wstbBGColorTo != '') wstbCode += ' bgcolorto="' + wstbBGColorTo + '"';
+  if (wstbCBGColorTo != '') wstbCode += ' cbgcolorto="' + wstbCBGColorTo + '"';
   if (wstbLeftMargin != '') wstbCode += ' mleft="' + wstbLeftMargin + '"';
   if (wstbRightMargin != '') wstbCode += ' mright="' + wstbRightMargin + '"';
   if (wstbTopMargin != '') wstbCode += ' mtop="' + wstbTopMargin + '"';

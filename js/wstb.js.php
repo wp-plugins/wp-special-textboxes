@@ -13,7 +13,7 @@ $settings = $stbObject->getAdminOptions();
 
 (function($){
 	$(document).ready(function() {
-		var options = {};
+		var options = {direction: 'vertical'};
 	
 		function callback(sb,sc,si) {
 			if (sb.css('display') == 'none') {

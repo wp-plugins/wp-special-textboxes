@@ -1,7 +1,7 @@
 <?php
 if (!class_exists("SpecialTextBoxes")) {
   class SpecialTextBoxes {
-    var $stbInitOptions = array(
+    public $stbInitOptions = array(
       'rounded_corners' => 'true', 
       'text_shadow' => 'false', 
       'box_shadow' => 'false', 
@@ -10,6 +10,37 @@ if (!class_exists("SpecialTextBoxes")) {
       'left_margin' => '10',
       'right_margin' => '10',
       'bottom_margin' => '10',
+      'bigImg' => 'true',
+      'showImg' => 'true',
+      'collapsing' => 'true',
+      'collapsed' => 'false',
+      'fontSize' => '0',
+      'captionFontSize' => '0',
+      'langDirect' => 'ltr',
+      'mode' => 'css',
+      'js_imgMinus' => '',
+      'js_imgPlus' => '',
+      'js_duration' => 500,
+      'js_imgX' => 5,
+      'js_imgY' => 10,
+      'js_radius' => 10,
+      'js_caption_fontSize' => 12,
+      'js_caption_fontFamily' => 'Impact, Verdana, Helvetica, Arial, sans-serif',
+      'js_shadow_enabled' => 'true',
+      'js_shadow_offsetX' => 7,
+      'js_shadow_offsetY' => 7,
+      'js_shadow_blur' => 5,
+      'js_shadow_alpha' => 0.15,
+      'js_shadow_color' => '000000',
+      'js_textShadow_enabled' => 'false',
+      'js_textShadow_offsetX' => 1,
+      'js_textShadow_offsetY' => 1,
+      'js_textShadow_blur' => 3,
+      'js_textShadow_alpha' => 0.15,
+      'js_textShadow_color' => '000000',
+      'deleteOptions' => 0,
+      'deleteDB' => 0,
+      
       'cb_color' => '000000',
       'cb_caption_color' => 'ffffff',
       'cb_background' => 'f7cdf5',
@@ -17,19 +48,19 @@ if (!class_exists("SpecialTextBoxes")) {
       'cb_border_color' => 'f844ee',
       'cb_image' => '',
       'cb_bigImg' => '',
-      'bigImg' => 'false',
-      'showImg' => 'true',
-      'collapsing' => 'false',
-      'collapsed' => 'false',
-      'fontSize' => '0',
-      'captionFontSize' => '0',
       'cb_fontSize' => '0',
-      'cb_captionFontSize' => '0',
-      'langDirect' => 'ltr' 
+      'cb_captionFontSize' => '0' 
     );
+    public $settings = array();
+    public $styles = array();
+    public $classes = array();
+    public $cmsVer = '';
+    private $stbVersions = array('stb' => null, 'db' => null);
+    public $globalMode = '';
     
     public function __construct() {
-      define('STB_VERSION', '3.10.60');
+      define('STB_VERSION', '4.0.65');
+      define('STB_DB_VERSION', '1.0');
       define('STB_DIR', basename(dirname(__FILE__)));
       define('STB_DOMAIN', 'wp-special-textboxes');
       define('STB_OPTIONS', 'SpecialTextBoxesAdminOptions');
@@ -45,43 +76,221 @@ if (!class_exists("SpecialTextBoxes")) {
       add_filter( 'comment_text', 'do_shortcode' );
       
       add_shortcode('stextbox', array(&$this, 'doShortcode'));
-      add_shortcode('stb', array(&$this, 'doShortcode'));
+      add_shortcode('stb', array(&$this, 'doShortcode2'));
       add_shortcode('sgreybox', array(&$this, 'doShortcodeGrey'));
+      
+      $this->settings = self::getAdminOptions();
+      $this->styles = self::getStyles();
+      $this->classes = self::getClasses($this->styles);
+      $ver = $this->getWpVersion();
+      if((int)$ver['major'] >= 3) {
+        if((int)$ver['minor'] >= 3) $this->cmsVer = 'high';
+        else $this->cmsVer = 'low';
+      }
+      else $this->cmsVer = 'not supported';
+      $this->getVersions(true);
+      $this->globalMode = self::getMode($this->settings['mode']);
+      define('STB_DRAWING_MODE', $this->globalMode);
     }
     
-    public function getAdminOptions() {
+    public function getAdminOptions($force = false) {
       $stbAdminOptions = $this->stbInitOptions;
       $stbOptions = get_option(STB_OPTIONS);
       if (!empty($stbOptions)) {
         foreach ($stbOptions as $key => $option) 
           $stbAdminOptions[$key] = $option;        
       }
+      if ( $stbAdminOptions['js_imgMinus'] === '' )
+        $stbAdminOptions['js_imgMinus'] = STB_URL.'images/minus.png';
+      if ( $stbAdminOptions['js_imgPlus'] === '' )
+        $stbAdminOptions['js_imgPlus'] = STB_URL.'images/plus.png';
       if ( $stbAdminOptions['cb_image'] === '' )
         $stbAdminOptions['cb_image'] = STB_URL.'images/heart.png';
       if ( $stbAdminOptions['cb_bigImg'] === '' )
         $stbAdminOptions['cb_bigImg'] = STB_URL.'images/heart-b.png';
+      if($force) update_option(STB_OPTIONS, $stbAdminOptions);
       return $stbAdminOptions;
     }
     
+    public function getStyles() {
+      global $wpdb;
+      $sTable = $wpdb->prefix . "stb_styles";
+      $styles = array();
+      
+      if($wpdb->get_var("SHOW TABLES LIKE '$sTable'") == $sTable) {
+        $sSql = "SELECT slug, caption, js_style, css_style, stype, trash FROM $sTable WHERE trash IS FALSE;";
+        $rows = $wpdb->get_results($sSql, ARRAY_A);
+        $style = array();
+        foreach($rows as $value) {
+          $style['slug'] = $value['slug'];
+          $style['name'] = $value['caption'];
+          $style['stype'] = $value['stype'];
+          $style['jsStyle'] = unserialize($value['js_style']);
+          $style['cssStyle'] = unserialize($value['css_style']);
+          array_push($styles, $style);
+        }
+      }
+      return $styles;
+    }
+    
+    function getVersions($force = false) {
+      $versions = array('stb' => null, 'db' => null);
+      if($force) {
+        $versions['stb'] = get_option( 'stb_version', '' );
+        $versions['db'] = get_option( 'stb_db_version', '' );
+        $this->stbVersions = $versions;
+      }
+      else $versions = $this->stbVersions;
+      
+      return $versions;
+    }
+    
+    public function getClasses($value) {
+      $classes = array();
+      foreach($value as $val) {
+        array_push($classes, $val['slug']);
+      }
+      return $classes;
+    }
+    
+    public function getWpVersion() {
+      global $wp_version;
+      $version = array();
+      
+      $ver = explode('.', $wp_version);
+      $version['major'] = $ver[0];
+      $vc = count($ver);
+      if($vc == 2) {
+        $subver = explode('-', $ver[1]);
+        $version['minor'] = $subver[0];
+        $version['spec'] = $subver[1];
+        $version['str'] = $version['major'].'.'.$version['minor'].((!empty($version['spec'])) ? ' ('.$version['spec'].')' : '');
+      }
+      else {
+        $version['minor'] = $ver[1];
+        $version['build'] = $ver[2];
+        $version['str'] = $wp_version;
+      }      
+      
+      return $version;
+    }
+    
+    public function getMode($oMode = 'mix') {
+      if($oMode == 'css') return $oMode;
+      
+      $validBrowsers = array(
+        'Opera' => array(9,80),
+        'Internet Explorer' => array(9,0),
+        'Firefox' => array(6,0),
+        'Safari' => array(5,1),
+        'Chrome' => array(12,0)
+      );
+      if(!class_exists('Browser')) include_once('browser.php');
+      $browser = new Browser();
+      $bName = $browser->getBrowser();
+      $bVersion = explode('.', $browser->getVersion());
+      if(!is_null($validBrowsers[$bName]) && 
+         (intval($bVersion[0]) > $validBrowsers[$bName][0] ||
+         (intval($bVersion[0]) == $validBrowsers[$bName][0] && 
+          intval($bVersion[1]) >= $validBrowsers[$bName][1]))) return $oMode;
+      else return 'css';
+    }
+    
     public function addHeaderCSS() {
-      wp_enqueue_style('stbCSS', STB_URL.'css/wp-special-textboxes.css.php', false, STB_VERSION);
+      if($this->globalMode != 'js')
+        wp_enqueue_style('stbCSS', STB_URL.'css/wp-special-textboxes.css.php', false, STB_VERSION);
     }
     
     public function headerScripts() {
+      $jsOptions = array(
+        caption => array(
+          text => '',
+          fontFamily => $this->settings['js_caption_fontFamily'],
+          fontSize => intval($this->settings['js_caption_fontSize']),
+          collapsed => ($this->settings['collapsed'] == 'true'),
+          collapsing => ($this->settings['collapsing'] == 'true'),
+          imgMinus => $this->settings['js_imgMinus'],
+          imgPlus => $this->settings['js_imgPlus'],
+          duration => intval($this->settings['js_duration'])
+        ),
+        imgX => intval($this->settings['js_imgX']),
+        imgY => intval($this->settings['js_imgY']),
+        radius => intval($this->settings['js_radius']),
+        direction => $this->settings['langDirect'],
+        mtop => intval($this->settings['top_margin']),
+        mright => intval($this->settings['right_margin']),
+        mbottom => intval($this->settings['bottom_margin']),
+        mleft => intval($this->settings['left_margin']),
+        shadow => array(
+          enabled => ($this->settings['js_shadow_enabled'] == 'true'),
+          offsetX => intval($this->settings['js_shadow_offsetX']),
+          offsetY => intval($this->settings['js_shadow_offsetY']),
+          blur => intval($this->settings['js_shadow_blur']),
+          alpha => floatval($this->settings['js_shadow_alpha']),
+          color => '#'.$this->settings['js_shadow_color']
+        ),
+        textShadow => array(
+          enabled => ($this->settings['js_textShadow_enabled'] == 'true'),
+          offsetX => intval($this->settings['js_textShadow_offsetX']),
+          offsetY => intval($this->settings['js_textShadow_offsetY']),
+          blur => intval($this->settings['js_textShadow_blur']),
+          alpha => 0.15,
+          color => '#'.$this->settings['js_textShadow_color']
+        )
+      );
+      
+      $cssOptions = array(
+        roundedCorners => ($this->settings['rounded_corners'] == 'true'),
+        mbottom => intval($this->settings['bottom_margin']),
+        imgHide => STB_URL.'images/hide.png',
+        imgShow => STB_URL.'images/show.png',
+        strHide => __('Hide', STB_DOMAIN),
+        strShow => __('Show', STB_DOMAIN)
+      );
+      
+      switch( $this->globalMode ) { 
+        case 'css': 
+          $options = array('mode' => $this->globalMode, 'cssOptions' => $cssOptions); 
+          break;
+        case 'js': 
+          $options = array('mode' => $this->globalMode, 'jsOptions' => $jsOptions, 'styles' => $this->styles); 
+          break;
+        case 'mix': 
+          $options = array('mode' => $this->globalMode, 'jsOptions' => $jsOptions, 'cssOptions' => $cssOptions, 'styles' => $this->styles); 
+          break;
+        default: 
+          $options = array('mode' => $this->globalMode, 'jsOptions' => $jsOptions, 'cssOptions' => $cssOptions, 'styles' => $this->styles); 
+          break;
+      }
+      
+      if($this->cmsVer === 'low') {
+        wp_register_script('jquery-effects-core', STB_URL.'js/jquery.effects.core.min.js', array('jquery'), '1.8.16');
+        wp_register_script('jquery-effects-blind', STB_URL.'js/jquery.effects.blind.min.js', array('jquery', 'jquery-effects-core'), '1.8.16');
+      }
       wp_enqueue_script('jquery');
-      wp_enqueue_script('jquery-ui-effects', STB_URL.'js/jquery-ui-1.8.10.custom.min.js', array('jquery'), '1.8.10');
-      wp_enqueue_script('wstbLayout', STB_URL.'js/wstb.js.php', array('jquery'), STB_VERSION);
+      wp_enqueue_script('jquery-effects-core');
+      wp_enqueue_script('jquery-effects-blind');
+      if($this->globalMode != 'css') wp_enqueue_script('stbJS', STB_URL.'js/jquery.stb.min.js', array('jquery'), STB_VERSION);
+      wp_enqueue_script('wstbLayout', STB_URL.'js/wstb.js', array('jquery'), STB_VERSION);
+      if($this->cmsVer === 'high') wp_localize_script('wstbLayout', 'stbUserOptions', $options);
+      else wp_localize_script('wstbLayout', 'stbUserOptions', array('l10n_print_after' => 'stbUserOptions = ' . json_encode($options) . ';'));
     }
     
     public function doShortcode( $atts, $content = null ) {
       $attributes = shortcode_atts( array(
         'id' => 'warning',
+        'mode' => '',
+        'level' => 0,
         'caption' => '',
+        'defcaption' => '',
         'color' => '',
         'ccolor' => '',
         'bcolor' => '',
         'bgcolor' => '',
+        'bgcolorto' => '',
         'cbgcolor' => '',
+        'cbgcolorto' => '',
+        'bwidth' => '',
         'image' => '',
         'big' => '',
         'float' => 'false',
@@ -92,6 +301,7 @@ if (!class_exists("SpecialTextBoxes")) {
         'mleft' => '',
         'mbottom' => '',
         'mright' => '',
+        'direction' => '',
         'collapsing' => 'default'), 
         $atts );
 
@@ -99,15 +309,23 @@ if (!class_exists("SpecialTextBoxes")) {
       return $block->block;
     }
     
+    public function doShortcode2($atts, $content = null) {
+      $atts['level'] = 1;
+      return $this->doShortcode($atts, $content);
+    }
+    
     public function doShortcodeGrey( $atts, $content = null ) {
-      extract( shortcode_atts( array(
+      /*extract( shortcode_atts( array(
         'caption' => '',
+        'mode' => ''
         ), $atts ) );
       if ( $caption === '' ) {
-        return "<div class='stb-grey_box'>{$content}</div>";
+        return "<div class='stb-grey_box'>$content</div>";
       } else { 
-        return "<div class='stb-grey-caption_box'>{$caption}</div><div class='stb-grey-body_box'>{$content}</div>";  
-      }
+        return "<div class='stb-grey-caption_box'>$caption</div><div class='stb-grey-body_box'>$content</div>";  
+      }*/
+      $atts['id'] = 'grey';
+      return $this->doShortcode($atts, $content);
     }
     
     public function highlightText( $content = null, $id = 'warning', $caption = '', $atts = null ) {
@@ -125,6 +343,38 @@ if (!class_exists('special_text') && class_exists('WP_Widget')) {
       $this->WP_Widget( 'special_text', __('Special Text', STB_DOMAIN), $widget_ops, $control_ops );
     }
     
+    function getMode($val) {
+      if(!empty($val)) $mode = ($val == 'mix') ? 'js' : $sval;
+      if('css' == STB_DRAWING_MODE) $mode = 'css';
+      return $mode;
+    }
+    
+    function getClasses($value) {
+      $classes = array();
+      foreach($value as $val) {
+        $classes[ $val['slug']] = $val['name'];
+      }
+      return $classes;
+    }
+    
+    function getStyles() {
+      global $wpdb;
+      $sTable = $wpdb->prefix . "stb_styles";
+      $styles = array();
+      
+      if($wpdb->get_var("SHOW TABLES LIKE '$sTable'") == $sTable) {
+        $sSql = "SELECT slug, caption FROM $sTable WHERE trash IS FALSE;";
+        $rows = $wpdb->get_results($sSql, ARRAY_A);
+        $style = array();
+        foreach($rows as $value) {
+          $style['slug'] = $value['slug'];
+          $style['name'] = $value['caption'];
+          array_push($styles, $style);
+        }
+      }
+      return self::getClasses( $styles );
+    }
+    
     function widget( $args, $instance ) {
       extract($args);
       $title = apply_filters('widget_title', empty($instance['title']) ? '' : $instance['title']);
@@ -140,15 +390,24 @@ if (!class_exists('special_text') && class_exists('WP_Widget')) {
             (is_author() && $instance['show_author']));
       
       if($box_id !== 'none') {
-        $before_title = '<div class="stb-'.$box_id.'-caption_box" style="margin-left: 0px; margin-right: 0px" >';
-        $after_title = '</div>'.( !empty($title) ? '<div class="stb-'.$box_id.'-body_box" style="margin-left: 0px; margin-right: 0px" >' : '' );
-        $before_widget = '<div class="stb-container">'.( empty($title) ? '<div class="stb-'.$box_id.'_box" style="margin-left: 0px; margin-right: 0px" >' : '' );
-        $after_widget = '</div></div>';
+        $mode = self::getMode(STB_DRAWING_MODE);
+        if($mode == 'css') {
+          $before_title = '<div class="stb-'.$box_id.'-caption_box" style="margin-left: 0px; margin-right: 0px" >';
+          $after_title = '</div>'.( !empty($title) ? '<div class="stb-'.$box_id.'-body_box" style="margin-left: 0px; margin-right: 0px" >' : '' );
+          $before_widget = '<div class="stb-container">'.( empty($title) ? '<div class="stb-'.$box_id.'_box" style="margin-left: 0px; margin-right: 0px" >' : '' );
+          $after_widget = '</div></div>';
+        }
+        else {
+          $before_title = '';
+          $after_title = '';
+          $before_widget = "<div class='stb-$box_id-box stb-level-0' data-stb='{mleft: 0, mright: 0, caption: {text: \"$title\"}}'>";
+          $after_widget = '</div>';
+        }
       }
       
       if ( $showAll || $canShow ) {
         echo $before_widget;
-        if ( !empty( $title ) ) echo $before_title . $title . $after_title;
+        if ( !empty( $title ) && $mode == 'css' ) echo $before_title . $title . $after_title;
         echo ($parse ? eval("?>".$text."<?") : $text);
         echo $after_widget;
       }
@@ -171,16 +430,7 @@ if (!class_exists('special_text') && class_exists('WP_Widget')) {
     }
     
     function form( $instance ) {
-      $ids = array( 
-        'alert'    => __('Alert', STB_DOMAIN),
-        'download' => __('Download', STB_DOMAIN),
-        'info'     => __('Info', STB_DOMAIN),
-        'warning'  => __('Warning', STB_DOMAIN),
-        'black'    => __('Black', STB_DOMAIN),
-        'custom'   => __('Custom', STB_DOMAIN),
-        'none'     => __('Theme Style', STB_DOMAIN)
-      );
-      
+      $ids = self::getStyles();      
       $instance = wp_parse_args((array) $instance, 
         array(
           'title'       => '', 
