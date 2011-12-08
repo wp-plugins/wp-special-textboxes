@@ -101,8 +101,9 @@ if(!class_exists('StbBlock')) {
           $stbCaption = '';
           $stbBorder = '';
           $stbOpts = '';
+          $stbShadow = '';
           if(!empty($atts['caption'])) {
-            $stbCaption = 'text: "'.$atts['caption'].'"';
+            $stbCaption = 'text: "'.str_replace("'", '’', $atts['caption']).'"';
             if(!empty($atts['collapsed'])) $stbCaption .= ", collapsed: ".$atts['collapsed'];
             if($atts['collapsing'] != 'default') $stbCaption .= ", collapsing: ".$atts['collapsing'];
             if(!empty($atts['ccolor'])) $stbCaption .= ', fontColor: "#'.$atts['ccolor'].'"';
@@ -112,6 +113,9 @@ if(!class_exists('StbBlock')) {
           if(!empty($atts['bwidth'])) {
             $stbBorder = 'width: '.$atts['bwidth'];
             if(!empty($atts['bcolor'])) $stbBorder .= ', color: "#'.$atts['bcolor'].'"';
+          }
+          if(!empty($atts['shadow'])) {
+            $stbShadow = 'enabled: '.$atts['shadow'];
           }
           if(!empty($atts['mtop'])) $stbOpts .= ", mtop: ".$atts['mtop'];
           if(!empty($atts['mright'])) $stbOpts .= ", mright: ".$atts['mright'];
@@ -131,6 +135,10 @@ if(!class_exists('StbBlock')) {
           if(!empty($stbOpts)) {
             if(!empty($stbData)) $stbData .= $stbOpts;
             else $stbData = substr_replace($stbOpts, '', 0, 2);
+          }
+          if(!empty($stbShadow)) {
+            if(!empty($stbData)) $stbData .= ", shadow: {{$stbShadow}}";
+            else $stbData = "shadow: {{$stbShadow}}";
           }
           if(!empty($stbData)) $stbData = "{{$stbData}}";
           
@@ -161,6 +169,10 @@ if(!class_exists('StbBlock')) {
           $styleBody .= "direction: $direction; ";
           $styleBody .= "text-align: ".(($direction == 'rtl') ? "right" : "left")."; ";
         }
+        if(!empty( $atts['shadow'] )) {
+          if($atts['shadow'] === 'true') $styleBody .= "-webkit-box-shadow: 3px 3px 3px #888; -moz-box-shadow: 3px 3px 3px #888; box-shadow: 3px 3px 3px #888;";
+          else $styleBody .= "-webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;";
+        }
       
         // Caption style
         $styleCaption .= ( $atts['ccolor'] === '' ) ? '' : "color:#{$atts['ccolor']}; ";
@@ -169,6 +181,10 @@ if(!class_exists('StbBlock')) {
         if(($atts['direction'] != '') && ($atts['direction'] != $settings['langDirect'])) {
           $styleCaption .= "direction: $direction; ";
           $styleCaption .= "text-align: ".(($direction == 'rtl') ? "right" : "left")."; ";
+        }
+        if(!empty( $atts['shadow'] )) {
+          if($atts['shadow'] === 'true') $styleCaption .= "-webkit-box-shadow: 3px 3px 3px #888; -moz-box-shadow: 3px 3px 3px #888; box-shadow: 3px 3px 3px #888;";
+          else $styleCaption .= "-webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;";
         }
         
         // Tool Image
@@ -269,7 +285,6 @@ if(!class_exists('StbBlock')) {
         $caption = $atts['caption'];
       }
       
-      //$stbClasses = array( 'alert', 'download', 'info', 'warning', 'black', 'custom' );
       $stbClasses = $this->getClasses($this->styles);
       $block = array('body' => '', 'caption' => '', 'floatStart' => '', 'floatEnd' => '');
       $cntStart = "<div id='stb-container-$idNum' class='stb-container'>";
@@ -301,6 +316,7 @@ if(!class_exists('StbBlock')) {
               'mright' => '',
               'direction' => '',
               'collapsing' => 'default',
+              'shadow' => '',
               'mode' => '',
               'level' => 0 ), 
              $atts),
@@ -312,21 +328,23 @@ if(!class_exists('StbBlock')) {
         else
           return $block['floatStart']."<div id='stb-box-$idNum' class='stb-$id-box stb-level-{$atts['level']}' {$block['data']}>" . do_shortcode($content) . "</div>".$block['floatEnd'];
       }
-      if ( $caption === '') {
-        if ( in_array( $id, $stbClasses ) ) {
-          return $block['floatStart']."<div id='stb-box-$idNum' class='stb-{$id}_box' {$block['body']}>" . do_shortcode($content) . "</div>".$block['floatEnd'];
-        } elseif ( $id === 'grey' ) {
-          return $block['floatStart']."<div id='stb-box-$idNum' class='stb-{$id}_box' {$block['body']}>$content</div>".$block['floatEnd'];
-        } else { 
-          return do_shortcode($content);  
-        }
-      } else {
-        if ( in_array( $id, $stbClasses ) ) {
-          return $block['floatStart']. $cntStart ."<div id='stb-caption-box-$idNum' class='stb-$id-caption_box stb_caption' {$block['caption']}>" . $caption . $block['toolImg'] . "</div><div id='stb-body-box-$idNum' class='stb-$id-body_box stb_body' {$block['body']}>" . do_shortcode($content) . "</div>". $cntEnd .$block['floatEnd'];
-        } elseif ( $id === 'grey' ) {
-          return $block['floatStart']."<div id='stb-caption-box-$idNum' class='stb-$id-caption_box' {$block['caption']}>$caption</div><div id='stb-body-box-$idNum' class='stb-$id-body_box' {$block['body']}>$content</div>".$block['floatEnd'];
-        } else { 
-          return do_shortcode($content);  
+      else {
+        if ( $caption === '') {
+          if ( in_array( $id, $stbClasses) && $id !== 'grey' ) {
+            return $block['floatStart']."<div id='stb-box-$idNum' class='stb-{$id}_box' {$block['body']}>" . do_shortcode($content) . "</div>".$block['floatEnd'];
+          } elseif ( in_array( $id, $stbClasses) && $id === 'grey' ) {
+            return $block['floatStart']."<div id='stb-box-$idNum' class='stb-{$id}_box' {$block['body']}>$content</div>".$block['floatEnd'];
+          } else { 
+            return do_shortcode($content);  
+          }
+        } else {
+          if ( in_array( $id, $stbClasses ) && $id !== 'grey' ) {
+            return $block['floatStart']. $cntStart ."<div id='stb-caption-box-$idNum' class='stb-$id-caption_box stb_caption' {$block['caption']}>" . $caption . $block['toolImg'] . "</div><div id='stb-body-box-$idNum' class='stb-$id-body_box stb_body' {$block['body']}>" . do_shortcode($content) . "</div>". $cntEnd .$block['floatEnd'];
+          } elseif ( in_array( $id, $stbClasses) && $id === 'grey' ) {
+            return $block['floatStart']."<div id='stb-caption-box-$idNum' class='stb-$id-caption_box' {$block['caption']}>$caption</div><div id='stb-body-box-$idNum' class='stb-$id-body_box' {$block['body']}>$content</div>".$block['floatEnd'];
+          } else { 
+            return do_shortcode($content);  
+          }
         }
       }
     }

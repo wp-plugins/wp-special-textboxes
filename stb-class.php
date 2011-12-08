@@ -59,7 +59,7 @@ if (!class_exists("SpecialTextBoxes")) {
     public $globalMode = '';
     
     public function __construct() {
-      define('STB_VERSION', '4.0.65');
+      define('STB_VERSION', '4.1.69');
       define('STB_DB_VERSION', '1.0');
       define('STB_DIR', basename(dirname(__FILE__)));
       define('STB_DOMAIN', 'wp-special-textboxes');
@@ -71,7 +71,7 @@ if (!class_exists("SpecialTextBoxes")) {
       
      
       add_action('wp_head', array(&$this, 'addHeaderCSS'), 1);
-      add_action('template_redirect', array(&$this, 'headerScripts'));
+      add_action('template_redirect', array(&$this, 'headerScripts'), 9999999999);
       
       add_filter( 'comment_text', 'do_shortcode' );
       
@@ -181,7 +181,7 @@ if (!class_exists("SpecialTextBoxes")) {
       $validBrowsers = array(
         'Opera' => array(9,80),
         'Internet Explorer' => array(9,0),
-        'Firefox' => array(6,0),
+        'Firefox' => array(3,0),
         'Safari' => array(5,1),
         'Chrome' => array(12,0)
       );
@@ -271,7 +271,7 @@ if (!class_exists("SpecialTextBoxes")) {
       wp_enqueue_script('jquery-effects-core');
       wp_enqueue_script('jquery-effects-blind');
       if($this->globalMode != 'css') wp_enqueue_script('stbJS', STB_URL.'js/jquery.stb.min.js', array('jquery'), STB_VERSION);
-      wp_enqueue_script('wstbLayout', STB_URL.'js/wstb.js', array('jquery'), STB_VERSION);
+      wp_enqueue_script('wstbLayout', STB_URL.'js/wstb.min.js', array('jquery'), STB_VERSION, true);
       if($this->cmsVer === 'high') wp_localize_script('wstbLayout', 'stbUserOptions', $options);
       else wp_localize_script('wstbLayout', 'stbUserOptions', array('l10n_print_after' => 'stbUserOptions = ' . json_encode($options) . ';'));
     }
@@ -302,7 +302,8 @@ if (!class_exists("SpecialTextBoxes")) {
         'mbottom' => '',
         'mright' => '',
         'direction' => '',
-        'collapsing' => 'default'), 
+        'collapsing' => 'default',
+        'shadow' => ''), 
         $atts );
 
       $block = new StbBlock($content, $attributes['id'], $attributes['caption'], $attributes);
@@ -315,15 +316,6 @@ if (!class_exists("SpecialTextBoxes")) {
     }
     
     public function doShortcodeGrey( $atts, $content = null ) {
-      /*extract( shortcode_atts( array(
-        'caption' => '',
-        'mode' => ''
-        ), $atts ) );
-      if ( $caption === '' ) {
-        return "<div class='stb-grey_box'>$content</div>";
-      } else { 
-        return "<div class='stb-grey-caption_box'>$caption</div><div class='stb-grey-body_box'>$content</div>";  
-      }*/
       $atts['id'] = 'grey';
       return $this->doShortcode($atts, $content);
     }

@@ -4,7 +4,7 @@ Donate link: http://www.simplelib.com/
 Tags: content, performance, text, code, php, widget
 Requires at least: 3.0
 Tested up to: 3.3
-Stable tag: 4.0.65
+Stable tag: 4.1.69
 
 Highlights any portion of text as text in the colored boxes.
 
@@ -91,6 +91,11 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 
 == Changelog ==
 
+= 4.1.69 =
+* Some bugs are fixed.
+* Control of block's shadow from short codes is added.
+* Improvements in the interface of plugin are made.
+* Compatibility with "Wordpress Post Tabs" plugin is added.
 = 4.0.65 =
 * Styles repository is added
 * Javascript drawing mode is added
@@ -183,6 +188,11 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 
 == Upgrade Notice ==
 
+= 4.1.69 =
+Some bugs are fixed. 
+Control of block's shadow from short codes is added. 
+Improvements in the interface of plugin are made. 
+Compatibility with "Wordpress Post Tabs" plugin is added.  
 = 4.0.65 =
 Styles repository is added. 
 Javascript drawing mode is added. 

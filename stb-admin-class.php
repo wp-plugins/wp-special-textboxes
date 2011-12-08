@@ -16,7 +16,7 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
     }
     
     public function updateDB() {
-      global $wpdb;
+      global $wpdb, $charset_collate;
       $sTable = $wpdb->prefix . "stb_styles";
       
       require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
@@ -29,7 +29,7 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
                     stype VARCHAR(8) DEFAULT NULL,
                     trash TINYINT(1) DEFAULT 0,
                     PRIMARY KEY (slug)
-                   );";
+                   ) $charset_collate;";
         dbDelta($sSql);
         
         $names = array(
@@ -619,7 +619,7 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       $wpVersion = $version['str'];
       ?>
       <div class="wrap">
-        <?php screen_icon("options-general"); ?>
+        <div class="icon32" style="background: url('<?php echo STB_URL.'images/settings.png' ?>') no-repeat transparent; "><br/></div>
         <h2><?php  _e("Special Text Boxes Settings", STB_DOMAIN); ?></h2>
         <?php
         if(isset($_GET['settings-updated'])) $updated = $_GET['settings-updated'];
@@ -806,15 +806,17 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
   <table class="widefat fixed" cellpadding="0">
     <thead>
       <tr>
+        <th id="t-thumb" class='manage-column column-title' style="width:10%;" scope="col"><?php _e('Style', STB_DOMAIN); ?></th>
+        <th id="t-cap" class="manage-column column-title" style="width:50%;" scope="col"><?php _e('Style Name', STB_DOMAIN);?></th>
         <th id="t-slug" class="manage-column column-title" style="width:20%;" scope="col"><?php _e('Style Slug', STB_DOMAIN); ?></th>
-        <th id="t-cap" class="manage-column column-title" style="width:60%;" scope="col"><?php _e('Style Name', STB_DOMAIN);?></th>
         <th id="t-type" class="manage-column column-title" style="width:20%;" scope="col"><?php _e('Style Type', STB_DOMAIN);?></th>
       </tr>
     </thead>
     <tfoot>
       <tr>
+        <th id="b-thumb" class='manage-column column-title' style="width:10%;" scope="col"><?php _e('Style', STB_DOMAIN); ?></th>
+        <th id="b-cap" class="manage-column column-title" style="width:50%;" scope="col"><?php _e('Style Name', STB_DOMAIN);?></th>
         <th id="b-slug" class="manage-column column-title" style="width:20%;" scope="col"><?php _e('Style Slug', STB_DOMAIN); ?></th>
-        <th id="b-cap" class="manage-column column-title" style="width:60%;" scope="col"><?php _e('Style Name', STB_DOMAIN);?></th>
         <th id="b-type" class="manage-column column-title" style="width:20%;" scope="col"><?php _e('Style Type', STB_DOMAIN);?></th>
       </tr>
     </tfoot>
@@ -823,6 +825,7 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       $sSql = "SELECT 
                   $sTable.slug, 
                   $sTable.caption, 
+                  $sTable.js_style, 
                   $sTable.stype,
                   $sTable.trash 
                 FROM $sTable".
@@ -832,15 +835,17 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       $i = 0;
       if(!is_array($styles) || empty ($styles)) {
       ?>
-      <tr id="g0" class="alternate author-self status-publish iedit" valign="top">
-        <th class="post-title column-title">0</th>
-        <th class="author column-author"><?php _e('There are no data ...', STB_DOMAIN).$pTable; ?></th>
+      <tr class="no-items" valign="top">
+        <th class="colspanchange" colspan='4'><?php _e('There are no data ...', STB_DOMAIN).$pTable; ?></th>
       </tr>
         <?php } else {
           foreach($styles as $row) {            
+            $jsStyle = unserialize($row['js_style']);            
         ?>
       <tr id="<?php echo $row['slug'];?>" class="<?php echo (($i & 1) ? 'alternate' : ''); ?> author-self status-publish iedit" valign="top">
-        <th class="post-title column-title"><?php echo $row['slug']; ?></th>
+        <td class="column-icon media-icon">
+          <img src='<?php echo $jsStyle['image']; ?>' alt='<?php echo $row['caption']; ?>' width='30' height='30'>
+        </td>
         <td class="post-title column-title">
           <strong style='display: inline;'><a href="<?php echo admin_url('admin.php'); ?>?page=stb-editor&action=edit&mode=style&item=<?php echo $row['slug']; ?>"><?php echo $row['caption'];?></a><?php echo ((($row['trash'] == true) && ($mode === 'all')) ? '<span class="post-state"> - '.__('in Trash', STB_DOMAIN).'</span>' : ''); ?></strong>
           <div class="row-actions">
@@ -858,6 +863,7 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
             <?php } ?>
           </div>
         </td>
+        <th class="post-title column-title"><?php echo $row['slug']; ?></th>
         <td class='post-title column-title'><?php echo $types[$row['stype']] ?></td>
       </tr>
         <?php $i++; }}?>
@@ -967,12 +973,12 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       }
       
       $sSql = "SELECT 
-                  slug, 
-                  caption, 
-                  js_style, 
-                  css_style, 
-                  stype, 
-                  trash 
+                  $sTable.slug, 
+                  $sTable.caption, 
+                  $sTable.js_style, 
+                  $sTable.css_style, 
+                  $sTable.stype, 
+                  $sTable.trash 
                 FROM $sTable 
                 WHERE slug = '$item';";
       

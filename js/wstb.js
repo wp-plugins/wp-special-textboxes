@@ -67,6 +67,11 @@
       $.each(jsStyles, function(i, el) {
         $('.stb-level-1.stb-'+el.slug+'-box ').stb(el.slug, jsOpts);
       });
+      
+      //Codes for supporting "Wordpress Post Tabs" plugin
+      $("li a[href^=#tab]").click(function() {
+        $($(this).attr('href') + ' .stb-body').stbRedraw();
+      });
     }
   });
 })(jQuery)

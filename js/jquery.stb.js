@@ -133,7 +133,11 @@
       blur: 3,
       alpha: 0.15,
       color: '#000000' //'#676767'
-    }
+    },
+    handlers: [
+      {hClass: 'a[id^=tabs]', hEvent: 'click'},
+      {hClass: 'li[id^=tabs]', hEvent: 'click'}
+    ]
   },
   
   stbItems = [];
@@ -372,7 +376,7 @@
       }
       cctx.fillText(opts.caption.text, textPos, cHeight/2);
     }
-    else cctx.fillText(opts.caption.text, textPos, cHeight/2, cWidth - 75);
+    else if(cWidth > 150) cctx.fillText(opts.caption.text, textPos, cHeight/2, cWidth - 75);
   }
   
   function roundedCRect(ctx, cctx, width, height, cWidth, cHeight, opts, cl) {
@@ -718,7 +722,7 @@
           rbi(index, 'tool');
         };
         stbItems[stbItems.length-1].imgPlus.src = stbItems[stbItems.length-1].options.caption.imgPlus;
-        $(this).data('stb_props', data);
+        $(this).data('stb_props', data).addClass('stb-body');
         
         //doDraw(data, true);
         if(opts.caption.collapsed) {
@@ -727,14 +731,21 @@
         }
       });
       
-      $(window).resize(function() {
-        doDrawAll(true);
-        return false;
-      });
-      
       doDrawAll(true);
       
       return false;
+    },
+    
+    stbRedraw: function() {
+      this.each(function() {
+        var data = $(this).data('stb_props');
+        doDraw(data, true);
+      });
     }
+  });
+      
+  $(window).resize(function() {
+    doDrawAll(true);
+    return false;
   });
 })(jQuery);

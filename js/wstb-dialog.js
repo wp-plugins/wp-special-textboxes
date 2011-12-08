@@ -23,6 +23,7 @@ function insertWSTBCode() {
   var cRadio = f.elements.wstb_collapsing;
   var mRadio = f.elements.wstb_mode;
   var dRadio = f.elements.wstb_dir;
+  var sRadio = f.elements.wstb_shadow;
 	
 	var wstbID = f.elements.wstb_id.value;
 	var wstbCaption = f.elements.wstb_caption.value;
@@ -49,6 +50,7 @@ function insertWSTBCode() {
 	var wstbCollapsed = 0;
   var wstbMode = 0;
   var wstbDir = 0;
+  var wstbShadow = 0;
   
 	if(cRadio[0].checked) wstbCollapsing = 1;
   else if(cRadio[1].checked) wstbCollapsing = 2;
@@ -61,6 +63,9 @@ function insertWSTBCode() {
   
   if(dRadio[0].checked) wstbDir = 1;
   else if(dRadio[1].checked) wstbDir = 2;
+  
+  if(sRadio[0].checked) wstbShadow = 1;
+  else if(sRadio[1].checked) wstbShadow = 2;
 	
 	var contentObj = tinyMCE.getInstanceById('content');
 	var wstbBody = contentObj.selection.getContent();
@@ -80,6 +85,8 @@ function insertWSTBCode() {
   else if(wstbMode == 2) wstbCode += ' mode="js"';
   if(wstbDir == 1) wstbCode += ' direction="ltr"';
   else if(wstbDir == 2) wstbCode += ' direction="rtl"';
+  if(wstbShadow == 1) wstbCode += ' shadow="true"';
+  else if(wstbShadow == 2) wstbCode += ' shadow="false"';
 	if (wstbFloat) {
 		wstbCode += ' float="true"';
 		if (wstbAlign != 'left') wstbCode += ' align="right"';

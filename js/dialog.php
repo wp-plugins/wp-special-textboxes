@@ -35,7 +35,7 @@ $styles = $stbObject->styles;
         <li id="extended_tab"><span><a href="javascript:mcTabs.displayTab('extended_tab','extended_panel');" onmousedown="return false;"><?php _e("Extended Settings", STB_DOMAIN); ?></a></span></li>
       </ul>
     </div>
-    <div class="panel_wrapper" style="height: 375px;">
+    <div class="panel_wrapper" style="height: 400px;">
       <div id="basic_panel" class="panel current">
 		    <table border="0" cellpadding="4" cellspacing="0">
 		      <tr>
@@ -99,6 +99,22 @@ $styles = $stbObject->styles;
               </label>&nbsp;&nbsp;&nbsp;&nbsp;
               <label for="wstb_dir_default">
                 <input type="radio" id="wstb_dir_default" name="wstb_dir" class="radio" value="default" checked="checked" /><?php _e('Default', STB_DOMAIN); ?>
+              </label>
+            </td>
+          </tr>
+        </table>
+        <table border="0" cellpadding="4" cellspacing="0">
+          <tr><td><?php _e('Block Shadow', STB_DOMAIN); ?>:</td></tr>
+           <tr>            
+            <td>
+              <label for="wstb_shadow_true">
+                <input type="radio" id="wstb_shadow_true" name="wstb_shadow" class="radio" value="true" /><?php _e('Enable', STB_DOMAIN); ?>
+              </label>&nbsp;&nbsp;&nbsp;&nbsp;
+              <label for="wstb_shadow_false">
+                <input type="radio" id="wstb_shadow_false" name="wstb_shadow" class="radio" value="false" /><?php _e('Disable', STB_DOMAIN); ?>
+              </label>&nbsp;&nbsp;&nbsp;&nbsp;
+              <label for="wstb_shadow_default">
+                <input type="radio" id="wstb_shadow_default" name="wstb_shadow" class="radio" value="default" checked="checked" /><?php _e('Default', STB_DOMAIN); ?>
               </label>
             </td>
           </tr>
