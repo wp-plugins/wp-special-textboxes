@@ -613,6 +613,10 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
     }
     
     public function stbAdminPage() {
+      global $wpdb;
+      
+      $row = $wpdb->get_row('SELECT VERSION()AS ver', ARRAY_A);
+      $sqlVersion = $row['ver'];
       $this->settings = parent::getAdminOptions();
       $mem = ini_get('memory_limit');
       $version = $this->getWpVersion();
@@ -642,6 +646,7 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
                       echo __('Plugin Version', STB_DOMAIN).': <strong>'.STB_VERSION.'</strong><br/>';
                       echo __('Plugin DB Version', STB_DOMAIN).': <strong>'.STB_DB_VERSION.'</strong><br/>';
                       echo __('PHP Version', STB_DOMAIN).': <strong>'.PHP_VERSION.'</strong><br/>';
+                      echo __('MySQL Version', STB_DOMAIN).': <strong>'.$sqlVersion.'</strong><br/>';
                       echo __('Memory Limit', STB_DOMAIN).': <strong>'.$mem.'</strong>'; 
                     ?>
                   </p>
@@ -671,11 +676,11 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
                       printf($format, $str); 
                     ?>
                   </p>
-                  <center>
+                  <div style="text-align: center;">
                     <a title="Donate Now!" href="https://load.payoneer.com/LoadToPage.aspx?email=minimus@simplelib.com" target="_blank">
                       <img  title="<?php _e('Donate Now!', STB_DOMAIN); ?>" src="<?php echo STB_URL.'images/donate-now.png' ?>" alt="" width="100" height="34" style='margin-right: 5px;' />
                     </a>
-                  </center>
+                  </div>
                   <p style='margin: 3px; font-size: 0.8em !important;'>
                     <?php 
                       $format = __("Warning! The default value of donation is %s. Don't worry! This is not my appetite, this is default value defined by Payoneer service.", STB_DOMAIN).'<strong>'.__(' You can change it to any value you want!', STB_DOMAIN).'</strong>';

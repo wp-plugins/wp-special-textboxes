@@ -276,7 +276,34 @@ if(!class_exists('StbBlock')) {
       $content = $data['content'];
       $id = $data['id'];
       $caption = $data['caption'];
-      $atts = $data['atts'];
+      $atts = shortcode_atts( array( 
+                  'id' => $id, 
+                  'caption' => $caption,
+                  'defcaption' => '', 
+                  'color' => '', 
+                  'ccolor' => '', 
+                  'bcolor' => '', 
+                  'bgcolor' => '',
+                  'bgcolorto' => '', 
+                  'cbgcolor' => '',
+                  'cbgcolorto' => '',
+                  'bwidth' => '', 
+                  'image' => '', 
+                  'big' => '',
+                  'float' => 'false',
+                  'align' => 'left',
+                  'width' => '200',
+                  'collapsed' => '',
+                  'mtop' => '',
+                  'mleft' => '',
+                  'mbottom' => '',
+                  'mright' => '',
+                  'direction' => '',
+                  'collapsing' => 'default',
+                  'shadow' => '',
+                  'mode' => '',
+                  'level' => 0 ), 
+                $data['atts']);
       $idNum = $data['idNum'];
       
       if($atts['defcaption'] == 'true') {
@@ -291,36 +318,7 @@ if(!class_exists('StbBlock')) {
       $cntEnd = '</div>';
       
       if (!is_null($atts) && is_array($atts)) {
-        $block = $this->extendedStyleLogic(
-          shortcode_atts( array( 
-              'id' => $id, 
-              'caption' => $caption,
-              'defcaption' => '', 
-              'color' => '', 
-              'ccolor' => '', 
-              'bcolor' => '', 
-              'bgcolor' => '',
-              'bgcolorto' => '', 
-              'cbgcolor' => '',
-              'cbgcolorto' => '',
-              'bwidth' => '', 
-              'image' => '', 
-              'big' => '',
-              'float' => 'false',
-              'align' => 'left',
-              'width' => '200',
-              'collapsed' => '',
-              'mtop' => '',
-              'mleft' => '',
-              'mbottom' => '',
-              'mright' => '',
-              'direction' => '',
-              'collapsing' => 'default',
-              'shadow' => '',
-              'mode' => '',
-              'level' => 0 ), 
-             $atts),
-        $idNum);
+        $block = $this->extendedStyleLogic($atts, $idNum);
       } else return do_shortcode($content);
       if($block['mode'] == 'js') {
         if($id == 'grey')

@@ -59,7 +59,7 @@ if (!class_exists("SpecialTextBoxes")) {
     public $globalMode = '';
     
     public function __construct() {
-      define('STB_VERSION', '4.1.69');
+      define('STB_VERSION', '4.2.70');
       define('STB_DB_VERSION', '1.0');
       define('STB_DIR', basename(dirname(__FILE__)));
       define('STB_DOMAIN', 'wp-special-textboxes');
@@ -270,8 +270,8 @@ if (!class_exists("SpecialTextBoxes")) {
       wp_enqueue_script('jquery');
       wp_enqueue_script('jquery-effects-core');
       wp_enqueue_script('jquery-effects-blind');
-      if($this->globalMode != 'css') wp_enqueue_script('stbJS', STB_URL.'js/jquery.stb.min.js', array('jquery'), STB_VERSION);
-      wp_enqueue_script('wstbLayout', STB_URL.'js/wstb.min.js', array('jquery'), STB_VERSION, true);
+      if($this->globalMode != 'css') wp_enqueue_script('stbJS', STB_URL.'js/jquery.stb.js', array('jquery'), STB_VERSION);
+      wp_enqueue_script('wstbLayout', STB_URL.'js/wstb.js', array('jquery'), STB_VERSION, true);
       if($this->cmsVer === 'high') wp_localize_script('wstbLayout', 'stbUserOptions', $options);
       else wp_localize_script('wstbLayout', 'stbUserOptions', array('l10n_print_after' => 'stbUserOptions = ' . json_encode($options) . ';'));
     }
