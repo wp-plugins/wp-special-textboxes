@@ -14,8 +14,8 @@
 					
 				ed.windowManager.open({
 					file : url + '/dialog.php',
-					width : 450 + parseInt(ed.getLang('wstb.delta_width', 0)),
-					height : 230 + parseInt(ed.getLang('wstb.delta_height', 0)),
+					width : 520 + parseInt(ed.getLang('wstb.delta_width', 0)),
+					height : 475 + parseInt(ed.getLang('wstb.delta_height', 0)),
 					inline : 1
 				}, {
 					plugin_url : url 
@@ -40,9 +40,9 @@
 			return {
 					longname  : 'Special Text Boxes',
 					author 	  : 'minimus',
-					authorurl : 'http://blogovod.co.cc',
-					infourl   : 'http://blogovod.co.cc',
-					version   : "3.1.29"
+					authorurl : 'http://blogcoding.ru',
+					infourl   : 'http://www.simplelib.com',
+					version   : "4.2.70"
 			};
 		}
 	});
