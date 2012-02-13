@@ -13,6 +13,7 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       add_action('init', array(&$this, 'addButtons'));
       
       $this->updateDB();
+      if(!file_exists(STB_DIR.'css/wp-special-textboxes.css')) self::writeCSS('file');
     }
     
     public function updateDB() {
@@ -281,49 +282,49 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
     
     public function adminEditorScripts() {
       $jsOptions = array(
-        caption => array(
-          text => '',
-          fontFamily => $this->settings['js_caption_fontFamily'],
-          fontSize => intval($this->settings['js_caption_fontSize']),
-          collapsed => ($this->settings['collapsed'] == 'true'),
-          collapsing => ($this->settings['collapsing'] == 'true'),
-          imgMinus => $this->settings['js_imgMinus'],
-          imgPlus => $this->settings['js_imgPlus'],
-          duration => intval($this->settings['js_duration'])
+        'caption' => array(
+          'text' => '',
+          'fontFamily' => $this->settings['js_caption_fontFamily'],
+          'fontSize' => intval($this->settings['js_caption_fontSize']),
+          'collapsed' => ($this->settings['collapsed'] == 'true'),
+          'collapsing' => ($this->settings['collapsing'] == 'true'),
+          'imgMinus' => $this->settings['js_imgMinus'],
+          'imgPlus' => $this->settings['js_imgPlus'],
+          'duration' => intval($this->settings['js_duration'])
         ),
-        imgX => intval($this->settings['js_imgX']),
-        imgY => intval($this->settings['js_imgY']),
-        radius => intval($this->settings['js_radius']),
-        direction => $this->settings['langDirect'],
-        mtop => intval($this->settings['top_margin']),
-        mright => intval($this->settings['right_margin']),
-        mbottom => intval($this->settings['bottom_margin']),
-        mleft => intval($this->settings['left_margin']),
-        shadow => array(
-          enabled => ($this->settings['js_shadow_enabled'] == 'true'),
-          offsetX => intval($this->settings['js_shadow_offsetX']),
-          offsetY => intval($this->settings['js_shadow_offsetY']),
-          blur => intval($this->settings['js_shadow_blur']),
-          alpha => floatval($this->settings['js_shadow_alpha']),
-          color => '#'.$this->settings['js_shadow_color']
+        'imgX' => intval($this->settings['js_imgX']),
+        'imgY' => intval($this->settings['js_imgY']),
+        'radius' => intval($this->settings['js_radius']),
+        'direction' => $this->settings['langDirect'],
+        'mtop' => intval($this->settings['top_margin']),
+        'mright' => intval($this->settings['right_margin']),
+        'mbottom' => intval($this->settings['bottom_margin']),
+        'mleft' => intval($this->settings['left_margin']),
+        'shadow' => array(
+          'enabled' => ($this->settings['js_shadow_enabled'] == 'true'),
+          'offsetX' => intval($this->settings['js_shadow_offsetX']),
+          'offsetY' => intval($this->settings['js_shadow_offsetY']),
+          'blur' => intval($this->settings['js_shadow_blur']),
+          'alpha' => floatval($this->settings['js_shadow_alpha']),
+          'color' => '#'.$this->settings['js_shadow_color']
         ),
-        textShadow => array(
-          enabled => ($this->settings['js_textShadow_enabled'] == 'true'),
-          offsetX => intval($this->settings['js_textShadow_offsetX']),
-          offsetY => intval($this->settings['js_textShadow_offsetY']),
-          blur => intval($this->settings['js_textShadow_blur']),
-          alpha => 0.15,
-          color => '#'.$this->settings['js_textShadow_color']
+        'textShadow' => array(
+          'enabled' => ($this->settings['js_textShadow_enabled'] == 'true'),
+          'offsetX' => intval($this->settings['js_textShadow_offsetX']),
+          'offsetY' => intval($this->settings['js_textShadow_offsetY']),
+          'blur' => intval($this->settings['js_textShadow_blur']),
+          'alpha' => 0.15,
+          'color' => '#'.$this->settings['js_textShadow_color']
         )
       );
       
       $cssOptions = array(
-        roundedCorners => ($this->settings['rounded_corners'] == 'true'),
-        mbottom => intval($this->settings['bottom_margin']),
-        imgHide => STB_URL.'images/hide.png',
-        imgShow => STB_URL.'images/show.png',
-        strHide => __('Hide', STB_DOMAIN),
-        strShow => __('Show', STB_DOMAIN)
+        'roundedCorners' => ($this->settings['rounded_corners'] == 'true'),
+        'mbottom' => intval($this->settings['bottom_margin']),
+        'imgHide' => STB_URL.'images/hide.png',
+        'imgShow' => STB_URL.'images/show.png',
+        'strHide' => __('Hide', STB_DOMAIN),
+        'strShow' => __('Show', STB_DOMAIN)
       );
       
       $options = array('jsOptions' => $jsOptions, 'cssOptions' => $cssOptions);
@@ -365,12 +366,12 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
     
     public function regAdminPage() {
       if (function_exists('add_options_page')) {
-        $menu_page = add_menu_page(__('Special Text Boxes', STB_DOMAIN), __('Special Text Boxes', STB_DOMAIN), 8, 'stb-settings', array(&$this, 'stbAdminPage'), STB_URL.'images/stb-icon.png');
-        $plugin_page = add_submenu_page('stb-settings', __('STB Settings', STB_DOMAIN), __('Settings', STB_DOMAIN), 8, 'stb-settings', array(&$this, 'stbAdminPage'));
+        $menu_page = add_menu_page(__('Special Text Boxes', STB_DOMAIN), __('Special Text Boxes', STB_DOMAIN), 'manage_options', 'stb-settings', array(&$this, 'stbAdminPage'), STB_URL.'images/stb-icon.png');
+        $plugin_page = add_submenu_page('stb-settings', __('STB Settings', STB_DOMAIN), __('Settings', STB_DOMAIN), 'manage_options', 'stb-settings', array(&$this, 'stbAdminPage'));
         add_action('admin_print_styles-'.$plugin_page, array(&$this, 'addAdminHeaderCSS'));
         add_action('admin_print_scripts-'.$plugin_page, array(&$this, 'adminHeaderScripts'));
-        $styles_page = add_submenu_page('stb-settings', __('STB Styles', STB_DOMAIN), __('Styles', STB_DOMAIN), 8, 'stb-styles', array(&$this, 'stbStylesPage'));
-        $editor_page = add_submenu_page('stb-settings', __('STB Style Editor', STB_DOMAIN), __('New Style', STB_DOMAIN), 8, 'stb-editor', array(&$this, 'stbEditorPage'));
+        $styles_page = add_submenu_page('stb-settings', __('STB Styles', STB_DOMAIN), __('Styles', STB_DOMAIN), 'manage_options', 'stb-styles', array(&$this, 'stbStylesPage'));
+        $editor_page = add_submenu_page('stb-settings', __('STB Style Editor', STB_DOMAIN), __('New Style', STB_DOMAIN), 'manage_options', 'stb-editor', array(&$this, 'stbEditorPage'));
         add_action('admin_print_styles-'.$editor_page, array(&$this, 'addAdminEditorCSS'));
         add_action('admin_print_scripts-'.$editor_page, array(&$this, 'adminEditorScripts'));
       }
@@ -392,6 +393,7 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       add_settings_section('jsTextShadowSection', __('Text Shadow Settings', STB_DOMAIN), array(&$this, 'drawJsTextShadowSection'), 'stb-settings');
       add_settings_section('cssSection', __('Basic Settings', STB_DOMAIN), array(&$this, 'drawCssSection'), 'stb-settings');
       add_settings_section('cssXSection', __('Extended Settings', STB_DOMAIN), array(&$this, 'drawCssXSection'), 'stb-settings');
+      add_settings_section('cssSysSection', __('System Settings', STB_DOMAIN), array(&$this, 'drawSysSection'), 'stb-settings');
       
       add_settings_field('mode', __('Define Drawing Mode', STB_DOMAIN), array(&$this, 'drawRadioOption'), 'stb-settings', 'modeSection', array('description' => __('Select Drawing Mode', STB_DOMAIN).':'.$modeHelp, 'options' => array('css' => __('CSS Mode', STB_DOMAIN), 'js' => __('Javascript Mode', STB_DOMAIN), 'mix' => __('Mixed Mode', STB_DOMAIN))));
       
@@ -438,6 +440,8 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       add_settings_field('rounded_corners', __("Allow rounded corners for Special Text Boxes?", STB_DOMAIN), array(&$this, 'drawRadioOption'), 'stb-settings', 'cssXSection', array('description' => __('Selecting "No" will disable Special Text Boxes rounded corners.', STB_DOMAIN), 'options' => array( 'true' => __('Yes', STB_DOMAIN), 'false' => __('No', STB_DOMAIN))));
       add_settings_field('box_shadow', __("Allow box shadow for Special Text Boxes?", STB_DOMAIN), array(&$this, 'drawRadioOption'), 'stb-settings', 'cssXSection', array('description' => __('Selecting "No" will disable Special Text Boxes shadow.', STB_DOMAIN), 'options' => array( 'true' => __('Yes', STB_DOMAIN), 'false' => __('No', STB_DOMAIN))));
       add_settings_field('text_shadow', __('Allow text shadow for Special Text Boxes?', STB_DOMAIN), array(&$this, 'drawRadioOption'), 'stb-settings', 'cssXSection', array('description' => __('Selecting "No" will disable Special Text Boxes text shadow.', STB_DOMAIN), 'options' => array( 'true' => __('Yes', STB_DOMAIN), 'false' => __('No', STB_DOMAIN))));
+
+      add_settings_field('css_loading', __('Define mode of CSS loading', STB_DOMAIN), array(&$this, 'drawRadioOption'), 'stb-settings', 'cssSysSection', array('description' => __('Static - will be loaded static styles sheet file. More faster but needs full read/write access to file. Dynamic - will be loaded dynamic (PHP) styles sheet.', STB_DOMAIN), 'options' => array('static' => __('Static', STB_DOMAIN), 'dynamic' => __('Dynamic', STB_DOMAIN))));
       
       add_settings_field('cb_color', __("Define font color for Custom Special Text Box", STB_DOMAIN), array(&$this, 'drawTextOption'), 'stb-settings', 'editorSection', array('optionName' => 'cb_color', 'description' => __("This is a font color of Custom Special Text Box (Six Hex Digits).", STB_DOMAIN)));
       add_settings_field('cb_caption_color', __("Define caption font color for Custom Special Text Box", STB_DOMAIN), array(&$this, 'drawTextOption'), 'stb-settings', 'editorSection', array('optionName' => 'cb_caption_color', 'description' => __("This is a font color of Custom Special Text Box caption (Six Hex Digits).", STB_DOMAIN)));
@@ -491,7 +495,7 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
           case 'jsTextShadowSection':
             echo "</div>";
             break;
-          case 'cssXSection':
+          case 'cssSysSection':
             echo "</div>";
             break;
           default: break;
@@ -561,6 +565,10 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
     public function drawCssXSection() {
       echo '<p>'.__('Parameters below add elements of CSS3 standard to Style Sheet. Not all browsers can interpret this elements properly, but including this elements to HTML page not crash browser.', STB_DOMAIN).'</p>';
     }
+
+    public function drawSysSection() {
+      echo '';
+    }
     
     public function drawSelectOption( $optionName, $args ) {
       $options = $args['options'];
@@ -611,6 +619,210 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
           value="1" />
       <?php
     }
+
+    public function writeCSS($output) {
+      $options = $this->settings;
+      $stbStyles = $this->styles;
+      //$stbClasses = $this->classes;
+
+      $cssFile = STB_DIR.'css/wp-special-textboxes.css';
+      $content = ".stb-container {margin: 0px auto; padding: 0px; position: static;}\n";
+      $content .= ".stb-tool {";
+      if($options['langDirect'] === 'ltr') {
+        $content .= "float: right; ";
+      }
+      else {
+        $content .=  "float: left; ";
+      }
+      $content .=	"padding: 0px; margin: 0px auto;}\n";
+      foreach($stbStyles as $val) {
+        $content .= ".stb-".$val['slug']."_box {\n";
+        if($options['fontSize'] !== '0') { 
+          $content .= "font-size: ".$options['fontSize']."px;\n ";
+        }
+        $content .= "margin-top: ".$options['top_margin']."px;\n";
+        $content .= "margin-right: ".$options['right_margin']."px;\n";
+        $content .= "margin-bottom: ".$options['bottom_margin']."px;\n";
+        $content .= "margin-left: ".$options['left_margin']."px;\n";
+        if ($options['showImg'] === 'true') {
+          if($options['langDirect'] === 'ltr') {
+            $content .= "padding-left: ".(($options['bigImg'] === 'true') ? '50' : '25' )."px;\n";
+            $content .= "padding-right: 5px;\n";
+            $content .= "background-position:top left;\n";
+            $content .= "text-align: left;\n";
+          }
+          else {
+            $content .= "padding-right: ".(($options['bigImg'] === 'true') ? '50' : '25' )."px;\n";
+            $content .= "padding-left: 5px;\n";
+            $content .= "background-position:top right;\n";
+            $content .= "text-align: right;\n";
+          }
+          $content .= "min-height: ".(($options['bigImg'] === 'true') ? '40' : '20')."px;\n";
+        }
+        else {
+          $content .= "padding-left: 5px;\n";
+          $content .= "padding-right: 5px;\n";
+        }
+        $content .= "background-repeat: no-repeat;\n";
+        $content .= "padding-top: 5px;\n";
+        $content .= "padding-bottom: 5px;\n";
+        /* Class Dependent Parameters */
+        $content .= "background-color: #".$val['cssStyle']['bgColor'].";\n";
+        if ($options['showImg'] === 'true') {
+          $content .= "background-image: url(".($options['bigImg'] === 'true') ? $val['cssStyle']['bigImg'] : $val['cssStyle']['image'].");\n";
+        }
+        $content .= "border: 1px ".$options['border_style'].' #'.$val['cssStyle']['borderColor'].";\n";
+        $content .= "color: #".$val['cssStyle']['color'].";\n";
+        if ($options['rounded_corners'] == "true") {
+          $content .= "-moz-border-radius: 5px;\n";
+          $content .= "-webkit-border-radius: 5px;\n";
+          $content .= "border-radius: 5px;\n";
+        }
+        if ( $options['box_shadow'] == "true" ) {
+          $content .= "-webkit-box-shadow: 3px 3px 3px #888;\n";
+          $content .= "-moz-box-shadow: 3px 3px 3px #888;\n";
+          $content .= "box-shadow: 3px 3px 3px #888;\n";
+        }
+        if ($options['text_shadow'] == "true") {
+          $content .= "text-shadow: 1px 1px 2px #888;\n";
+        }
+        $content .= "}\n";
+      
+        $content .= ".stb-".$val['slug']."-caption_box {\n";
+        $content .= "border-top-style: ".$options['border_style'].";\n";
+        $content .= "border-right-style: ".$options['border_style'].";\n";
+        $content .= "border-left-style: ".$options['border_style'].";\n";
+        $content .= "margin-top: ".$options['top_margin']."px;\n";
+        $content .= "margin-right: ".$options['right_margin']."px;\n";
+        $content .= "margin-bottom: 0px;\n";
+        $content .= "margin-left: ".$options['left_margin']."px;\n";
+        $content .= "font-weight: bold;\n";
+        $content .= "background-repeat: no-repeat;\n";
+        $content .= "-webkit-background-origin: border;\n";
+        $content .= "-webkit-background-clip: border;\n";
+        $content .= "-moz-background-origin: border;\n";
+        $content .= "-moz-background-clip: border;\n";
+        $content .= "background-origin: border;\n";
+        $content .= "background-clip: border;\n";
+        if($options['langDirect'] === 'ltr') {
+          $content .= "padding-left: ".(($options['showImg'] === 'true') ? '25' : '5' )."px;\n";
+          $content .= "padding-right: 5px;\n";
+          $content .= "background-position: left;\n";
+          $content .= "text-align: left;\n";
+        }
+        else {
+          $content .= "padding-right: ".(($options['showImg'] === 'true') ? '25' : '5' )."px;\n";
+          $content .= "padding-left: 5px;\n";
+          $content .= "background-position: right;\n";
+          $content .= "text-align: right;\n";
+        }
+        $content .= "padding-top: 3px;\n";
+        $content .= "padding-bottom: 3px;\n";
+        $content .= "border-top-width: 1px;\n";
+        $content .= "border-right-width: 1px;\n";
+        $content .= "border-bottom-width: 0px;\n";
+        $content .= "border-left-width: 1px;\n";
+        $content .= "border-left-style: solid;\n";
+        $content .= "min-height:20px;\n";
+        if($options['captionFontSize'] !== '0') {
+          $content .= "font-size: ".$options['captionFontSize']."px;\n";
+        }
+        /* Class Dependent Parameters */
+        if ($options['showImg'] === 'true') {
+          $content .= "background-image: url(".$val['cssStyle']['image'].");\n";
+        }
+        $content .= "background-color: #".$val['cssStyle']['captionBgColor'].";\n";
+        $content .= "color: #".$val['cssStyle']['captionColor'].";\n";
+        $content .= "border-top-color: #".$val['cssStyle']['borderColor'].";\n";
+        $content .= "border-right-color: #".$val['cssStyle']['borderColor'].";\n";
+        $content .= "border-bottom-color: #".$val['cssStyle']['borderColor'].";\n";
+        $content .= "border-left-color: #".$val['cssStyle']['borderColor'].";\n";
+        if ($options['rounded_corners'] == "true") {
+          $content .= "-webkit-border-top-left-radius: 5px;\n";
+          $content .= "-webkit-border-top-right-radius: 5px;\n";
+          $content .= "-moz-border-radius-topleft: 5px;\n";
+          $content .= "-moz-border-radius-topright: 5px;\n";
+          $content .= "border-top-left-radius: 5px;\n";
+          $content .= "border-top-right-radius: 5px;\n";
+        }
+        if ( $options['box_shadow'] == "true" ) {
+          $content .= "-webkit-box-shadow: 3px 3px 3px #888;\n";
+          $content .= "-moz-box-shadow: 3px 3px 3px #888;\n";
+          $content .= "box-shadow: 3px 3px 3px #888;\n";
+        }
+        if ($options['text_shadow'] == "true") {
+          $content .= "text-shadow: 1px 1px 2px #888;\n";
+        }
+        $content .= "}\n";
+      
+        $content .= ".stb-".$val['slug']."-body_box {\n";
+        $content .= "padding: 5px;\n";
+        $content .= "border-top-width: 0px;\n";
+        $content .= "border-right-width: 1px;\n";
+        $content .= "border-bottom-width: 1px;\n";
+        $content .= "border-left-width: 1px;\n";
+        if($options['fontSize'] !== '0') {
+          $content .= "font-size: ".$options['fontSize']."px;\n";
+        }
+        if($options['langDirect'] === 'ltr') {
+          $content .= "text-align: left;\n";
+        }
+        else {
+          $content .= "text-align: right;\n";
+        }
+        $content .= "border-left-style: ".$options['border_style'].";\n";
+        $content .= "border-right-style: ".$options['border_style'].";\n";
+        $content .= "border-bottom-style: ".$options['border_style'].";\n";
+        $content .= "margin-top: 0px;  margin-right: ".$options['right_margin']."px;\n";
+        $content .= "margin-bottom: ".$options['bottom_margin']."px;\n";
+        $content .= "margin-left: ".$options['left_margin']."px;\n";
+        /* Class Dependent Parameters */
+        $content .= "background-color: #".$val['cssStyle']['bgColor'].";\n";
+        $content .= "color: #".$val['cssStyle']['color'].";";
+        $content .= "border-top-color: #".$val['cssStyle']['borderColor'].";\n";
+        $content .= "border-right-color: #".$val['cssStyle']['borderColor'].";\n";
+        $content .= "border-bottom-color: #".$val['cssStyle']['borderColor'].";\n";
+        $content .= "border-left-color: #".$val['cssStyle']['borderColor'].";\n";
+        if ($options['rounded_corners'] == "true") {
+          $content .= "-webkit-border-bottom-left-radius: 5px;\n";
+          $content .= "-webkit-border-bottom-right-radius: 5px;\n";
+          $content .= "-moz-border-radius-bottomleft: 5px;\n";
+          $content .= "-moz-border-radius-bottomright: 5px;\n";
+          $content .= "border-bottom-left-radius: 5px;\n";
+          $content .= "border-bottom-right-radius: 5px;\n";
+        }
+        if ( $options['box_shadow'] == "true" ) {
+          $content .= "-webkit-box-shadow: 3px 3px 3px #888;\n";
+          $content .= "-moz-box-shadow: 3px 3px 3px #888;\n";
+          $content .= "box-shadow: 3px 3px 3px #888;\n";
+        }
+        if ($options['text_shadow'] == "true") $content .= "text-shadow: 1px 1px 2px #888;\n";
+        $content .= "}";
+      }
+
+      if($output === 'file') {
+        if(is_writable($cssFile) || !file_exists($cssFile)) {
+          if($handle = fopen($cssFile, 'w')) {
+            fwrite($handle, $content);
+            fclose($handle);
+            $result['action'] = true;
+          }
+          else {
+            $result['action'] = false;
+            $result['error'] = __("Can't open CSS file.", STB_DOMAIN);
+          }
+        }
+        else {
+          $result['action'] = false;
+          $result['error'] = __("CSS file is not writable");
+        }
+      }
+      else {
+        echo $content;
+        $result['action'] = true;
+      }
+      return $result;
+    }
     
     public function stbAdminPage() {
       global $wpdb;
@@ -621,6 +833,7 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       $mem = ini_get('memory_limit');
       $version = $this->getWpVersion();
       $wpVersion = $version['str'];
+      $updated = 'false';
       ?>
       <div class="wrap">
         <div class="icon32" style="background: url('<?php echo STB_URL.'images/settings.png' ?>') no-repeat transparent; "><br/></div>
@@ -631,6 +844,12 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
         if($updated === 'true') {
           //$this->getCounters();
           //$this->settings = parent::getOptions();
+          $outFile = self::writeCSS('file');
+          if(!$outFile['action']) {
+            ?>
+<div class="error"><p><strong><?php echo $outFile['error'] ?></strong></p></div>
+            <?php
+          }
         }
         ?>
         <div class="clear"></div>
@@ -638,7 +857,7 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
           <div id='poststuff' class='metabox-holder has-right-sidebar'>
             <div id="side-info-column" class="inner-sidebar" style='width: 281px !important;'>
               <div class='postbox opened'>
-                <h3><?php _e('System Info', SAM_DOMAIN) ?></h3>
+                <h3><?php _e('System Info', STB_DOMAIN) ?></h3>
                 <div class="inside">
                   <p>
                     <?php 
@@ -975,6 +1194,13 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
         ?>
 <div class="updated"><p><strong><?php echo __("Style Data Updated.", STB_DOMAIN).' '.$xUpdateString;?></strong></p></div>
         <?php
+        $this->styles = parent::getStyles();
+        $outFile = self::writeCSS('file');
+        if(!$outFile['action']) {
+          ?>
+<div class="error"><p><strong><?php echo $outFile['error'] ?></strong></p></div>
+          <?php
+        }
       }
       
       $sSql = "SELECT 

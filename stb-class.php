@@ -40,6 +40,7 @@ if (!class_exists("SpecialTextBoxes")) {
       'js_textShadow_color' => '000000',
       'deleteOptions' => 0,
       'deleteDB' => 0,
+      'css_loading' => 'dynamic',
       
       'cb_color' => '000000',
       'cb_caption_color' => 'ffffff',
@@ -59,15 +60,15 @@ if (!class_exists("SpecialTextBoxes")) {
     public $globalMode = '';
     
     public function __construct() {
-      define('STB_VERSION', '4.2.70');
+      define('STB_VERSION', '4.3.72');
       define('STB_DB_VERSION', '1.0');
-      define('STB_DIR', basename(dirname(__FILE__)));
+      define('STB_DIR', plugin_dir_path(__FILE__));
       define('STB_DOMAIN', 'wp-special-textboxes');
       define('STB_OPTIONS', 'SpecialTextBoxesAdminOptions');
       define('STB_URL', WP_PLUGIN_URL . '/' . str_replace( basename( __FILE__), "", plugin_basename( __FILE__ ) ));
       
       if (function_exists( 'load_plugin_textdomain' ))
-        load_plugin_textdomain( STB_DOMAIN, false, STB_DIR );
+        load_plugin_textdomain( STB_DOMAIN, false, dirname( plugin_basename( __FILE__ ) ) );
       
      
       add_action('wp_head', array(&$this, 'addHeaderCSS'), 1);
@@ -197,55 +198,58 @@ if (!class_exists("SpecialTextBoxes")) {
     }
     
     public function addHeaderCSS() {
-      if($this->globalMode != 'js')
-        wp_enqueue_style('stbCSS', STB_URL.'css/wp-special-textboxes.css.php', false, STB_VERSION);
+      if($this->globalMode != 'js') {
+        if($this->settings['css_loading'] === 'dynamic')
+          wp_enqueue_style('stbCSS', STB_URL.'css/wp-special-textboxes.css.php', false, STB_VERSION);
+        else wp_enqueue_style('stbCSS', STB_URL.'css/wp-special-textboxes.css', false, STB_VERSION);
+      }
     }
     
     public function headerScripts() {
       $jsOptions = array(
-        caption => array(
-          text => '',
-          fontFamily => $this->settings['js_caption_fontFamily'],
-          fontSize => intval($this->settings['js_caption_fontSize']),
-          collapsed => ($this->settings['collapsed'] == 'true'),
-          collapsing => ($this->settings['collapsing'] == 'true'),
-          imgMinus => $this->settings['js_imgMinus'],
-          imgPlus => $this->settings['js_imgPlus'],
-          duration => intval($this->settings['js_duration'])
+        'caption' => array(
+          'text' => '',
+          'fontFamily' => $this->settings['js_caption_fontFamily'],
+          'fontSize' => intval($this->settings['js_caption_fontSize']),
+          'collapsed' => ($this->settings['collapsed'] == 'true'),
+          'collapsing' => ($this->settings['collapsing'] == 'true'),
+          'imgMinus' => $this->settings['js_imgMinus'],
+          'imgPlus' => $this->settings['js_imgPlus'],
+          'duration' => intval($this->settings['js_duration'])
         ),
-        imgX => intval($this->settings['js_imgX']),
-        imgY => intval($this->settings['js_imgY']),
-        radius => intval($this->settings['js_radius']),
-        direction => $this->settings['langDirect'],
-        mtop => intval($this->settings['top_margin']),
-        mright => intval($this->settings['right_margin']),
-        mbottom => intval($this->settings['bottom_margin']),
-        mleft => intval($this->settings['left_margin']),
-        shadow => array(
-          enabled => ($this->settings['js_shadow_enabled'] == 'true'),
-          offsetX => intval($this->settings['js_shadow_offsetX']),
-          offsetY => intval($this->settings['js_shadow_offsetY']),
-          blur => intval($this->settings['js_shadow_blur']),
-          alpha => floatval($this->settings['js_shadow_alpha']),
-          color => '#'.$this->settings['js_shadow_color']
+        'imgX' => intval($this->settings['js_imgX']),
+        'imgY' => intval($this->settings['js_imgY']),
+        'radius' => intval($this->settings['js_radius']),
+        'direction' => $this->settings['langDirect'],
+        'mtop' => intval($this->settings['top_margin']),
+        'mright' => intval($this->settings['right_margin']),
+        'mbottom' => intval($this->settings['bottom_margin']),
+        'mleft' => intval($this->settings['left_margin']),
+        'shadow' => array(
+          'enabled' => ($this->settings['js_shadow_enabled'] == 'true'),
+          'offsetX' => intval($this->settings['js_shadow_offsetX']),
+          'offsetY' => intval($this->settings['js_shadow_offsetY']),
+          'blur' => intval($this->settings['js_shadow_blur']),
+          'alpha' => floatval($this->settings['js_shadow_alpha']),
+          'color' => '#'.$this->settings['js_shadow_color']
         ),
-        textShadow => array(
-          enabled => ($this->settings['js_textShadow_enabled'] == 'true'),
-          offsetX => intval($this->settings['js_textShadow_offsetX']),
-          offsetY => intval($this->settings['js_textShadow_offsetY']),
-          blur => intval($this->settings['js_textShadow_blur']),
-          alpha => 0.15,
-          color => '#'.$this->settings['js_textShadow_color']
+        'textShadow' => array(
+          'enabled' => ($this->settings['js_textShadow_enabled'] == 'true'),
+          'offsetX' => intval($this->settings['js_textShadow_offsetX']),
+          'offsetY' => intval($this->settings['js_textShadow_offsetY']),
+          'blur' => intval($this->settings['js_textShadow_blur']),
+          'alpha' => 0.15,
+          'color' => '#'.$this->settings['js_textShadow_color']
         )
       );
       
       $cssOptions = array(
-        roundedCorners => ($this->settings['rounded_corners'] == 'true'),
-        mbottom => intval($this->settings['bottom_margin']),
-        imgHide => STB_URL.'images/hide.png',
-        imgShow => STB_URL.'images/show.png',
-        strHide => __('Hide', STB_DOMAIN),
-        strShow => __('Show', STB_DOMAIN)
+        'roundedCorners' => ($this->settings['rounded_corners'] == 'true'),
+        'mbottom' => intval($this->settings['bottom_margin']),
+        'imgHide' => STB_URL.'images/hide.png',
+        'imgShow' => STB_URL.'images/show.png',
+        'strHide' => __('Hide', STB_DOMAIN),
+        'strShow' => __('Show', STB_DOMAIN)
       );
       
       switch( $this->globalMode ) { 
@@ -270,8 +274,8 @@ if (!class_exists("SpecialTextBoxes")) {
       wp_enqueue_script('jquery');
       wp_enqueue_script('jquery-effects-core');
       wp_enqueue_script('jquery-effects-blind');
-      if($this->globalMode != 'css') wp_enqueue_script('stbJS', STB_URL.'js/jquery.stb.js', array('jquery'), STB_VERSION);
-      wp_enqueue_script('wstbLayout', STB_URL.'js/wstb.js', array('jquery'), STB_VERSION, true);
+      if($this->globalMode != 'css') wp_enqueue_script('stbJS', STB_URL.'js/jquery.stb.min.js', array('jquery'), STB_VERSION);
+      wp_enqueue_script('wstbLayout', STB_URL.'js/wstb.min.js', array('jquery'), STB_VERSION, true);
       if($this->cmsVer === 'high') wp_localize_script('wstbLayout', 'stbUserOptions', $options);
       else wp_localize_script('wstbLayout', 'stbUserOptions', array('l10n_print_after' => 'stbUserOptions = ' . json_encode($options) . ';'));
     }
@@ -336,7 +340,7 @@ if (!class_exists('special_text') && class_exists('WP_Widget')) {
     }
     
     function getMode($val) {
-      if(!empty($val)) $mode = ($val == 'mix') ? 'js' : $sval;
+      if(!empty($val)) $mode = ($val == 'mix') ? 'js' : $val;
       if('css' == STB_DRAWING_MODE) $mode = 'css';
       return $mode;
     }

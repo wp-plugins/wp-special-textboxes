@@ -252,7 +252,7 @@ if(!class_exists('StbBlock')) {
             }
           }           
           if ( $atts['image'] !== '')
-            $styleCaption .= ( $image === 'null' ) ? "background-image: url(none); padding-".(($direction === 'ltr')?'left':'right').": 5px; " : "background-image: url({$atts['image']}); padding-".(($direction === 'ltr')?'left':'right').": 25px; ";
+            $styleCaption .= ( $atts['image'] === 'null' ) ? "background-image: url(none); padding-".(($direction === 'ltr')?'left':'right').": 5px; " : "background-image: url({$atts['image']}); padding-".(($direction === 'ltr')?'left':'right').": 25px; ";
           if (($atts['direction'] != '') && ($atts['direction'] != $settings['langDirect'])) {
             $styleCaption .= "padding-".(($direction === 'rtl')?'left':'right').": 5px; ";
             $styleCaption .= "padding-".(($direction === 'ltr')?'left':'right').": 25px; ";
