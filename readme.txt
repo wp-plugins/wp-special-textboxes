@@ -3,8 +3,8 @@ Contributors: minimus
 Donate link: http://www.simplelib.com/
 Tags: content, performance, text, code, php, widget
 Requires at least: 3.0
-Tested up to: 3.3.1
-Stable tag: 4.3.72
+Tested up to: 3.5
+Stable tag: 4.3.73
 
 Highlights any portion of text as text in the colored boxes.
 
@@ -28,6 +28,7 @@ Available languages:
 * German by [Renate](http://www.bhvnederland.nl/)
 * Czech by [Stanislav Čihák](http://www.abacomp.cz/)
 * Turkish by Serhat ESEN
+* Slovak by [Branco](http://webhostinggeeks.com/blog/)
 
 If you have created your own language pack, or have an update of an existing one, you can send **.po** and **.mo files** to me (minimus AT simplelib.com) so that I can bundle it into **Special Text Boxes**.
   
@@ -91,6 +92,8 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 
 == Changelog ==
 
+= 4.3.73 =
+* Language pack is updated. Slovak by Branco is added
 = 4.3.72 =
 * Static Style Sheet mode (CSS mode) is added
 * User Level is changed to Capability
@@ -193,6 +196,8 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 
 == Upgrade Notice ==
 
+= 4.3.73 =
+Language pack is updated. Slovak by Branco is added.
 = 4.3.72 =
 Static Style Sheet mode (CSS mode) is added.
 User Level is changed to Capability.

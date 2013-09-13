@@ -979,8 +979,8 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
         elseif($iaction === 'kill') $wpdb->query("DELETE FROM $sTable WHERE slug='$item'");
       }
       if($iaction === 'kill-em-all') $wpdb->query("DELETE FROM $sTable WHERE trash=true AND stype='custom'");
-      $trash_num = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $sTable WHERE trash = TRUE"));
-      $active_num = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $sTable WHERE trash = FALSE"));
+      $trash_num = $wpdb->get_var("SELECT COUNT(*) FROM $sTable WHERE trash = TRUE");
+      $active_num = $wpdb->get_var("SELECT COUNT(*) FROM $sTable WHERE trash = FALSE");
       if(is_null($active_num)) $active_num = 0;
       if(is_null($trash_num)) $trash_num = 0;
       $all_num = $trash_num + $active_num;
@@ -1060,7 +1060,7 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       if(!is_array($styles) || empty ($styles)) {
       ?>
       <tr class="no-items" valign="top">
-        <th class="colspanchange" colspan='4'><?php _e('There are no data ...', STB_DOMAIN).$pTable; ?></th>
+        <th class="colspanchange" colspan='4'><?php _e('There are no data ...', STB_DOMAIN).$sTable; ?></th>
       </tr>
         <?php } else {
           foreach($styles as $row) {            

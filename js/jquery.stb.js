@@ -606,7 +606,8 @@
             "margin-right": opts.mright + "px",
             "margin-bottom": opts.mbottom + "px",
             "margin-left": opts.mleft + "px",
-            position: 'relative'
+            position: 'relative',
+						"line-height" : "0.8em"
           });
           
           $(this).before(
