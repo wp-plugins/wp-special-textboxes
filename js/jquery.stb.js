@@ -1,8 +1,8 @@
 /**
  * @name Special Text Boxes
  * @author minimus
- * @copyright 2009 - 2011
- * @version 2.0.18
+ * @copyright 2009 - 2013
+ * @version 4.4.75
  */
 (function($) {
   var defaultThemes = {
@@ -247,11 +247,11 @@
       ctx.moveTo(i + ox, opts.radius + oy);
       ctx.lineTo(i + ox, height - opts.radius);
       ctx.quadraticCurveTo(i + ox, height - i, opts.radius + ox, height - i);
-      ctx.lineTo(width - opts.radius-1, height - i);
+      ctx.lineTo(width - opts.radius, height - i);
       ctx.quadraticCurveTo(width - i, height - i, width - i, height - opts.radius);
-      ctx.lineTo(width - i, opts.radius + oy-1);
+      ctx.lineTo(width - i, opts.radius + oy);
       ctx.quadraticCurveTo(width - i, i + oy, width - opts.radius, i + oy);
-      ctx.lineTo(opts.radius + ox+i+1, i + oy);
+      ctx.lineTo(opts.radius + ox+i, i + oy);
       ctx.quadraticCurveTo(i + ox, i + oy, i + ox, opts.radius + oy);
       ctx.closePath();
       ctx.fill();
@@ -300,9 +300,9 @@
         cctx.lineTo(i + ox, cHeight);
         cctx.lineTo(cWidth - i, cHeight);
       }
-      cctx.lineTo(cWidth - i, opts.radius + oy-1);
+      cctx.lineTo(cWidth - i, opts.radius + oy);
       cctx.quadraticCurveTo(cWidth - i, i + oy, cWidth - opts.radius, i + oy);
-      cctx.lineTo(opts.radius + ox+i+1, i + oy);
+      cctx.lineTo(opts.radius + ox+i, i + oy);
       cctx.quadraticCurveTo(i + ox, i + oy, i + ox, opts.radius + oy);
       cctx.closePath();
       cctx.fill();
@@ -323,7 +323,7 @@
       ctx.moveTo(i+ox, oy);
       ctx.lineTo(i + ox, height - opts.radius);
       ctx.quadraticCurveTo(i + ox, height - i, opts.radius + ox, height - i);
-      ctx.lineTo(width - opts.radius-1, height - i);
+      ctx.lineTo(width - opts.radius, height - i);
       ctx.quadraticCurveTo(width - i, height - i, width - i, height - opts.radius);
       ctx.lineTo(width - i, oy);
       ctx.lineTo(ox+i, oy);
@@ -555,8 +555,8 @@
         var opts = {}, eop,        
         eid = $(this).attr('id'),
         fop = $(this).data('stb'),
-        caption = null,
-        lineHeight = $(this).css('line-height');
+        caption = null;
+        //lineHeight = $(this).css('line-height');
         
         try { 
           eop = typeof fop === 'string' ? (new Function("return " + fop))() : fop;
@@ -566,30 +566,44 @@
         catch(e) { 
           log('Unable to parse HTML5 attribute data: ' + fop); 
         }
+
+        var lineHeight = opts.lineHeight;
         
         var bodyStyle = {
           direction: opts.direction,
           'unicode-bidi': 'embed',
           color: opts.fontColor,
+          position: 'absolute',
+          top: '0px',
+          'z-index': 4,
           "padding-right": (opts.image == null) ? '5px' : ((opts.direction == "ltr") ? "5px" : "50px"),
           "padding-bottom": "5px",
           "padding-top": "5px",
           "padding-left": (opts.image == null) ? '5px' : ((opts.direction == "ltr") ? "50px" : "5px"),
           "min-height": "40px",
           "margin-top": opts.mtop + "px",
-          "margin-right": opts.mright + "px",
+          "margin-right": opts.mright + opts.shadow.offsetX + "px",
           "margin-bottom": opts.mbottom + "px",
           "margin-left": opts.mleft + "px",
+          "box-sizing": "content-box",
+          'line-height': lineHeight,
           "text-shadow": (opts.textShadow.enabled) ? opts.textShadow.color + ' ' + opts.textShadow.offsetX + 'px ' + opts.textShadow.offsetY + 'px ' + opts.textShadow.blur + 'px' : 'none'
         },
         bodyCStyle = {
           direction: opts.direction,
           'unicode-bidi': 'embed',
+          position: 'absolute',
+          top: '30px',
           color: opts.fontColor,
           "padding": "5px 5px 5px 5px",
           "min-height": "5px",
-          "margin": "0px 10px 10px 10px",
-          'line-height': lineHeight + ' !important',
+          "margin-top": "0px",
+          "margin-right": opts.mright + opts.shadow.offsetX + "px",
+          "margin-bottom": opts.mbottom + "px",
+          "margin-left": opts.mleft + "px",
+          "box-sizing": "content-box",
+          "z-index": 4,
+          'line-height': lineHeight,
           "text-shadow": (opts.textShadow.enabled) ? opts.textShadow.color + ' ' + opts.textShadow.offsetX + 'px ' + opts.textShadow.offsetY + 'px ' + opts.textShadow.blur + 'px' : 'none'
         };
         
@@ -607,16 +621,15 @@
             "margin-bottom": opts.mbottom + "px",
             "margin-left": opts.mleft + "px",
             position: 'relative',
-						"line-height" : "0.8em"
+            "box-sizing": "content-box"
           });
           
-          $(this).before(
-            '<canvas id="'+eid+'_canvas" class="stb-canvas" width="0" height="0" ></canvas>'
-          ).css({
-            "position": "absolute",
+          $(this).before('<canvas id="'+eid+'_canvas" class="stb-canvas" width="0" height="0" ></canvas>');
+          $("#"+eid+"_canvas").css({
+            "position": "relative",
             "top": "0px",
             "left": "0px",
-            "z-index": 3
+            "box-sizing": "content-box"
           });
           
           var canvas = $('#'+eid+'_canvas').get(0),
@@ -629,7 +642,7 @@
             stbItems.length
           );          
         } else {
-          $(this).css(bodyCStyle).wrap('<div id="'+eid+'_container" class="stb-container" style="margin: 10px"></div>');
+          $(this).css(bodyCStyle).wrap('<div id="'+eid+'_container" class="stb-container"></div>');
           $('#'+eid+'_container').css({
             direction: opts.direction,
             "margin-top": opts.mtop + "px",
@@ -637,26 +650,29 @@
             "margin-bottom": opts.mbottom + "px",
             "margin-left": opts.mleft + "px",
             position: 'relative',
-            'line-height': '10px !important'
+            "box-sizing": "content-box"
           });
           
-          $(this).before(
-            '<canvas id="'+eid+'_ccanvas" class="stb-ccanvas" width="0" height="0" ></canvas>'
-          ).before(
-            '<canvas id="'+eid+'_canvas" class="stb-canvas" width="0" height="0" ></canvas>'
-          ).css({
-            "position": "absolute",
-            "top": "30px",
-            "left": "0px",
-            "z-index": 3
+          $(this).before('<canvas id="'+eid+'_ccanvas" class="stb-ccanvas" width="0" height="0" ></canvas>');
+          $("#"+eid+"_ccanvas").css({
+            "box-sizing": "content-box"
           });
+          $(this).before('<canvas id="'+eid+'_canvas" class="stb-canvas" width="0" height="0" ></canvas>');
+          $("#"+eid+"_canvas").css({
+            "position": "relative",
+            //"top": -(opts.shadow.offsetY + 1), //"0px",
+            "left": "0px",
+            "box-sizing": "content-box"
+          });
+
+
           var dir = $('body').css('direction');
           if(dir != opts.direction)
             $('#'+eid+'_ccanvas').attr('dir', opts.direction).css({'unicode-bidi': 'bidi-override'});
           if(opts.safe) {
             $('#'+eid+'_canvas').css({
-              "position": "absolute",
-              "top": "30px",
+              "position": "relative",
+              "top": "0px",
               "left": "0px"
             });
           }

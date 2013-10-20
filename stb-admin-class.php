@@ -256,17 +256,30 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
     public function addAdminHeaderCSS() {
       wp_enqueue_style('stbAdminCSS', STB_URL.'css/stb-admin.css', false, STB_VERSION);
       wp_enqueue_style('stbCSS', STB_URL.'css/wp-special-textboxes.css.php', false, STB_VERSION);
-      wp_enqueue_style('ColorPickerCSS', STB_URL.'css/colorpicker.css');
+      //wp_enqueue_style('ColorPickerCSS', STB_URL.'css/colorpicker.css');
       wp_enqueue_style('jquery-ui-tabs', STB_URL.'css/jquery-ui-1.8.16.custom.css', false, '1.8.16');
+      wp_enqueue_style('smallColorPickerButtonsCSS', STB_URL.'css/color-buttons.min.css');
+      wp_enqueue_style('smallColorPickerCSS', STB_URL.'css/small-color-picker.min.css');
     }
     
     public function addAdminEditorCSS() {
       wp_enqueue_style('stbAdminCSS', STB_URL.'css/stb-edit.css', false, STB_VERSION);
       wp_enqueue_style('stbCSS', STB_URL.'css/wp-special-textboxes.css.php', false, STB_VERSION);
-      wp_enqueue_style('ColorPickerCSS', STB_URL.'css/colorpicker.css');
+      //wp_enqueue_style('ColorPickerCSS', STB_URL.'css/colorpicker.css');
+      wp_enqueue_style('smallColorPickerButtonsCSS', STB_URL.'css/color-buttons.min.css');
+      wp_enqueue_style('smallColorPickerCSS', STB_URL.'css/small-color-picker.min.css');
     }
     
     public function adminHeaderScripts() {
+      $options = array(
+        'texts' => array(
+          'ok' => __('OK', STB_DOMAIN),
+          'cancel' => __('Cancel', STB_DOMAIN),
+          'switchModeToNum' => __('Show numbers', STB_DOMAIN),
+          'switchModeToCol' => __('Show color wheel', STB_DOMAIN)
+        )
+      );
+
       if($this->cmsVer === 'low') {
         wp_register_script('jquery-effects-core', STB_URL.'js/jquery.effects.core.min.js', array('jquery'), '1.8.16');
         wp_register_script('jquery-effects-blind', STB_URL.'js/jquery.effects.blind.min.js', array('jquery', 'jquery-effects-core'), '1.8.16');
@@ -276,8 +289,12 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       wp_enqueue_script('jquery-ui-tabs');
       wp_enqueue_script('jquery-effects-core');
       wp_enqueue_script('jquery-effects-blind');
-      wp_enqueue_script('ColorPicker', STB_URL.'js/colorpicker.js');
-      wp_enqueue_script('wstbAdminLayout', STB_URL.'js/wstb.admin.js', array('jquery'), STB_VERSION);
+      //wp_enqueue_script('ColorPicker', STB_URL.'js/colorpicker.js');
+      wp_enqueue_script('smallColorPicker', STB_URL.'js/small-color-picker.min.js', array('jquery'));
+      wp_enqueue_script('wstbAdminLayout', STB_URL.'js/wstb.admin.min.js', array('jquery'), STB_VERSION);
+
+      if($this->cmsVer === 'high') wp_localize_script('wstbAdminLayout', 'stbUserOptions', $options);
+      else wp_localize_script('wstbAdminLayout', 'stbUserOptions', array('l10n_print_after' => 'stbUserOptions = ' . json_encode($options) . ';'));
     }
     
     public function adminEditorScripts() {
@@ -315,6 +332,14 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
           'blur' => intval($this->settings['js_textShadow_blur']),
           'alpha' => 0.15,
           'color' => '#'.$this->settings['js_textShadow_color']
+        ),
+        'pickerOptions' => array(
+          'texts' => array(
+            'ok' => __('OK', STB_DOMAIN),
+            'cancel' => __('Cancel', STB_DOMAIN),
+            'switchModeToNum' => __('Show numbers', STB_DOMAIN),
+            'switchModeToCol' => __('Show color wheel', STB_DOMAIN)
+          )
         )
       );
       
@@ -336,9 +361,10 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       wp_enqueue_script('jquery');
       wp_enqueue_script('jquery-effects-core');
       wp_enqueue_script('jquery-effects-blind');
-      wp_enqueue_script('ColorPicker', STB_URL.'js/colorpicker.js');
+      //wp_enqueue_script('ColorPicker', STB_URL.'js/colorpicker.js');
+      wp_enqueue_script('smallColorPicker', STB_URL.'js/small-color-picker.min.js', array('jquery'));
       wp_enqueue_script('STB', STB_URL.'js/jquery.stb.js', array('jquery', 'jquery-effects-core', 'jquery-effects-blind'), STB_VERSION);
-      wp_enqueue_script('wstbAdminLayout', STB_URL.'js/wstb.edit.js', array('jquery', 'jquery-effects-core', 'jquery-effects-blind', 'STB'), STB_VERSION);
+      wp_enqueue_script('wstbAdminLayout', STB_URL.'js/wstb.edit.min.js', array('jquery', 'jquery-effects-core', 'jquery-effects-blind', 'STB'), STB_VERSION);
       if($this->cmsVer === 'high') wp_localize_script('wstbAdminLayout', 'stbUserOptions', $options);
       else wp_localize_script('wstbAdminLayout', 'stbUserOptions', array('l10n_print_after' => 'stbUserOptions = ' . json_encode($options) . ';'));
     }
@@ -417,19 +443,21 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       add_settings_field('js_radius', __('Define Corners Radius', STB_DOMAIN), array(&$this, 'drawTextOption'), 'stb-settings', 'jsSection', array('description' => __("This is corners radius in pixels.", STB_DOMAIN)));
       add_settings_field('js_caption_fontSize', __('Define Caption Font Size', STB_DOMAIN), array(&$this, 'drawTextOption'), 'stb-settings', 'jsSection', array('description' => __("This is font size of caption text in pixels.", STB_DOMAIN)));
       add_settings_field('js_caption_fontFamily', __('Define Caption Font Family', STB_DOMAIN), array(&$this, 'drawTextOption'), 'stb-settings', 'jsSection', array('description' => __("This is font family for caption text.", STB_DOMAIN), 'width' => 100));
+      add_settings_field('js_text_height', __('Select Text Line Height', STB_DOMAIN), array(&$this, 'drawRadioOption'), 'stb-settings', 'jsSection', array('description' => __("Inherit - Defined by theme style sheet.", STB_DOMAIN)."<br />".__("Normal - Defined by visitor's browser.", STB_DOMAIN)."<br />".__("Custom - Defined by You. You can define custom value for text line height using parameter below.", STB_DOMAIN), 'options' => array('inherit' => __('Inherit', STB_DOMAIN), 'normal' => __('Normal', STB_DOMAIN), 'custom' => __('Custom', STB_DOMAIN))));
+      add_settings_field('js_custom_text_height', __('Define Custom Text Line Height', STB_DOMAIN), array(&$this, 'drawTextOption'), 'stb-settings', 'jsSection', array('description' => __('This is custom text line height of STB block in "em" defined by You.', STB_DOMAIN), 'suffix' => 'em'));
       
       add_settings_field('js_shadow_enabled', __('Enable Box Shadow', STB_DOMAIN),  array(&$this, 'drawRadioOption'), 'stb-settings', 'jsShadowSection', array('description' => __('Selecting "Yes" will allow drawing shadow of Special Text Boxes.', STB_DOMAIN), 'options' => array( 'true' => __("Yes", STB_DOMAIN), 'false' => __("No", STB_DOMAIN))));
       add_settings_field('js_shadow_offsetX', __('Define Shadow Offset X', STB_DOMAIN), array(&$this, 'drawTextOption'), 'stb-settings', 'jsShadowSection', array('description' => __("This is box shadow offset by X coordinate for text block in pixels.", STB_DOMAIN)));
       add_settings_field('js_shadow_offsetY', __('Define Shadow Offset Y', STB_DOMAIN), array(&$this, 'drawTextOption'), 'stb-settings', 'jsShadowSection', array('description' => __("This is box shadow offset by Y coordinate for text block in pixels.", STB_DOMAIN)));
       add_settings_field('js_shadow_blur', __('Define Shadow Blur', STB_DOMAIN), array(&$this, 'drawTextOption'), 'stb-settings', 'jsShadowSection', array('description' => __("This is box shadow blur for text block in pixels.", STB_DOMAIN)));
       add_settings_field('js_shadow_alpha', __('Define Shadow Alpha', STB_DOMAIN), array(&$this, 'drawTextOption'), 'stb-settings', 'jsShadowSection', array('description' => __("This is box shadow alpha chanel value for text block.", STB_DOMAIN)));
-      add_settings_field('js_shadow_color', __('Define Shadow Color', STB_DOMAIN), array(&$this, 'drawTextOption'), 'stb-settings', 'jsShadowSection', array('description' => __("This is box shadow color for text block.", STB_DOMAIN)));
+      add_settings_field('js_shadow_color', __('Define Shadow Color', STB_DOMAIN), array(&$this, 'drawColorButton'), 'stb-settings', 'jsShadowSection', array('description' => __("This is box shadow color for text block.", STB_DOMAIN)));
       
       add_settings_field('js_textShadow_enabled', __('Enable Text Shadow', STB_DOMAIN),  array(&$this, 'drawRadioOption'), 'stb-settings', 'jsTextShadowSection', array('description' => __('Selecting "Yes" will allow drawing text shadow of Special Text Boxes.', STB_DOMAIN), 'options' => array( 'true' => __("Yes", STB_DOMAIN), 'false' => __("No", STB_DOMAIN))));
       add_settings_field('js_textShadow_offsetX', __('Define Shadow Offset X', STB_DOMAIN), array(&$this, 'drawTextOption'), 'stb-settings', 'jsTextShadowSection', array('description' => __("This is text shadow offset by X coordinate for text block in pixels.", STB_DOMAIN)));
       add_settings_field('js_textShadow_offsetY', __('Define Shadow Offset Y', STB_DOMAIN), array(&$this, 'drawTextOption'), 'stb-settings', 'jsTextShadowSection', array('description' => __("This is text shadow offset by Y coordinate for text block in pixels.", STB_DOMAIN)));
       add_settings_field('js_textShadow_blur', __('Define Shadow Blur', STB_DOMAIN), array(&$this, 'drawTextOption'), 'stb-settings', 'jsTextShadowSection', array('description' => __("This is text shadow blur for text block in pixels.", STB_DOMAIN)));
-      add_settings_field('js_textShadow_color', __('Define Shadow Color', STB_DOMAIN), array(&$this, 'drawTextOption'), 'stb-settings', 'jsTextShadowSection', array('description' => __("This is text shadow color for text block.", STB_DOMAIN)));
+      add_settings_field('js_textShadow_color', __('Define Shadow Color', STB_DOMAIN), array(&$this, 'drawColorButton'), 'stb-settings', 'jsTextShadowSection', array('description' => __("This is text shadow color for text block.", STB_DOMAIN)));
       
       add_settings_field('border_style', __("Select border style for Special Text Boxes", STB_DOMAIN), array(&$this, 'drawSelectOption'), 'stb-settings', 'cssSection', array('description' => __('Selecting "None" will disable Special Text Boxes border.', STB_DOMAIN), "options" => array( 'solid' => __('Solid', STB_DOMAIN), 'dashed' => __('Dashed', STB_DOMAIN), 'dotted' => __('Dotted', STB_DOMAIN), 'none' => __('None', STB_DOMAIN) )));
       add_settings_field('fontSize', __("Define font size for Special Text Boxes", STB_DOMAIN), array(&$this, 'drawTextOption'), 'stb-settings', 'cssSection', array('description' => __("This is font size in pixels.", STB_DOMAIN).' '.__("Set this parameter to value 0 for theme default font size.", STB_DOMAIN)));
@@ -586,6 +614,7 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
     
     public function drawRadioOption( $optionName, $args ) {
       $options = $args['options'];
+      $multiLines = $args['multiLines'];
       foreach ($options as $key => $option) {
       ?>
         <label for="<?php echo $optionName.'_'.$key; ?>">
@@ -596,17 +625,19 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
           <?php echo $option;?>
         </label>&nbsp;&nbsp;&nbsp;&nbsp;
       <?php
+      if($multiLines) echo '<br />';
       }
     }
     
     public function drawTextOption( $optionName, $args ) {
       $width = $args['width'];
+      $suffix = (empty($args['suffix'])) ? '' : $args['suffix'];
       ?>
         <input id="<?php echo $optionName; ?>"
           name="<?php echo STB_OPTIONS.'['.$optionName.']'; ?>"
           type="text"
           value="<?php echo $this->settings[$optionName]; ?>" 
-          style="height: 22px; font-size: 11px; <?php if(!empty($width)) echo 'width: '.$width.'%;' ?>" />
+          style="height: 22px; font-size: 11px; <?php if(!empty($width)) echo 'width: '.$width.'%;' ?>" /> <?php echo $suffix ?>
       <?php
     }
 
@@ -617,6 +648,19 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
           name="<?php echo STB_OPTIONS.'['.$optionName.']'; ?>"
           type="checkbox"
           value="1" />
+      <?php
+    }
+
+    public function drawColorButton( $optionName, $args ) {
+      ?>
+      <div id="<?php echo $optionName; ?>-button" class="color-btn color-btn-left">
+        <b style="background-color: <?php echo '#'.$this->settings[$optionName]; ?>;"></b>
+        <?php echo strtoupper(/*str_replace('#', '',*/ $this->settings[$optionName]/*)*/); ?>
+      </div>
+      <input id="<?php echo $optionName; ?>"
+        name="<?php echo  STB_OPTIONS.'['.$optionName.']'; ?>"
+        value="<?php echo $this->settings[$optionName]; ?>"
+        type="hidden" />
       <?php
     }
 
@@ -844,6 +888,11 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
         if($updated === 'true') {
           //$this->getCounters();
           //$this->settings = parent::getOptions();
+          ?>
+          <div class="updated below-h2">
+            <p><strong><?php _e('Special Text Box settings are updated.', STB_DOMAIN); ?></strong></p>
+          </div>
+          <?php
           $outFile = self::writeCSS('file');
           if(!$outFile['action']) {
             ?>
@@ -1133,7 +1182,9 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       $jsStyle = array();
       $cssStyle = array();
       $types = array('system' => __('System Style', STB_DOMAIN), 'custom' => __('Custom Style', STB_DOMAIN), 'special' => __('Special Style', STB_DOMAIN));
-          
+      $xUpdateString = '';
+      $errorFile = false;
+
       if(isset($_POST['update_style'])) {
         $styleSlug = $_POST['style_slug'];
         
@@ -1192,13 +1243,14 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
           $updated = true;
         }
         ?>
-<div class="updated"><p><strong><?php echo __("Style Data Updated.", STB_DOMAIN).' '.$xUpdateString;?></strong></p></div>
+<!--<div class="updated below-h2"><p><strong><?php echo __("Style Data Updated.", STB_DOMAIN).' '.$xUpdateString;?></strong></p></div>-->
         <?php
         $this->styles = parent::getStyles();
         $outFile = self::writeCSS('file');
         if(!$outFile['action']) {
+          $errorFile = true;
           ?>
-<div class="error"><p><strong><?php echo $outFile['error'] ?></strong></p></div>
+<!--<div class="error"><p><strong><?php echo $outFile['error'] ?></strong></p></div>-->
           <?php
         }
       }
@@ -1268,7 +1320,12 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
   <form method="post" action="<?php echo $_SERVER["REQUEST_URI"]; ?>">
     <div class="icon32" style="background: url('<?php echo STB_URL.'images/stb-editor.png'; ?>') no-repeat transparent; "><br/></div>
     <h2><?php echo ( ( ($action === 'new') && ( $styleSlug === 'Undefined' ) ) ? __('New Style', STB_DOMAIN) : __('Edit Style', STB_DOMAIN).' ('.$item.')' ); ?></h2>
-    <?php
+    <?php if($updated) { ?>
+      <div class="updated below-h2"><p><strong><?php echo __("Style Data Updated.", STB_DOMAIN).' '.$xUpdateString;?></strong></p></div>
+    <?php }
+      if($errorFile) {
+        echo "<div class='error'><p><strong>".$outFile['error']."</strong></p></div>";
+      }
       //include_once('errors.class.php');
       //$errors = new samErrors();
       //if(!empty($errors->errorString)) echo $errors->errorString;
@@ -1352,18 +1409,14 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
               <h3 class="hndle"><span><?php _e('Javascript Style Parameters', STB_DOMAIN);?></span></h3>
               <div class="inside">
                 <p><strong><?php echo __('Box background gradient', STB_DOMAIN).':'; ?></strong></p>
-                <div class='sub-content'>
-                  <label for='js_color'><?php echo __('Start color', STB_DOMAIN).': '; ?></label>
-                  <input type='text' name='js_color' id='js_color' value='<?php echo str_replace('#', '', $jsStyle['color']); ?>' style='width: 150px'>
-                  <br/>
-                  <label for='js_color_to'><?php echo __('Stop color', STB_DOMAIN).': '; ?></label>
-                  <input type='text' name='js_color_to' id='js_color_to' value='<?php echo str_replace('#', '', $jsStyle['colorTo']); ?>' style='width: 150px;'>
-                </div>
+                <div id="js_color-button" class="color-btn color-btn-left"><b style="background-color: <?php echo $jsStyle['color']; ?>;"></b><?php echo strtoupper(str_replace('#', '', $jsStyle['color'])); ?></div>
+                <input type='hidden' name='js_color' id='js_color' value='<?php echo str_replace('#', '', $jsStyle['color']); ?>'/>
+                <div id="js_color_to-button" class="color-btn color-btn-left"><b style="background-color: <?php echo $jsStyle['colorTo']; ?>;"></b><?php echo strtoupper(str_replace('#', '', $jsStyle['colorTo'])); ?></div>
+                <input type='hidden' name='js_color_to' id='js_color_to' value='<?php echo str_replace('#', '', $jsStyle['colorTo']); ?>'/>
                 <p><?php _e('There are colors of box background gradient. Direction of gradient drawing is from top to bottom.', STB_DOMAIN); ?></p>
-                <p>
-                  <strong><?php echo __('Font color', STB_DOMAIN).': '; ?></strong><br/>
-                  <input type='text' name='js_font_color' id='js_font_color' value='<?php echo str_replace('#', '', $jsStyle['fontColor']); ?>' style='width: 150px;'>
-                </p>
+                <p><strong><?php echo __('Font color', STB_DOMAIN).': '; ?></strong></p>
+                <div id="js_font_color-button" class="color-btn color-btn-left"><b style="background-color: <?php echo $jsStyle['fontColor']; ?>;"></b><?php echo strtoupper(str_replace('#', '', $jsStyle['fontColor'])); ?></div>
+                <input type='hidden' name='js_font_color' id='js_font_color' value='<?php echo str_replace('#', '', $jsStyle['fontColor']); ?>'/>
                 <p><?php printf(__("This is a font color of %s Special Text Box (Six Hex Digits).", STB_DOMAIN), $row['caption']); ?></p>
                 <p>
                   <strong><?php echo __('Image', STB_DOMAIN).': '; ?></strong><br/>
@@ -1371,29 +1424,24 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
                 </p>
                 <p><?php printf(__("This is image for %s Special Text Box (Full URL). 50x50 pixels, transparent background PNG image recommended.", STB_DOMAIN), $row['caption']); ?></p>
                 <div class='clear-line'></div>
-                  <p>
-                    <strong><?php echo __('Border Width', STB_DOMAIN).': '; ?></strong><br/>
-                    <input type='text' name='js_border_width' id='js_border_width' value='<?php echo $jsStyle['border']['width']; ?>' style='width: 100px;'>
-                  </p>
-                  <p>
-                    <strong><?php echo __('Border Color', STB_DOMAIN).': '; ?></strong><br/>
-                    <input type='text' name='js_border_color' id='js_border_color' value='<?php echo str_replace('#', '', $jsStyle['border']['color']); ?>' style='width: 150px;'>
-                  </p>
+                <p>
+                  <strong><?php echo __('Border Width', STB_DOMAIN).': '; ?></strong><br/>
+                  <input type='text' name='js_border_width' id='js_border_width' value='<?php echo $jsStyle['border']['width']; ?>' style='width: 100px;'>
+                </p>
+                <p><strong><?php echo __('Border Color', STB_DOMAIN).': '; ?></strong><br/></p>
+                <div id="js_border_color-button" class="color-btn color-btn-left"><b style="background-color: <?php echo $jsStyle['border']['color']; ?>;"></b><?php echo strtoupper(str_replace('#', '', $jsStyle['border']['color'])); ?></div>
+                <input type='hidden' name='js_border_color' id='js_border_color' value='<?php echo str_replace('#', '', $jsStyle['border']['color']); ?>'/>
                 <p><?php printf(__("This is a border color of %s Special Text Box (Six Hex Digits).", STB_DOMAIN), $row['caption']); ?></p>
                 <div class='clear-line'></div>
                 <p><strong><?php echo __('Caption background gradient', STB_DOMAIN).':'; ?></strong></p>
-                <div class='sub-content'>
-                  <label for='js_caption_color'><?php echo __('Start color', STB_DOMAIN).': '; ?></label>
-                  <input type='text' name='js_caption_color' id='js_caption_color' value='<?php echo str_replace('#', '', $jsStyle['caption']['color']); ?>' style='width: 150px'>
-                  <br/>
-                  <label for='js_caption_color_to'><?php echo __('Stop color', STB_DOMAIN).': '; ?></label>
-                  <input type='text' name='js_caption_color_to' id='js_caption_color_to' value='<?php echo str_replace('#', '', $jsStyle['caption']['colorTo']); ?>' style='width: 150px;'>
-                </div>
+                <div id="js_caption_color-button" class="color-btn color-btn-left"><b style="background-color: <?php echo $jsStyle['caption']['color']; ?>;"></b><?php echo strtoupper(str_replace('#', '', $jsStyle['caption']['color'])); ?></div>
+                <input type='hidden' name='js_caption_color' id='js_caption_color' value='<?php echo str_replace('#', '', $jsStyle['caption']['color']); ?>' style='width: 150px'>
+                <div id="js_caption_color_to-button" class="color-btn color-btn-left"><b style="background-color: <?php echo $jsStyle['caption']['colorTo']; ?>;"></b><?php echo strtoupper(str_replace('#', '', $jsStyle['caption']['colorTo'])); ?></div>
+                <input type='hidden' name='js_caption_color_to' id='js_caption_color_to' value='<?php echo str_replace('#', '', $jsStyle['caption']['colorTo']); ?>' style='width: 150px;'>
                 <p><?php _e('There are colors of caption background gradient. Direction of gradient drawing is from top to bottom.', STB_DOMAIN); ?></p>
-                <p>
-                  <strong><?php echo __('Caption Font Color', STB_DOMAIN).': '; ?></strong><br/>
-                  <input type='text' name='js_caption_font_color' id='js_caption_font_color' value='<?php echo str_replace('#', '', $jsStyle['caption']['fontColor']); ?>' style='width: 150px;'>
-                </p>
+                <p><strong><?php echo __('Caption Font Color', STB_DOMAIN).': '; ?></strong></p>
+                <div id="js_caption_font_color-button" class="color-btn color-btn-left"><b style="background-color: <?php echo $jsStyle['caption']['fontColor']; ?>;"></b><?php echo strtoupper(str_replace('#', '', $jsStyle['caption']['fontColor'])); ?></div>
+                <input type='hidden' name='js_caption_font_color' id='js_caption_font_color' value='<?php echo str_replace('#', '', $jsStyle['caption']['fontColor']); ?>'/>
                 <p><?php printf(__("This is a font color of %s Special Text Box caption (Six Hex Digits).", STB_DOMAIN), $row['caption']); ?></p>
                 <?php if(($action !== 'new') || $updated) { ?>
                 <div class='clear-line'></div>
@@ -1414,15 +1462,13 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
               <div class="handlediv" title="<?php _e('Click to toggle', STB_DOMAIN); ?>"><br/></div>
               <h3 class="hndle"><span><?php _e('CSS Style Parameters', STB_DOMAIN);?></span></h3>
               <div class="inside">
-                <p>
-                  <strong><?php echo _e('Background Color', STB_DOMAIN).':'; ?></strong><br/>
-                  <input type='text' name='css_bg_color' id='css_bg_color' value='<?php echo $cssStyle['bgColor']; ?>'   style='width: 150px;'>
-                </p>
+                <p><strong><?php echo _e('Background Color', STB_DOMAIN).':'; ?></strong></p>
+                <div id="css_bg_color-button" class="color-btn color-btn-left"><b style="background-color: <?php echo '#'.$cssStyle['bgColor']; ?>;"></b><?php echo strtoupper(str_replace('#', '', $cssStyle['bgColor'])); ?></div>
+                <input type='hidden' name='css_bg_color' id='css_bg_color' value='<?php echo $cssStyle['bgColor']; ?>'/>
                 <p><?php printf(__("This is a background color of %s Special Text Box (Six Hex Digits).", STB_DOMAIN), $row['caption']); ?></p>
-                <p>
-                  <strong><?php echo _e('Font Color', STB_DOMAIN).':'; ?></strong><br/>
-                  <input type='text' name='css_color' id='css_color' value='<?php echo $cssStyle['color']; ?>'   style='width: 150px;'>
-                </p>
+                <p><strong><?php echo _e('Font Color', STB_DOMAIN).':'; ?></strong></p>
+                <div id="css_color-button" class="color-btn color-btn-left"><b style="background-color: <?php echo '#'.$cssStyle['color']; ?>;"></b><?php echo strtoupper(str_replace('#', '', $cssStyle['color'])); ?></div>
+                <input type='hidden' name='css_color' id='css_color' value='<?php echo $cssStyle['color']; ?>'/>
                 <p><?php printf(__("This is a font color of %s Special Text Box (Six Hex Digits).", STB_DOMAIN), $row['caption']); ?></p>
                 <p>
                   <strong><?php echo __('Image', STB_DOMAIN).': '; ?></strong><br/>
@@ -1435,21 +1481,18 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
                 </p>
                 <p><?php printf(__("This is big image for simple (non-captioned) %s Special Text Box (Full URL). 50x50 pixels, transparent background PNG image recommended.", STB_DOMAIN), $row['caption']); ?></p>
                 <div class='clear-line'></div>
-                <p>
-                  <strong><?php echo _e('Border Color', STB_DOMAIN).':'; ?></strong><br/>
-                  <input type='text' name='css_border_color' id='css_border_color' value='<?php echo $cssStyle['borderColor']; ?>'   style='width: 150px;'>
-                </p>
+                <p><strong><?php echo _e('Border Color', STB_DOMAIN).':'; ?></strong></p>
+                <div id="css_border_color-button" class="color-btn color-btn-left"><b style="background-color: <?php echo '#'.$cssStyle['borderColor']; ?>;"></b><?php echo strtoupper(str_replace('#', '', $cssStyle['borderColor'])); ?></div>
+                <input type='hidden' name='css_border_color' id='css_border_color' value='<?php echo $cssStyle['borderColor']; ?>'/>
                 <p><?php printf(__("This is a border color of %s Special Text Box (Six Hex Digits).", STB_DOMAIN), $row['caption']); ?></p>
                 <div class='clear-line'></div>
-                <p>
-                  <strong><?php echo _e('Caption Background Color', STB_DOMAIN).':'; ?></strong><br/>
-                  <input type='text' name='css_caption_bg_color' id='css_caption_bg_color' value='<?php echo $cssStyle['captionBgColor']; ?>'   style='width: 150px;'>
-                </p>
+                <p><strong><?php echo _e('Caption Background Color', STB_DOMAIN).':'; ?></strong></p>
+                <div id="css_caption_bg_color-button" class="color-btn color-btn-left"><b style="background-color: <?php echo '#'.$cssStyle['captionBgColor']; ?>;"></b><?php echo strtoupper(str_replace('#', '', $cssStyle['captionBgColor'])); ?></div>
+                <input type='hidden' name='css_caption_bg_color' id='css_caption_bg_color' value='<?php echo $cssStyle['captionBgColor']; ?>'/>
                 <p><?php printf(__("This is a background color of %s Special Text Box caption (Six Hex Digits).", STB_DOMAIN), $row['caption']); ?></p>
-                <p>
-                  <strong><?php echo _e('Caption Font Color', STB_DOMAIN).':'; ?></strong><br/>
-                  <input type='text' name='css_caption_color' id='css_caption_color' value='<?php echo $cssStyle['captionColor']; ?>'   style='width: 150px;'>
-                </p>
+                <p><strong><?php echo _e('Caption Font Color', STB_DOMAIN).':'; ?></strong></p>
+                <div id="css_caption_color-button" class="color-btn color-btn-left"><b style="background-color: <?php echo '#'.$cssStyle['captionColor']; ?>;"></b><?php echo strtoupper(str_replace('#', '', $cssStyle['captionColor'])); ?></div>
+                <input type='hidden' name='css_caption_color' id='css_caption_color' value='<?php echo $cssStyle['captionColor']; ?>'/>
                 <p><?php printf(__("This is a font color of %s Special Text Box caption (Six Hex Digits).", STB_DOMAIN), $row['caption']); ?></p>
                 <?php if(($action !== 'new') || $updated) { ?>
                 <div class='clear-line'></div>

@@ -1,10 +1,10 @@
 ﻿=== Special Text Boxes ===
 Contributors: minimus
-Donate link: http://www.simplelib.com/
+Donate link:  https://load.payoneer.com/LoadToPage.aspx?email=minimus@simplelib.com
 Tags: content, performance, text, code, php, widget
 Requires at least: 3.0
-Tested up to: 3.6.1
-Stable tag: 4.3.73
+Tested up to: 3.7
+Stable tag: 4.4.75
 
 Highlights any portion of text as text in the colored boxes.
 
@@ -92,6 +92,9 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 
 == Changelog ==
 
+= 4.4.75 =
+* Text Line Height settings are added.
+* Some bugs are resolved.
 = 4.3.73 =
 * Language pack is updated. Slovak by Branco is added
 = 4.3.72 =
@@ -196,6 +199,9 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 
 == Upgrade Notice ==
 
+= 4.4.75 =
+Text Line Height settings are added.
+Some bugs are resolved.
 = 4.3.73 =
 Language pack is updated. Slovak by Branco is added.
 = 4.3.72 =

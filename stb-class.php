@@ -38,6 +38,8 @@ if (!class_exists("SpecialTextBoxes")) {
       'js_textShadow_blur' => 3,
       'js_textShadow_alpha' => 0.15,
       'js_textShadow_color' => '000000',
+      'js_text_height' => 'inherit',
+      'js_custom_text_height' => 0,
       'deleteOptions' => 0,
       'deleteDB' => 0,
       'css_loading' => 'dynamic',
@@ -60,7 +62,7 @@ if (!class_exists("SpecialTextBoxes")) {
     public $globalMode = '';
     
     public function __construct() {
-      define('STB_VERSION', '4.3.73');
+      define('STB_VERSION', '4.4.75');
       define('STB_DB_VERSION', '1.0');
       define('STB_DIR', plugin_dir_path(__FILE__));
       define('STB_DOMAIN', 'wp-special-textboxes');
@@ -225,6 +227,9 @@ if (!class_exists("SpecialTextBoxes")) {
         'mright' => intval($this->settings['right_margin']),
         'mbottom' => intval($this->settings['bottom_margin']),
         'mleft' => intval($this->settings['left_margin']),
+        'lineHeight' => ($this->settings['js_text_height'] === 'custom') ?
+          $this->settings['js_custom_text_height'] . 'em' :
+          $this->settings['js_text_height'],
         'shadow' => array(
           'enabled' => ($this->settings['js_shadow_enabled'] == 'true'),
           'offsetX' => intval($this->settings['js_shadow_offsetX']),

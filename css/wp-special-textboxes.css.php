@@ -15,7 +15,17 @@ $stbClasses = $stbObject->classes;
 	margin: 0px auto; 
 	padding: 0px;
 	position: static;
+  /*box-sizing: content-box !important;
+  -moz-box-sizing: content-box !important;
+  -webkit-box-sizing: content-box !important;*/
 }
+
+/*.stb-canvas, .stb-ccanvas, .stb-body {
+  box-sizing: content-box !important;
+  -moz-box-sizing: content-box !important;
+  -webkit-box-sizing: content-box !important;
+}*/
+
 .stb-tool {
 	<?php if($stbOptions['langDirect'] === 'ltr') {?> float: right; <?php } else { ?> float: left; <?php } ?>
 	padding: 0px; 
