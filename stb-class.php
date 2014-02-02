@@ -62,7 +62,7 @@ if (!class_exists("SpecialTextBoxes")) {
     public $globalMode = '';
     
     public function __construct() {
-      define('STB_VERSION', '4.4.75');
+      define('STB_VERSION', '4.5.80');
       define('STB_DB_VERSION', '1.0');
       define('STB_DIR', plugin_dir_path(__FILE__));
       define('STB_DOMAIN', 'wp-special-textboxes');
@@ -166,7 +166,7 @@ if (!class_exists("SpecialTextBoxes")) {
       if($vc == 2) {
         $subver = explode('-', $ver[1]);
         $version['minor'] = $subver[0];
-        $version['spec'] = $subver[1];
+        $version['spec'] = (count($subver) > 1) ? $subver[1] : '';
         $version['str'] = $version['major'].'.'.$version['minor'].((!empty($version['spec'])) ? ' ('.$version['spec'].')' : '');
       }
       else {
@@ -201,6 +201,7 @@ if (!class_exists("SpecialTextBoxes")) {
     
     public function addHeaderCSS() {
       if($this->globalMode != 'js') {
+        wp_enqueue_style('stbCoreCSS', STB_URL.'css/stb-core.css', false, STB_VERSION);
         if($this->settings['css_loading'] === 'dynamic')
           wp_enqueue_style('stbCSS', STB_URL.'css/wp-special-textboxes.css.php', false, STB_VERSION);
         else wp_enqueue_style('stbCSS', STB_URL.'css/wp-special-textboxes.css', false, STB_VERSION);
@@ -251,8 +252,8 @@ if (!class_exists("SpecialTextBoxes")) {
       $cssOptions = array(
         'roundedCorners' => ($this->settings['rounded_corners'] == 'true'),
         'mbottom' => intval($this->settings['bottom_margin']),
-        'imgHide' => STB_URL.'images/hide.png',
-        'imgShow' => STB_URL.'images/show.png',
+        'imgHide' => STB_URL.'images/minus.png',
+        'imgShow' => STB_URL.'images/plus.png',
         'strHide' => __('Hide', STB_DOMAIN),
         'strShow' => __('Show', STB_DOMAIN)
       );
