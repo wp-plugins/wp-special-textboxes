@@ -1,0 +1,24 @@
+
+.ui-tooltip, .qtip {
+  max-width: 520px !important; 
+}
+
+.ui-tabs-panel #poststuff {
+  min-width: 250px;
+}
+
+#poststuff .inside,
+#poststuff .inside p,
+#poststuff .inside ul {
+  font-size: 11px !important;
+  font-family: Verdana,Arial,sans-serif !important;
+}
+
+#tabs {
+  border-color: #DFDFDF;
+}
+
+#tabs li,
+#tabs li a {
+  font-size: 11px !important;
+}
