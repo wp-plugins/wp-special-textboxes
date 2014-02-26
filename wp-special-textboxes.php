@@ -3,7 +3,7 @@
 Plugin Name: Special Text Boxes
 Plugin URI: http://www.simplelib.com/?p=11
 Description: Adds simple colored text boxes to highlight some portion of post text. Use it for highlights warnings, alerts, infos and downloads in your blog posts. Visit <a href="http://www.simplelib.com/">SimpleLib blog</a> for more details.
-Version: 4.5.81
+Version: 5.0.85
 Author: minimus
 Author URI: http://blogcoding.ru
 */
@@ -24,6 +24,8 @@ Author URI: http://blogcoding.ru
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+define('STB_MAIN_FILE', __FILE__);
+
 include_once('stb-block-class.php');
 if(is_admin()) {
   include_once('stb-admin-class.php');
