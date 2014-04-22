@@ -66,9 +66,8 @@ function insertWSTBCode() {
   
   if(sRadio[0].checked) wstbShadow = 1;
   else if(sRadio[1].checked) wstbShadow = 2;
-	
-	var contentObj = tinyMCE.getInstanceById('content');
-	var wstbBody = contentObj.selection.getContent();
+
+	var wstbBody =  window.tinyMCE.activeEditor.selection.getContent();
 	
 	wstbCode = ' [stextbox id="' + wstbID + '"'; 
 	if (wstbCaption != '' || wstbDefCap) { 
@@ -109,7 +108,7 @@ function insertWSTBCode() {
 	if (wstbNoImage) wstbCode += ' image="null"';
 	wstbCode += ']' + wstbBody + '[/stextbox]';
 	
-	window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, wstbCode);
+	window.tinyMCE.activeEditor.execCommand('mceInsertContent', false, wstbCode);
 	tinyMCEPopup.editor.execCommand('mceRepaint');
 	tinyMCEPopup.close();
 	return;
