@@ -3,8 +3,8 @@ Contributors: minimus
 Donate link:  https://load.payoneer.com/LoadToPage.aspx?email=minimus@simplelib.com
 Tags: content, performance, text, code, php, widget
 Requires at least: 3.9
-Tested up to: 3.9
-Stable tag: 5.0.86
+Tested up to: 4.0
+Stable tag: 5.1.88
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -97,6 +97,10 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 
 == Changelog ==
 
+= 5.1.88 =
+* TinyMCE 4 compatibility bug is fixed
+* NoImage bug is fixed
+* Wordpress 4 compatibility is tested
 = 5.0.86 =
 * TinyMCE compatibility bug is fixed
 = 5.0.85 =
@@ -219,6 +223,8 @@ More about Special Text Boxes usage and customising read on the [plugin page](ht
 
 == Upgrade Notice ==
 
+= 5.1.88 =
+Some bugs are resolved.
 = 5.0.86 =
 TinyMCE compatibility bug is fixed
 = 5.0.85 =
