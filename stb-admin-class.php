@@ -131,7 +131,7 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
     }
 
     public function closePointerHandler() {
-      $options = self::getPointerOptions();
+      $options = self::getPointerOptions(true);
       $charset = get_bloginfo('charset');
       @header("Content-Type: application/json; charset={$charset}");
       if(isset($_REQUEST['pointer'])) {
