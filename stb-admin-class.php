@@ -33,7 +33,7 @@ if(!class_exists('SpecialTextBoxesAdmin') && class_exists('SpecialTextBoxes')) {
       add_action('admin_menu', array(&$this, 'regAdminPage'));
       add_filter('tiny_mce_version', array(&$this, 'tinyMCEVersion'));
       add_action('init', array(&$this, 'addButtons'));
-      add_action('wp_ajax_close_pointer', array(&$this, 'closePointerHandler'));
+      add_action('wp_ajax_close_stb_pointer', array(&$this, 'closePointerHandler'));
       
       $this->updateDB();
       if(!file_exists(STB_DIR.'css/wp-special-textboxes.css')) self::writeCSS('file');
